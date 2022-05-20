@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.astroacharyamukti.R;
 import com.example.astroacharyamukti.databinding.FragmentHomeBinding;
+import com.example.astroacharyamukti.helper.Backend;
 
 import org.w3c.dom.Text;
 
@@ -30,8 +31,8 @@ import java.util.Calendar;
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private FragmentHomeBinding binding;
-    TextView schedule, date_picker,textScheduleDate,textScheduleTime;
-    String date,time;
+    TextView schedule, date_picker, textScheduleDate, textScheduleTime;
+    int date;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -61,8 +62,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         dialog.setContentView(R.layout.dialog_online_layout);
         Button button_online = dialog.findViewById(R.id.button_online);
         TextView schedule = dialog.findViewById(R.id.text_reschedule);
-        textScheduleDate=dialog.findViewById(R.id.text_schedule_date);
-        textScheduleTime=dialog.findViewById(R.id.text_schedule_time);
+        textScheduleDate = dialog.findViewById(R.id.text_schedule_date);
+        textScheduleTime = dialog.findViewById(R.id.text_schedule_time);
+        date = Backend.getInstance(getContext()).getDate();
+        textScheduleDate.setText(date);
 
         schedule.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,8 +144,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         DatePickerDialog mDatePicker = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
             @SuppressLint("SetTextI18n")
             public void onDateSet(DatePicker datepicker, int selectedYear, int selectedMonth, int selectedDay) {
-                Log.e("Date Selected", "Month: " + selectedMonth + " Day: " + selectedDay + " Year: " + selectedYear);
+                date = Log.e("Date Selected", "Month: " + selectedMonth + " Day: " + selectedDay + " Year: " + selectedYear);
                 schedule.setText((selectedMonth + 1) + "/" + selectedDay + "/" + selectedYear);
+                Backend.getInstance(getContext()).saveDate(date);
             }
         }, year1, month1, day1);
         mDatePicker.setTitle("Select date");
