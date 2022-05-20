@@ -14,27 +14,16 @@
         android:theme="@style/Theme.Astroacharyamukti.AppBarOverlay"
         tools:ignore="MissingConstraints">
 
-        <RelativeLayout
-            android:orientation="vertical"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/yellow"
-                app:popupTheme="@style/Theme.Astroacharyamukti.PopupOverlay">
-
-                <TextView
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="online" />
-            </androidx.appcompat.widget.Toolbar>
-
-        </RelativeLayout>
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/yellow"
+            app:title="User Details"
+            app:popupTheme="@style/Theme.Astroacharyamukti.PopupOverlay"
+            app:subtitle="Online"
+            app:titleTextColor="@color/white"
+            app:subtitleTextColor="@color/white" />
 
 
     </com.google.android.material.appbar.AppBarLayout>

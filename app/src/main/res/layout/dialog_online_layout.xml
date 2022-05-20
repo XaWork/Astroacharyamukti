@@ -5,19 +5,19 @@
     android:layout_height="match_parent"
     android:clickable="true"
     android:elevation="10dp"
-    app:cardCornerRadius="25dp"
-    android:focusable="true">
+    android:focusable="true"
+    app:cardCornerRadius="25dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:padding="5dp"
             android:id="@+id/cancel_image"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
+            android:padding="5dp"
             android:src="@drawable/ic_baseline_cancel_24" />
 
         <ImageView
@@ -38,23 +38,54 @@
             android:text="@string/text_schedule_online"
             android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/text_schedule_time"
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:id="@+id/text_date_time1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/text_schedule_online"
-            android:layout_marginTop="5dp"
-            android:gravity="center_horizontal"
-            android:text="@string/text_time"
-            android:textColor="@color/black"
-            android:textSize="11sp"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            android:layout_below="@+id/text_schedule_online">
+
+            <TextView
+                android:id="@+id/text_schedule_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:text="@string/text_Date"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:text="@string/text_at"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:text="@string/text_time1"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/text_schedule_go_online"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/text_schedule_time"
+            android:layout_below="@+id/text_date_time1"
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
             android:text="@string/text_go_online"
@@ -63,7 +94,6 @@
             android:textStyle="normal" />
 
         <Button
-            android:textSize="11sp"
             android:id="@+id/button_online"
             android:layout_width="200dp"
             android:layout_height="35dp"
@@ -74,15 +104,16 @@
             android:background="@drawable/radio_flat_selector"
             android:text="@string/button_online"
             android:textAllCaps="false"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="11sp" />
 
         <TextView
-            android:layout_marginBottom="10dp"
             android:id="@+id/text_reschedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/button_online"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center_horizontal"
             android:text="@string/text_reschedule"
             android:textColor="@color/black"

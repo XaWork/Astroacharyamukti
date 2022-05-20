@@ -47,7 +47,9 @@
     <string name="edit_time">hh:mm(24 hours)</string>
     <string name="edit_place">Birth Place</string>
     <string name="text_schedule_online">You are scheduled to be online on</string>
-    <string name="text_time">12|05|2022 at 05:25 PM</string>
+    <string name="text_Date">12|05|2022</string>
+    <string name="text_at">at</string>
+    <string name="text_time1">05:25 PM</string>
     <string name="text_go_online">Are you sure you want to go online?</string>
     <string name="button_online">Go Online</string>
     <string name="text_reschedule">Reschedule</string>
@@ -99,4 +101,13 @@
     <string name="text_call_rating">Overall Call rating(1161)</string>
     <string name="text_call">Call</string>
     <string name="text_chat">Chat</string>
+    <!-- TODO: Remove or change this Custom schedule text -->
+    <string name="text_login_back">Logging Back Time</string>
+    <string name="text_date_time">Select the date and time when \nyou will come online again.</string>
+    <string name="text_calender">Select Date</string>
+    <string name="text_date_picker">Select Time</string>
+    <string name="text_india_standard_time">India Standard Time</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="text_confirm">confirm</string>
+
 </resources>

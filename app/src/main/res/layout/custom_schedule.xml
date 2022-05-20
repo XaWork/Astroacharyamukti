@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:id="@+id/text_schedule_online"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        android:text="@string/text_login_back"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_schedule_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_schedule_online"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:text="@string/text_date_time"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_calender"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/text_schedule_time"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/outline_grey_rectangle_bg"
+        android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:text="@string/text_date_picker"
+        android:textStyle="normal" />
+
+    <TextView
+        android:id="@+id/date_picker"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/text_calender"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/outline_grey_rectangle_bg"
+        android:drawableEnd="@drawable/ic_baseline_access_alarms_24"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="@string/text_time1"
+        android:textColor="@color/black"
+        android:textStyle="normal" />
+
+    <TextView
+        android:id="@+id/standard_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/date_picker"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/text_india_standard_time"
+        android:textSize="11sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_marginEnd="15dp"
+        android:gravity="end"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/standard_time">
+
+        <TextView
+            android:layout_marginBottom="15dp"
+            android:id="@+id/cancel"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:gravity="end"
+            android:text="@string/text_cancel"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_Confirm"
+            android:layout_marginBottom="15dp"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="10dp"
+            android:gravity="end"
+            android:textColor="@color/yellow"
+            android:text="@string/text_confirm"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+</RelativeLayout>
