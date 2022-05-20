@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MyEarningActivity">
+
+    <RelativeLayout
+        android:id="@+id/layoutTotal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:paddingStart="10dp"
+        android:background="#F3F1F1"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/text_earning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Earned"
+            android:textSize="12sp" />
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_earning"
+            android:layout_marginTop="5dp"
+            android:drawableLeft="@drawable/ic_baseline_currency_rupee_24"
+            android:drawablePadding="5dp"
+            android:text="0.00000000"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:id="@+id/layoutFilter"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/text_earning"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/orange_outline_bg"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_baseline_tune_24"
+                android:drawablePadding="10dp"
+                android:text="filter"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/text_recent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutTotal"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Recent"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_marginEnd="10dp"
+        android:id="@+id/text_date"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/text_recent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#F3F1F1"
+        android:gravity="center_vertical"
+        android:paddingStart="10dp"
+        android:text="Monday, may 16,2022"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_earning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_date"
+        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp" />
+</RelativeLayout>

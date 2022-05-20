@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fff">
+
+    <TextView
+        android:id="@+id/dialogPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/text_verification"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/txtLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialogPass"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/text_send_otp"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        tools:ignore="RtlSymmetry" />
+
+    <EditText
+        android:id="@+id/etOtp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/txtLink"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/text_bg"
+        android:hint="@string/edit_otp"
+        android:inputType="numberPassword"
+        android:paddingStart="15dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        tools:ignore="RtlSymmetry"
+        app:passwordToggleEnabled="true"/>
+
+    <Button
+        android:id="@+id/btnVerify"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/etOtp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/text_bg"
+        android:text="@string/button_verify"
+        android:textColor="@color/white"
+        tools:ignore="RtlSymmetry" />
+</RelativeLayout>

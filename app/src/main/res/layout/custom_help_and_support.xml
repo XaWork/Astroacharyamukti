@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp">
+    <TextView
+        android:id="@+id/text_works"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="@string/text_how_it_works"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/text_instruction"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/text_works"
+        android:text="@string/text_Instruction"
+        android:textColor="@color/black" />
+    <TextView
+        android:id="@+id/text_quality"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/text_instruction"
+        android:text="@string/text_Quality"
+        android:textColor="@color/black" />
+    <TextView
+        android:id="@+id/text_contact_us"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/text_quality"
+        android:text="@string/text_Contact_us"
+        android:textColor="@color/black" />
+    <TextView
+        android:id="@+id/text_fqe"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/text_contact_us"
+        android:text="@string/text_faq"
+        android:textColor="@color/black" />
+</RelativeLayout>

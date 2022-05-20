@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:gravity="center"
+    tools:context=".activity.Launcher">
+
+    <ImageView
+        android:id="@+id/imageApp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/logonew" />
+
+    <TextView
+        android:layout_below="@+id/imageApp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"/>
+</RelativeLayout>

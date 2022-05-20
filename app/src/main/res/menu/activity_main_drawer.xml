@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/logonew"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_appointments"
+            android:icon="@drawable/ic_baseline_restore_24"
+            android:title="@string/menu_gallery" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_baseline_person_24"
+            android:title="@string/menu_slideshow">
+
+        </item>
+        <item
+            android:id="@+id/nav_my_earning"
+            android:icon="@drawable/ic_baseline_show_chart_24"
+            android:title="@string/menu_earning" />
+        <item
+            android:id="@+id/nav_partner_growth"
+            android:icon="@drawable/ic_baseline_workspace_premium_24"
+            android:title="@string/menu_opportunities" />
+        <item
+            android:id="@+id/nav_performance"
+            android:icon="@drawable/ic_baseline_bar_chart_24"
+            android:title="@string/menu_chart" />
+        <item
+            android:id="@+id/nav_help_support"
+            android:icon="@drawable/ic_baseline_support_agent_24"
+            android:title="@string/menu_help_support" />
+        <item
+            android:id="@+id/nav_term_condition"
+            android:icon="@drawable/ic_baseline_support_agent_24"
+            android:title="@string/menu_term_conditions" />
+        <item
+            android:id="@+id/nav_privacy_policy"
+            android:icon="@drawable/ic_baseline_privacy_tip_24"
+            android:title="@string/menu_privacy_Policy" />
+        <item
+            android:id="@+id/nav_language"
+            android:icon="@drawable/ic_baseline_language_24"
+            android:title="@string/menu_language" />
+    </group>
+</menu>

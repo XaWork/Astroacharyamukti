@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_margin="10dp"
+    android:background="@drawable/outline_grey_rectangle_bg">
+
+    <RelativeLayout
+        android:id="@+id/ratingMain_layout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/review_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/review_name"
+            android:layout_marginTop="5dp">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Call id:"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="123445"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    android:textStyle="normal" />
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tableLayout"
+            android:layout_marginTop="3dp"
+            android:text="17 may 2022, 5 Pm"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="11sp"
+            android:textStyle="normal" />
+
+        <RatingBar
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:numStars="5"
+            android:rating="3"
+            android:stepSize="0.1" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/ratingMain_layout"
+        android:background="#807D7D" />
+
+    <TextView
+        android:id="@+id/giving_consultation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view"
+        android:layout_marginTop="10dp"
+        android:paddingStart="15dp"
+        android:text="Giving very good consultation with Insights" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/giving_consultation"
+        android:layout_margin="15dp"
+        android:background="@drawable/orange_outline_bg"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/text_thank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="Thank you so much"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_thank"
+            android:layout_marginStart="15dp"
+            android:paddingTop="5dp"
+            android:text="5:30 PM, may 11"
+            android:textAllCaps="true"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+</RelativeLayout>

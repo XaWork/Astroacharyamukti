@@ -1,0 +1,102 @@
+<resources>
+    <string name="app_name">Astroacharyamukti</string>
+    <string name="edit_email">Email id</string>
+    <string name="edit_pass">Password</string>
+    <string name="edit_pass_conf">Confirm Password</string>
+    <string name="button_login">Login</string>
+    <string name="button_otp">Login with mobile</string>
+    <string name="button_send_otp">Send Otp</string>
+    <string name="text_fot">Forgot Password?</string>
+    <string name="text_reg">Register</string>
+    <string name="text_username">Username</string>
+    <string name="edit_mobile">Mobile no.</string>
+    <string name="edit_otp">OTP</string>
+    <string name="button_send">Send</string>
+    <string name="button_verify">Verify</string>
+    <string name="text_sign">Create new Account for Login? Sign up</string>
+    <string name="text_sign_in">Sign in</string>
+    <string name="text_link">Please provide your registered email id send the password reset link</string>
+    <string name="text_verification">Verification OTP</string>
+    <string name="text_send_otp">Send Otp on your register mobile number</string>
+    <string name="title_activity_home_actvity">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_about">About The Acharyamukti</string>
+    <string name="menu_gallery">Book Appointment</string>
+    <string name="menu_slideshow">My account</string>
+    <string name="menu_earning">My Earning</string>
+    <string name="menu_opportunities">Partner Growth Opportunities</string>
+    <string name="menu_chart">My Performance chart</string>
+    <string name="menu_help_support">Help and Support</string>
+    <string name="menu_term_condition">Term and Condition</string>
+    <string name="menu_privacy_Policy">Privacy Policy</string>
+    <string name="menu_term_conditions">Terms and Conditions</string>
+    <string name="menu_language">Language</string>
+    <!-- home fragment -->
+    <string name="text_active">No Active Call</string>
+    <string name="text_kundali">Kundali</string>
+    <string name="text_making">Match Making</string>
+    <string name="edit_name">Name</string>
+    <string name="edit_birth">DD/MM/YY</string>
+    <string name="edit_time">hh:mm(24 hours)</string>
+    <string name="edit_place">Birth Place</string>
+    <string name="text_schedule_online">You are scheduled to be online on</string>
+    <string name="text_time">12|05|2022 at 05:25 PM</string>
+    <string name="text_go_online">Are you sure you want to go online?</string>
+    <string name="button_online">Go Online</string>
+    <string name="text_reschedule">Reschedule</string>
+    <string name="title_activity_book_appointments">BookAppointments</string>
+    <string name="tab_text_1">Pending</string>
+    <string name="tab_text_2">Confirmed</string>
+    <string name="tab_text_3">Cancelled</string>
+    <!-- Language -->
+    <string name="text_hindi">हिन्दी</string>
+    <!-- Privacy -->
+    <string name="text_privacy">Personal Information</string>
+
+    <string name="text_long_privacy">The website is an internet-based portal having existence on the World Wide Web, Applications, and other electronic mediums which provide astrological content. The website is offering ‘Free services’ and ‘Paid Services’ too. Free services are easy to access. And for paid services, you will have to become a member. And to become a member, you will have to register for our paid services. There is an agreement for members who want to get access to services.In order to reach the website, there are some ways to reach it smoothly. Providing correct information and giving the proper guidance to the customers is necessary. Therefore, we provide the information related to the website and register the website.
+        For registration, there is some information that will be applicable to the customers for new registration. This process includes personal information like; email address, contact number, bank account details, and many more in terms of providing the services set by the website.
+        In terms of getting you connected with us and you want to get connected with us, the Privacy policy of this website includes all the personal information of the user/customer. The website makes sure that the information provided by the customer/user is correct and relevant for becoming a member.
+        Also, visit…… Talk to Astrologers
+        Customers/users should know about?
+        The information provided by the customer/user to the website is disposable to the third party if needed in serious issues. The website cannot give the commitment of keeping all the personal and communicative details according to the privacy policy of the website.Even though we commit to protecting the information provided by you, we cannot promise you. Being a user of the information will remain secure as you register to the website and your consent is taken during the registration process. Clicking on Agree button sets the lock for your personal information so that the third party cannot open it.
+        The website is not responsible for medical advice. If provided by a third party or service provider and astrologers on the site. An astrologer does not provide you with specific tests, treatments, and medicines.
+        Bank details (Credit card/Debit card)
+        The website is allowing access to the user who has registered to the account and is provided with the information. Therefore, users give consent to unconditional access to the account by the website, agents, employees, or authorized person.  For the purpose of addressing the complaints, abuse, and violation of rights the website has the authority to have an investigation and action with the help of available records.\n The user is directed to use the Terms and conditions of the Privacy Policy.Also, visit…. Thearchryamukti.com
+        Contact Information and ProcessThe website is providing such services which are available through the medium of telecommunication with the Astrologers who are listed in the website. By agreeing with the current Terms and conditions on usage, you are naturally giving your unconditional consent to the website to arrange the call with you on your cell phone number or DND service provider number.
+        User’s consent Once you access the website and start using it, clicking on ‘I AGREE’ will show that you are agreeing to all the terms and conditions of the website. If you are not agreeing with the terms and conditions of the website, do not press or click on the ‘I Agree’ button.  Once you click you will be shown all the terms and conditions of the website. The page will open.
+
+        Discontinuation
+
+         The website may discontinue, modify, change or send alerts to the services or the account of a user registered with the website. The website may issue or may not issue the notice or provide any reason for such actions taken by the website. The website reserves right to terminate and initiate actions immediately.
+
+        Also, visit…. Talk to astrologers</string>
+
+    <!--custom_my_account -->
+    <string name="text_customer">Customer Review</string>
+    <string name="text_sub_history">Subscription History</string>
+    <string name="text_change_pass">Change Password</string>
+    <string name="text_update_mobile">Update Mobile Number</string>
+    <string name="text_update_bank_details">Update Bank Details</string>
+    <!--custom_my_growth -->
+    <string name="text_monthly_performance">Monthly Performance</string>
+    <string name="text_weekly_performance">Weekly Performance</string>
+    <!--custom_help_and_supports -->
+    <string name="text_how_it_works">How it Works</string>
+    <string name="text_Instruction">Instructions</string>
+    <string name="text_Quality">Quality Guidelines</string>
+    <string name="text_Contact_us">Contact us</string>
+    <string name="text_faq">FAQs</string>
+    <string name="title_activity_customer_review">CustomerReview</string>
+    <!-- TODO: Remove or change this Review Activity text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_call_rating">Overall Call rating(1161)</string>
+    <string name="text_call">Call</string>
+    <string name="text_chat">Chat</string>
+</resources>
