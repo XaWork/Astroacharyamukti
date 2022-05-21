@@ -146,7 +146,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onDateSet(DatePicker datepicker, int selectedYear, int selectedMonth, int selectedDay) {
                 date = Log.e("Date Selected", "Month: " + selectedMonth + " Day: " + selectedDay + " Year: " + selectedYear);
                 schedule.setText((selectedMonth + 1) + "/" + selectedDay + "/" + selectedYear);
-                Backend.getInstance(getContext()).saveDate(date);
+                textScheduleDate.setText((selectedMonth + 1) + "/" + selectedDay + "/" + selectedYear);
             }
         }, year1, month1, day1);
         mDatePicker.setTitle("Select date");
@@ -167,6 +167,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     myCalender.set(Calendar.HOUR_OF_DAY, hourOfDay);
                     myCalender.set(Calendar.MINUTE, minute);
                     date_picker.setText(hourOfDay + ":" + minute);
+                    textScheduleTime.setText(hourOfDay + ":" + minute);
                 }
             }
         };
