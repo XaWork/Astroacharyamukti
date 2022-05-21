@@ -25,12 +25,7 @@ public class UpdateBankDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lunch_actvity);
-//        signIn = findViewById(R.id.signup);
-//        forgotPassword = findViewById(R.id.txtPass);
-//        email = findViewById(R.id.etEmail);
-//        password = findViewById(R.id.etPassword);
-//        login = findViewById(R.id.btnLogin);
-//        btnLogin_otp = findViewById(R.id.btnLogin_otp);
+
     }
 
     @Override

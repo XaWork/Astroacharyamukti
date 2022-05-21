@@ -18,7 +18,7 @@ public class Launcher extends AppCompatActivity {
         setContentView(R.layout.activity_luncher);
         new Timer().schedule(new TimerTask() {
             public void run() {
-                startActivity(new Intent(Launcher.this, OtpActivity.class));
+                startActivity(new Intent(Launcher.this, Login.class));
             }
         }, 3000);
     }

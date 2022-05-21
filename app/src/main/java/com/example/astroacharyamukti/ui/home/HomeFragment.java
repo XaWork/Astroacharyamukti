@@ -63,9 +63,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         Button button_online = dialog.findViewById(R.id.button_online);
         TextView schedule = dialog.findViewById(R.id.text_reschedule);
         textScheduleDate = dialog.findViewById(R.id.text_schedule_date);
-        textScheduleTime = dialog.findViewById(R.id.text_schedule_time);
-        date = Backend.getInstance(getContext()).getDate();
-        textScheduleDate.setText(date);
+        textScheduleTime = dialog.findViewById(R.id.time);
+//        date = Backend.getInstance(getContext()).getDate();
+//        textScheduleDate.setText(date);
 
         schedule.setOnClickListener(new View.OnClickListener() {
             @Override

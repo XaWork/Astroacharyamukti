@@ -12,7 +12,7 @@
         <activity
             android:name=".activity.ReviewActivity"
             android:exported="false"
-            android:label="Add Account Details" />
+            android:label="Customer Review"/>
         <activity
             android:name=".activity.MyEarningActivity"
             android:exported="false"
@@ -31,7 +31,7 @@
             android:label="User Details"
             android:theme="@style/Theme.Astroacharyamukti.NoActionBar" />
         <activity
-            android:name=".activity.OtpActivity"
+            android:name=".activity.Login"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
@@ -45,9 +45,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.Register"
+            android:name=".activity.BookAppointment"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:label="Book Appointment"/>
         <activity
             android:name=".activity.UpdateBankDetails"
             android:exported="true"

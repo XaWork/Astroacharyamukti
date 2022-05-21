@@ -18,11 +18,10 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
 import com.example.astroacharyamukti.R;
 import com.example.astroacharyamukti.databinding.ActivityHomeActivityBinding;
 import com.google.android.material.navigation.NavigationView;
-
-
 
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -67,8 +66,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_appointments:
-//                Intent intent = new Intent(getApplicationContext(), BookAppointments.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), BookAppointment.class);
+                startActivity(intent);
                 break;
             case R.id.nav_language:
                 Intent intent1 = new Intent(getApplicationContext(), LanguageActivity.class);

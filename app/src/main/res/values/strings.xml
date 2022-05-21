@@ -1,19 +1,16 @@
 <resources>
     <string name="app_name">Astroacharyamukti</string>
-    <string name="edit_email">Email id</string>
+    <string name="edit_email">Mobile/Email</string>
+    <string name="edit_email_id">Email</string>
     <string name="edit_pass">Password</string>
-    <string name="edit_pass_conf">Confirm Password</string>
+    <string name="edit_pass_conf">Forgot Password</string>
     <string name="button_login">Login</string>
-    <string name="button_otp">Login with mobile</string>
-    <string name="button_send_otp">Send Otp</string>
-    <string name="text_fot">Forgot Password?</string>
-    <string name="text_reg">Register</string>
     <string name="text_username">Username</string>
+    <string name="text_check_box">By signing in, you agree to our.<font color='#FF5722'>Terms and Condition</font></string>
+
     <string name="edit_mobile">Mobile no.</string>
-    <string name="edit_otp">OTP</string>
     <string name="button_send">Send</string>
-    <string name="button_verify">Verify</string>
-    <string name="text_sign">Create new Account for Login? Sign up</string>
+    <string name="text_sign">Create new Account for Login? <font color='#FF5722'>SignIn</font></string>
     <string name="text_sign_in">Sign in</string>
     <string name="text_link">Please provide your registered email id send the password reset link</string>
     <string name="text_verification">Verification OTP</string>
@@ -109,5 +106,24 @@
     <string name="text_india_standard_time">India Standard Time</string>
     <string name="text_cancel">Cancel</string>
     <string name="text_confirm">confirm</string>
+    <!-- TODO: Remove or change this add bank details -->
+    <string name="text_beneficiary">Beneficiary Name :</string>
+    <string name="text_bank_name">Bank Name :</string>
+    <string name="text_any_bank">Any Bank</string>
+    <string name="text_acc_number">Account number :</string>
+    <string name="text_acc_number_digit">37854354t5483</string>
+    <string name="text_type">Account Type :</string>
+    <string name="text_type_saving">Saving</string>
+    <string name="text_ifsc">IFSC Code :</string>
+    <string name="text_ifsc_number">PNB10004567</string>
+    <string name="text_branch">Branch Name :</string>
+    <string name="text_branch_name">Vasant kunj</string>
+    <string name="text_bank_address">Bank Address :</string>
+    <string name="text_bank_address_name">Vasant kunj,New Delhi....</string>
+    <string name="text_pan_card">Pan Card Number :</string>
+    <string name="text_pan_card_number">PNB10004567</string>
+    <string name="text_GST">GST Number :</string>
+    <string name="text_GST_number">ujefrwsrf</string>
+    <string name="text_acc_name">Name</string>
 
 </resources>
