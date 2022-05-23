@@ -7,7 +7,7 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface ApiInterface {
-    @POST("appapi/conection")
-    Call<DataModel> generateOTP(@Body DataModel generateOTPRequest);
+    @POST("astrologer/loginapi")
+    Call<DataModel> login(@Body DataModel login);
 
 }
