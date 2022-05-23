@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.astroacharyamukti">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
@@ -12,7 +13,7 @@
         <activity
             android:name=".activity.ReviewActivity"
             android:exported="false"
-            android:label="Customer Review"/>
+            android:label="Customer Review" />
         <activity
             android:name=".activity.MyEarningActivity"
             android:exported="false"
@@ -47,12 +48,15 @@
         <activity
             android:name=".activity.BookAppointment"
             android:exported="false"
-            android:label="Book Appointment"/>
+            android:label="Book Appointment" />
+        <activity
+            android:name=".activity.BankDetails"
+            android:exported="true"
+            android:label="Login" />
         <activity
             android:name=".activity.UpdateBankDetails"
             android:exported="true"
-            android:label="Login"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:label="Update Bank Details" />
         <activity
             android:name=".activity.MainActivity"
             android:exported="true" />

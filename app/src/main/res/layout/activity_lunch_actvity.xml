@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:fillViewport="true"
-    android:scrollbars="vertical"
-    tools:context=".activity.UpdateBankDetails">
+    tools:context=".activity.BankDetails">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -126,7 +124,9 @@
                     android:text="@string/text_branch_name"
                     android:textColor="@color/black" />
             </TableRow>
+
             <TableRow>
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="30dp"
@@ -142,7 +142,9 @@
                     android:text="@string/text_bank_address_name"
                     android:textColor="@color/black" />
             </TableRow>
+
             <TableRow>
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="30dp"
@@ -158,7 +160,9 @@
                     android:text="@string/text_pan_card_number"
                     android:textColor="@color/black" />
             </TableRow>
+
             <TableRow>
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="30dp"
@@ -175,12 +179,12 @@
                     android:textColor="@color/black" />
             </TableRow>
         </TableLayout>
-        <Button
-            android:layout_marginTop="60dp"
-            android:layout_below="@+id/bank_layout"
-            android:layout_width="match_parent"
-            android:background="@color/yellow"
-            android:text="edit"
-            android:layout_height="50dp"/>
     </RelativeLayout>
-</ScrollView>
+
+    <Button
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/yellow"
+        android:text="edit" />
+</FrameLayout>

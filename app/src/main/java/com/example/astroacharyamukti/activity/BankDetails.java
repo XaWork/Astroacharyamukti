@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.example.astroacharyamukti.R;
 
-public class UpdateBankDetails extends AppCompatActivity {
+public class BankDetails extends AppCompatActivity {
     TextView signIn, forgotPassword;
     EditText email, password;
     Button login, btnLogin_otp;
@@ -33,29 +33,6 @@ public class UpdateBankDetails extends AppCompatActivity {
         this.finish();
         super.onBackPressed();
     }
-
-//    public void showDialog() {
-//        Dialog dialog = new Dialog(this);
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        dialog.setCancelable(false);
-//        dialog.setContentView(R.layout.dailog_forgot_password);
-//        Button send = dialog.findViewById(R.id.btnSend);
-//        send.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                EditText email = dialog.findViewById(R.id.etEmailLink);
-//                if (email.getText().toString().length() < 1) {
-//                    Toast.makeText(getApplicationContext(), "Enter the register Email id", Toast.LENGTH_LONG).show();
-//
-//                } else {
-//                    dialog.dismiss();
-//                }
-//            }
-//        });
-//        dialog.setCanceledOnTouchOutside(true);
-//        dialog.show();
-//
-//    }
 
     @Override
     protected void onRestart() {
