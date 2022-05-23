@@ -15,16 +15,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.astroacharyamukti.R;
+import com.example.astroacharyamukti.ui.fragment.AboutFragment;
+import com.example.astroacharyamukti.ui.fragment.UpdateBankDetails;
 
-public class BankDetails extends AppCompatActivity {
-    TextView signIn, forgotPassword;
-    EditText email, password;
-    Button login, btnLogin_otp;
+public class BankDetails extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lunch_actvity);
+        Button edit = findViewById(R.id.btn_edit);
+        edit.setOnClickListener(this);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 
@@ -62,5 +64,11 @@ public class BankDetails extends AppCompatActivity {
     protected void onDestroy() {
         Log.d("Login", "destroy");
         super.onDestroy();
+    }
+
+    @Override
+    public void onClick(View v) {
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.framAdd, new UpdateBankDetails()).commit();
     }
 }

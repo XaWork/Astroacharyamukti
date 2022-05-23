@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.astroacharyamukti">
+    package="com.example.astroacharyamukti" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/logonew"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/logonew"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Astroacharyamukti">
+        android:theme="@style/Theme.Astroacharyamukti" >
+        <activity
+            android:name=".EditBankDetails"
+            android:exported="false" />
         <activity
             android:name=".activity.ReviewActivity"
             android:exported="false"
@@ -38,7 +42,7 @@
         <activity
             android:name=".activity.Launcher"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -52,11 +56,7 @@
         <activity
             android:name=".activity.BankDetails"
             android:exported="true"
-            android:label="Login" />
-        <activity
-            android:name=".activity.UpdateBankDetails"
-            android:exported="true"
-            android:label="Update Bank Details" />
+            android:label="Add Bank Details" />
         <activity
             android:name=".activity.MainActivity"
             android:exported="true" />

@@ -102,6 +102,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.custom_my_account);
         TextView custom_cust_review = dialog.findViewById(R.id.custom_cust_review);
+        TextView text_update_no=dialog.findViewById(R.id.text_update_details);
+        text_update_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), BankDetails.class);
+                startActivity(intent);
+                dialog.dismiss();
+
+            }
+        });
         custom_cust_review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

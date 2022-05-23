@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android project/Astroacharyamukti/astroacharyamukti/app/src/main/res/layout/activity_edit_bank_details.xml" value="0.2" />
         <entry key="..\:/Android project/Astroacharyamukti/astroacharyamukti/app/src/main/res/layout/activity_lunch_actvity.xml" value="0.2" />
         <entry key="..\:/Android project/Astroacharyamukti/astroacharyamukti/app/src/main/res/layout/activity_update_bank_details.xml" value="0.2" />
+        <entry key="..\:/Android project/Astroacharyamukti/astroacharyamukti/app/src/main/res/layout/custom_my_account.xml" value="0.33" />
+        <entry key="..\:/Android project/Astroacharyamukti/astroacharyamukti/app/src/main/res/layout/fragment_update_bank_details.xml" value="0.33" />
         <entry key="..\:/Astroacharyamukti/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.105" />
         <entry key="..\:/Astroacharyamukti/app/src/main/res/drawable/btn_bg.xml" value="0.1" />
         <entry key="..\:/Astroacharyamukti/app/src/main/res/drawable/circular_bg.xml" value="0.105" />
