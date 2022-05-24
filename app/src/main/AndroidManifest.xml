@@ -12,9 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Astroacharyamukti" >
         <activity
-            android:name=".EditBankDetails"
-            android:exported="false" />
-        <activity
             android:name=".activity.ReviewActivity"
             android:exported="false"
             android:label="Customer Review" />

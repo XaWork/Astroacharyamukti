@@ -18,10 +18,9 @@
             android:layout_height="200dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:src="@drawable/horoscope" />
+            android:src="@drawable/horoscope"/>
 
         <ImageView
-
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_centerHorizontal="true"
@@ -38,7 +37,6 @@
             android:src="@drawable/loginicon" />
 
         <EditText
-            android:imeOptions="actionDone"
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="45dp"
@@ -56,7 +54,6 @@
             android:textStyle="bold" />
 
         <EditText
-            android:imeOptions="actionDone"
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="45dp"
