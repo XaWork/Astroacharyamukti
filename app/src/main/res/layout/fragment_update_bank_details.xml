@@ -29,7 +29,8 @@
                 android:minLines="3"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:transitionName="logo_username" />
+                android:transitionName="logo_username"
+                android:id="@+id/etBeFe_account"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -43,6 +44,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/etBank_name"
                 android:hint="@string/text_bank_name"
                 android:inputType="textLongMessage"
                 android:minLines="3"
@@ -67,6 +69,7 @@
                 android:minLines="3"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
+                android:id="@+id/etAccount_number"
                 android:transitionName="logo_username" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,6 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/text_type"
+                android:id="@+id/etAcc_type"
                 android:inputType="textLongMessage"
                 android:minLines="3"
                 android:textColor="@color/black"
@@ -100,7 +104,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/text_acc_number"
+                android:id="@+id/etifsc_number"
+                android:hint="@string/text_ifsc"
                 android:inputType="textLongMessage"
                 android:minLines="3"
                 android:textColor="@color/black"
@@ -121,6 +126,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/text_branch"
                 android:inputType="textLongMessage"
+                android:id="@+id/etBranch_name"
                 android:minLines="3"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -140,6 +146,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/text_bank_address"
                 android:inputType="textLongMessage"
+                android:id="@+id/etBank_address"
                 android:minLines="3"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -160,6 +167,7 @@
                 android:hint="@string/text_pan_card"
                 android:inputType="textLongMessage"
                 android:minLines="3"
+                android:id="@+id/etPan_card_number"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
                 android:transitionName="logo_username" />

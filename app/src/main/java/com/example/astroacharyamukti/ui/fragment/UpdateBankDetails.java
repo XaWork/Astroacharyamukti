@@ -1,14 +1,18 @@
 package com.example.astroacharyamukti.ui.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -19,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.astroacharyamukti.R;
+import com.example.astroacharyamukti.activity.HomeActivity;
 import com.example.astroacharyamukti.activity.Login;
 
 import org.json.JSONException;
@@ -29,7 +34,8 @@ import java.util.Map;
 
 
 public class UpdateBankDetails extends Fragment implements View.OnClickListener {
-
+    EditText beFe_name, bank_name, acc_num, acc_type, ifsc_code, branch_name, bank_address, pan_card;
+    String beneficiaryName, bankName, accountNumber, accountType, ifscCode, branchName, bankAddress, panCard;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,7 +49,22 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
         View view = inflater.inflate(R.layout.fragment_update_bank_details, container, false);
         Button btnUpdate = view.findViewById(R.id.btn_update);
         btnUpdate.setOnClickListener(this);
+        beFe_name = view.findViewById(R.id.etBeFe_account);
+        bank_name = view.findViewById(R.id.etBank_name);
+        acc_num = view.findViewById(R.id.etAccount_number);
+        acc_type = view.findViewById(R.id.etAcc_type);
+        ifsc_code = view.findViewById(R.id.etifsc_number);
+        branch_name = view.findViewById(R.id.etBranch_name);
+        bank_address = view.findViewById(R.id.et_branch_address);
+        pan_card = view.findViewById(R.id.etPan_card_number);
         return view;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId()==android.R.id.home);
+        getActivity().finish();
+        return super.onOptionsItemSelected(item);
     }
 
     private void postData() {
@@ -59,6 +80,9 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     // showDialog();
+                    jsonObject.getString("id");
+                    Intent intent=new Intent(getActivity(), HomeActivity.class);
+                    startActivity(intent);
                     Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -76,7 +100,7 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                //   params.put("mobile"Bu, mobileNo);
+               // params.put("mobile"Bu, mobileNo);
                 return params;
             }
         };

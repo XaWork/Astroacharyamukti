@@ -7,10 +7,12 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +34,9 @@ import java.util.Map;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
     Button sighIn;
-    EditText etEmail,password;
+    EditText etEmail, password;
+    TextView signOut;
+    CheckBox check_box_condition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         sighIn = findViewById(R.id.sendOtp);
         sighIn.setOnClickListener(this);
         password = findViewById(R.id.etPassword);
+        signOut = findViewById(R.id.signIn);
+        signOut.setOnClickListener(this);
+        check_box_condition=findViewById(R.id.check_box_condition);
+        check_box_condition.setOnClickListener(this);
 
     }
 
@@ -67,6 +75,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         dialog.show();
 
     }
+
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
@@ -75,11 +84,25 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 if ((etEmail.getText().toString().length() < 1) || password.getText().toString().length() < 1) {
                     Toast.makeText(this, "Enter your Email Id & Password", Toast.LENGTH_SHORT).show();
                 } else {
-                    postData();
-                }
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                    startActivity(intent);                }
                 break;
             case R.id.text_forgot_password:
                 showDialog();
+                break;
+            case R.id.signIn:
+                String theUrl = "https://theacharyamukti.com/registration.php"; // missing 'http://' will cause crashed
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(theUrl));
+                startActivity(i);
+                break;
+            case R.id.check_box_condition:
+                String termConditionUrl = "https://theacharyamukti.com/terms-and-conditions.php";
+                Intent terms = new Intent(Intent.ACTION_VIEW);
+                terms.putExtra("","1");
+                terms.setData(Uri.parse(termConditionUrl));
+                startActivity(terms);
+                break;
         }
 
     }
@@ -93,7 +116,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private void postData() {
         String url = "https://theacharyamukti.com/astrologer/loginapi.php";
         String email = etEmail.getText().toString();
-        String pass =password.getText().toString();
+        String pass = password.getText().toString();
         ProgressDialog pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading...PLease wait");
         pDialog.show();
@@ -106,8 +129,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     JSONObject jsonObject = new JSONObject(response);
                     jsonObject.getString("name");
                     jsonObject.getString("email");
-                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                    startActivity(intent);
+
                     Toast.makeText(Login.this, "Success", Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -126,7 +148,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("username", email);
-                params.put("password",pass);
+                params.put("password", pass);
                 return params;
             }
         };
