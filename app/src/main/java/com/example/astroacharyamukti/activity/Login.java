@@ -31,19 +31,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
-    Button sendOtp;
-    EditText etMobile;
-    TextView sighIn, forgot_password;
+    Button sighIn;
+    EditText etEmail,password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp);
-        sendOtp = findViewById(R.id.sendOtp);
-        sendOtp.setOnClickListener(this);
-        sighIn = findViewById(R.id.signIn);
-        forgot_password = findViewById(R.id.text_forgot_password);
-        forgot_password.setOnClickListener(this);
+        etEmail = findViewById(R.id.etEmail);
+        sighIn = findViewById(R.id.sendOtp);
+        sighIn.setOnClickListener(this);
+        password = findViewById(R.id.etPassword);
 
     }
 
@@ -69,43 +67,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         dialog.show();
 
     }
-
-//    public void showDialog() {
-//        Dialog dialog = new Dialog(this);
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        dialog.setCancelable(false);
-//        dialog.setContentView(R.layout.virification_otp_layout);
-//        Button verify = dialog.findViewById(R.id.btnVerify);
-//        verify.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                EditText otp = dialog.findViewById(R.id.etOtp);
-//                if (otp.getText().toString().length() < 1) {
-//                    Toast.makeText(getApplicationContext(), "Enter OTP", Toast.LENGTH_LONG).show();
-//
-//                } else {
-//                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-//                    startActivity(intent);
-//                    dialog.dismiss();
-//                }
-//            }
-//        });
-//        dialog.setCanceledOnTouchOutside(true);
-//        dialog.show();
-//    }
-
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.sendOtp:
-                EditText email = findViewById(R.id.etEmail);
-                EditText password = findViewById(R.id.etPassword);
-                if ((email.getText().toString().length() < 1) || password.getText().toString().length() < 1) {
+                if ((etEmail.getText().toString().length() < 1) || password.getText().toString().length() < 1) {
                     Toast.makeText(this, "Enter your Email Id & Password", Toast.LENGTH_SHORT).show();
                 } else {
-                    Intent intent = new Intent(this, HomeActivity.class);
-                    startActivity(intent);
+                    postData();
                 }
                 break;
             case R.id.text_forgot_password:
@@ -121,8 +91,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void postData() {
-        String url = "https://theacharyamukti.com/appapi/conection.php";
-        String mobileNo = etMobile.getText().toString();
+        String url = "https://theacharyamukti.com/astrologer/loginapi.php";
+        String email = etEmail.getText().toString();
+        String pass =password.getText().toString();
         ProgressDialog pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading...PLease wait");
         pDialog.show();
@@ -133,7 +104,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 pDialog.dismiss();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    showDialog();
+                    jsonObject.getString("name");
+                    jsonObject.getString("email");
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                    startActivity(intent);
                     Toast.makeText(Login.this, "Success", Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -151,7 +125,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("mobile", mobileNo);
+                params.put("username", email);
+                params.put("password",pass);
                 return params;
             }
         };

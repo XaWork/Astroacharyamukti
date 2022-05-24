@@ -3,11 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android project/Astroacharyamukti/astroacharyamukti/app/src/main/res/layout/activity_edit_bank_details.xml" value="0.2" />
-        <entry key="..\:/Android project/Astroacharyamukti/astroacharyamukti/app/src/main/res/layout/activity_lunch_actvity.xml" value="0.2" />
-        <entry key="..\:/Android project/Astroacharyamukti/astroacharyamukti/app/src/main/res/layout/activity_update_bank_details.xml" value="0.2" />
-        <entry key="..\:/Android project/Astroacharyamukti/astroacharyamukti/app/src/main/res/layout/custom_my_account.xml" value="0.33" />
-        <entry key="..\:/Android project/Astroacharyamukti/astroacharyamukti/app/src/main/res/layout/fragment_update_bank_details.xml" value="0.33" />
         <entry key="..\:/Astroacharyamukti/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.105" />
         <entry key="..\:/Astroacharyamukti/app/src/main/res/drawable/btn_bg.xml" value="0.1" />
         <entry key="..\:/Astroacharyamukti/app/src/main/res/drawable/circular_bg.xml" value="0.105" />
@@ -88,6 +83,7 @@
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/fragment_book_appointments.xml" value="0.1" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/fragment_chat.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/fragment_update_bank_details.xml" value="0.12228260869565218" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/tab_bar.xml" value="0.25" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/virification_otp_layout.xml" value="0.1" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/menu/activity_main_drawer.xml" value="0.1" />
