@@ -107,9 +107,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 performanceDialog();
                 break;
             case R.id.nav_help_support:
-                Intent profileUpDate = new Intent(this, UserProfile.class);
-                profileUpDate.putExtra("","1");
-                startActivity(profileUpDate);
+//                Intent profileUpDate = new Intent(this, UserProfile.class);
+//                profileUpDate.putExtra("","1");
+//                startActivity(profileUpDate);
                 break;
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

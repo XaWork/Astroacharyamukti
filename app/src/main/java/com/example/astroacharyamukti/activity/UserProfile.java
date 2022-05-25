@@ -1,11 +1,13 @@
 package com.example.astroacharyamukti.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
@@ -27,6 +29,14 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         changePassword.setOnClickListener(this);
         update_number = findViewById(R.id.update_number);
         update_number.setOnClickListener(this);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) ;
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 
     @SuppressLint("NonConstantResourceId")

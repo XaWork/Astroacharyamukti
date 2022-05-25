@@ -17,13 +17,13 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="60dp"
             android:background="@color/yellow"
             app:title="User Details"
             app:popupTheme="@style/Theme.Astroacharyamukti.PopupOverlay"
             app:subtitle="Online Call"
             app:titleTextColor="@color/white"
-            app:subtitleTextColor="#3D5C3E" />
+            app:subtitleTextColor="@color/white" />
 
 
     </com.google.android.material.appbar.AppBarLayout>

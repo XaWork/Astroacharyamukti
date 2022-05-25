@@ -14,6 +14,7 @@
         android:theme="@style/Theme.Astroacharyamukti">
         <activity
             android:name=".activity.UserProfile"
+            android:label="User Profile"
             android:exported="false" />
         <activity
             android:name=".activity.ReviewActivity"
@@ -43,7 +44,7 @@
         <activity
             android:name=".activity.Launcher"
             android:exported="true"
-            android:theme="@style/Theme.Astroacharyamukti.NoActionBar">
+            android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -18,10 +18,10 @@ public class PrivacyPolicy extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_privacy_policy);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        WebView webView=findViewById(R.id.webView);
-        WebSettings webSetting = webView.getSettings();
-        webSetting.setBuiltInZoomControls(true);
-        webView.setWebViewClient(new WebViewClient());
+//        WebView webView=findViewById(R.id.webView);
+//        WebSettings webSetting = webView.getSettings();
+//        webSetting.setBuiltInZoomControls(true);
+//        webView.setWebViewClient(new WebViewClient());
 
 
     }

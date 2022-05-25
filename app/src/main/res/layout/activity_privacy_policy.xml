@@ -8,32 +8,32 @@
     android:scrollbars="vertical"
     tools:context=".activity.PrivacyPolicy">
 
-    <!--    <RelativeLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content">-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <!--        <TextView-->
-    <!--            android:id="@+id/text_personal1"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="@string/text_privacy"-->
-    <!--            android:textColor="@color/black"-->
-    <!--            android:textSize="14sp"-->
-    <!--            android:textStyle="bold" />-->
+            <TextView
+                android:id="@+id/text_personal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_privacy"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
-    <!--        <TextView-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_below="@+id/text_personal1"-->
-    <!--            android:layout_marginTop="10dp"-->
-    <!--            android:lineSpacingExtra="10dp"-->
-    <!--            android:text="@string/text_long_privacy"-->
-    <!--            android:textColor="@color/black"-->
-    <!--            android:textSize="13sp"-->
-    <!--            android:textStyle="normal" />-->
-    <!--    </RelativeLayout>-->
-    <WebView
-        android:id="@+id/webView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_personal"
+                android:layout_marginTop="10dp"
+                android:lineSpacingExtra="10dp"
+                android:text="@string/text_long_privacy"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                android:textStyle="normal" />
+        </RelativeLayout>
+<!--    <WebView-->
+<!--        android:id="@+id/webView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
 </ScrollView>
