@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.UserProfile">
+
+    <TextView
+        android:id="@+id/profile_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:text="Astro Acharyamuki"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/profile_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_name"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:text="mukti@gmail.com"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="normal" />
+
+    <TextView
+        android:id="@+id/profile_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_email"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:text="392579586"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="normal" />
+
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/profile_number"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        android:src="@drawable/logonew" />
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/profileImage"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/reviewCustomer"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="Customer Review"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/changePassword"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="Change Password"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/update_number"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="Update Mobile Number"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/bank_details"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="Update Bank Details"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
+    </LinearLayout>
+</RelativeLayout>

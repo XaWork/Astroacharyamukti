@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.astroacharyamukti" >
+    package="com.example.astroacharyamukti">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/logonew"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Astroacharyamukti" >
+        android:theme="@style/Theme.Astroacharyamukti">
+        <activity
+            android:name=".activity.UserProfile"
+            android:exported="false" />
         <activity
             android:name=".activity.ReviewActivity"
             android:exported="false"
@@ -36,7 +39,7 @@
         <activity
             android:name=".activity.Login"
             android:exported="false"
-            android:theme="@style/Theme.Astroacharyamukti.NoActionBar"/>
+            android:theme="@style/Theme.Astroacharyamukti.NoActionBar" />
         <activity
             android:name=".activity.Launcher"
             android:exported="true"

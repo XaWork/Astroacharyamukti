@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
 import com.example.astroacharyamukti.R;
 import com.example.astroacharyamukti.databinding.FragmentHomeBinding;
 import com.example.astroacharyamukti.helper.Backend;
@@ -28,7 +30,7 @@ import org.w3c.dom.Text;
 
 import java.util.Calendar;
 
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     TextView schedule, date_picker, textScheduleDate, textScheduleTime;
@@ -38,14 +40,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                              ViewGroup container, Bundle savedInstanceState) {
         HomeViewModel homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
-
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         final TextView textView = binding.textHome;
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        Button btn_submit = root.findViewById(R.id.btn_submit);
-        btn_submit.setOnClickListener(this);
 
+        ImageView kundali = root.findViewById(R.id.imageViewK);
+        Glide.with(getActivity()).load(R.drawable.kundali2).into(kundali);
         return root;
     }
 
@@ -63,10 +64,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         Button button_online = dialog.findViewById(R.id.button_online);
         TextView schedule = dialog.findViewById(R.id.text_reschedule);
         textScheduleDate = dialog.findViewById(R.id.text_schedule_date);
-        textScheduleTime = dialog.findViewById(R.id.time);
-//        date = Backend.getInstance(getContext()).getDate();
-//        textScheduleDate.setText(date);
-
         schedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,11 +124,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
-    }
-
-    @Override
-    public void onClick(View view) {
-        dialog();
     }
 
     private void datePicker() {

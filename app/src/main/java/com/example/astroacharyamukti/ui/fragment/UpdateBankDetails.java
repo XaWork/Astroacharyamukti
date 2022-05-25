@@ -25,6 +25,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.astroacharyamukti.R;
 import com.example.astroacharyamukti.activity.HomeActivity;
 import com.example.astroacharyamukti.activity.Login;
+import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,20 +56,38 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
         acc_type = view.findViewById(R.id.etAcc_type);
         ifsc_code = view.findViewById(R.id.etifsc_number);
         branch_name = view.findViewById(R.id.etBranch_name);
-        bank_address = view.findViewById(R.id.et_branch_address);
+        bank_address = view.findViewById(R.id.etBank_address);
         pan_card = view.findViewById(R.id.etPan_card_number);
+        if (getArguments() != null) {
+            beneficiaryName = getArguments().getString("bfname");
+            bankName = getArguments().getString("bank_name");
+            accountNumber = getArguments().getString("account_no");
+            accountType = getArguments().getString("account_type");
+            ifscCode = getArguments().getString("ifsc");
+            branchName = getArguments().getString("branch_bame");
+            bankAddress = getArguments().getString("bank_bddress");
+            panCard = getArguments().getString("pan");
+        }
+        beFe_name.setText(beneficiaryName);
+        bank_name.setText(bankName);
+        acc_num.setText(accountNumber);
+        acc_type.setText(accountType);
+        ifsc_code.setText(ifscCode);
+        branch_name.setText(branchName);
+        bank_address.setText(bankAddress);
+        pan_card.setText(panCard);
         return view;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId()==android.R.id.home);
+        if (item.getItemId() == android.R.id.home) ;
         getActivity().finish();
         return super.onOptionsItemSelected(item);
     }
 
     private void postData() {
-        String url = "https://theacharyamukti.com/appapi/items/update.php";
+        String url = "https://theacharyamukti.com/astrologer/acc-update.php";
         ProgressDialog pDialog = new ProgressDialog(getActivity());
         pDialog.setMessage("Loading...PLease wait");
         pDialog.show();
@@ -80,11 +99,11 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     // showDialog();
-                    jsonObject.getString("id");
-                    Intent intent=new Intent(getActivity(), HomeActivity.class);
-                    startActivity(intent);
-                    Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+                    String status = jsonObject.getString("status");
+                    Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
+
                 } catch (JSONException e) {
+                    Toast.makeText(getActivity(), "error", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
 
@@ -100,7 +119,14 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-               // params.put("mobile"Bu, mobileNo);
+                params.put("bfname", beneficiaryName=beFe_name.getText().toString());
+                params.put("bank_name", bankName);
+                params.put("account_no", accountNumber);
+                params.put("account_type", accountType);
+                params.put("ifsc", ifscCode);
+                params.put("branch_bame", branchName);
+                params.put("bank_bddress", bankAddress);
+                params.put("pan", panCard);
                 return params;
             }
         };
@@ -110,6 +136,6 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        postData();
-    }
+        Intent intent = new Intent(getActivity(), HomeActivity.class);
+        startActivity(intent);    }
 }

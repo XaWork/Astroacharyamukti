@@ -21,9 +21,9 @@
             android:background="@color/yellow"
             app:title="User Details"
             app:popupTheme="@style/Theme.Astroacharyamukti.PopupOverlay"
-            app:subtitle="Online"
+            app:subtitle="Online Call"
             app:titleTextColor="@color/white"
-            app:subtitleTextColor="@color/white" />
+            app:subtitleTextColor="#3D5C3E" />
 
 
     </com.google.android.material.appbar.AppBarLayout>
