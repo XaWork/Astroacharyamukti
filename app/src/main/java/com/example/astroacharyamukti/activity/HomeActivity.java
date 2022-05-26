@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -40,7 +41,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private ActivityHomeActivityBinding binding;
     TextView schedule, date_picker, textScheduleDate, textScheduleTime;
     Toolbar toolbar;
-    Button button_online;
+    ImageView imageView;
     int date;
 
     @Override
@@ -62,6 +63,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setOnClickListener(this);
+//        imageView = findViewById(R.id.imageView);
+//        imageView.setOnClickListener(this);
 
     }
 
@@ -244,13 +247,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         timePickerDialog.show();
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
-        dialog();
-//        if (button_online.getText().toString() == null) {
-//            toolbar.setSubtitle("Online");
-//        } else {
-//            toolbar.setSubtitle("Offline");
-//        }
+        switch (view.getId()) {
+            case R.id.toolbar:
+                dialog();
+                break;
+            case R.id.imageView:
+                Intent intent = new Intent(getApplicationContext(), UserProfile.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

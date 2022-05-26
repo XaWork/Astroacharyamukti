@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FAF6F6"
     tools:context=".activity.UserProfile">
 
     <TextView
         android:id="@+id/profile_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:gravity="center_horizontal"
         android:text="Astro Acharyamuki"
         android:textColor="@color/black"
@@ -42,6 +43,8 @@
         android:textStyle="normal" />
 
     <ImageView
+        android:padding="10dp"
+        android:background="@drawable/circular_bg"
         android:id="@+id/profileImage"
         android:layout_width="100dp"
         android:layout_height="100dp"

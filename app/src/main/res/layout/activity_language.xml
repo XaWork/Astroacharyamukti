@@ -4,66 +4,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="15dp"
     tools:context=".activity.LanguageActivity">
-
-    <LinearLayout
-        android:id="@+id/layout_lange"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@drawable/orange_lang_bg"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:background="@color/yellow"
+        tools:ignore="MissingConstraints">
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/circular_bg"
-            android:padding="10dp"
-            android:src="@drawable/logonew" />
-
-        <TextView
-            android:id="@+id/language_english"
-            android:background="?attr/selectableItemBackground"
-            android:gravity="center_vertical"
-            android:textStyle="bold"
-            android:textSize="14sp"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarLang"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingStart="20dp"
-            android:text="English"
-            android:textColor="@color/white" />
-    </LinearLayout>
+            android:layout_height="60dp"
+            android:background="@color/yellow"
+            app:titleTextColor="@color/white"
+            app:subtitleTextColor="@color/white" />
 
-    <LinearLayout
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:layout_marginTop="?attr/actionBarSize"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_below="@+id/layout_lange"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/green_lange_bg"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/circular_bg"
-            android:padding="10dp"
-            android:src="@drawable/logonew" />
-
-        <TextView
-            android:id="@+id/language_hindi"
-            android:background="?attr/selectableItemBackground"
-            android:gravity="center_vertical"
-            android:textStyle="bold"
-            android:textSize="14sp"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingStart="20dp"
-            android:text="@string/text_hindi"
-            android:textColor="@color/white" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp">
 
+            <LinearLayout
+                android:id="@+id/layout_lange"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/orange_lang_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/circular_bg"
+                    android:padding="10dp"
+                    android:src="@drawable/logonew" />
+
+                <TextView
+                    android:id="@+id/language_english"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:text="English"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_below="@+id/layout_lange"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/green_lange_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/circular_bg"
+                    android:padding="10dp"
+                    android:src="@drawable/logonew" />
+
+                <TextView
+                    android:id="@+id/language_hindi"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:text="@string/text_hindi"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </FrameLayout>
 </RelativeLayout>

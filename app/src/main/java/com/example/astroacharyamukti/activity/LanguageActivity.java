@@ -1,6 +1,7 @@
 package com.example.astroacharyamukti.activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -9,20 +10,26 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+//import android.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.astroacharyamukti.R;
 
 public class LanguageActivity extends AppCompatActivity implements View.OnClickListener {
-
+Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         TextView english = findViewById(R.id.language_english);
         english.setOnClickListener(this);
         TextView hindi = findViewById(R.id.language_hindi);
         hindi.setOnClickListener(this);
+        toolbar=findViewById(R.id.toolbarLang);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("Language");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //...
     }
 
     @Override

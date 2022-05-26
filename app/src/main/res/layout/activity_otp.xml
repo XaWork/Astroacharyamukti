@@ -18,7 +18,7 @@
             android:layout_height="200dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:src="@drawable/horoscope"/>
+            android:src="@drawable/horoscope" />
 
         <ImageView
             android:layout_width="80dp"
@@ -42,14 +42,16 @@
             android:layout_height="45dp"
             android:layout_below="@+id/login"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="31dp"
             android:layout_marginEnd="15dp"
             android:background="@drawable/text_bg"
+            android:foreground="?attr/selectableItemBackground"
             android:hint="@string/edit_email"
             android:inputType="textEmailAddress"
             android:paddingStart="15dp"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
+            android:textColorLink="@color/white"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -62,11 +64,13 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="15dp"
             android:background="@drawable/text_bg"
+            android:foreground="?attr/selectableItemBackground"
             android:hint="@string/edit_pass"
             android:inputType="numberPassword"
             android:paddingStart="15dp"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
+            android:textColorLink="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
             tools:ignore="TextFields" />

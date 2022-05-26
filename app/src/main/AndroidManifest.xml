@@ -14,8 +14,8 @@
         android:theme="@style/Theme.Astroacharyamukti">
         <activity
             android:name=".activity.UserProfile"
-            android:label="User Profile"
-            android:exported="false" />
+            android:exported="false"
+            android:label="User Profile" />
         <activity
             android:name=".activity.ReviewActivity"
             android:exported="false"
@@ -27,7 +27,8 @@
         <activity
             android:name=".activity.LanguageActivity"
             android:exported="true"
-            android:label="Change Language" />
+            android:label="Change Language"
+            android:theme="@style/Theme.Astroacharyamukti.NoActionBar" />
         <activity
             android:name=".activity.PrivacyPolicy"
             android:exported="true"
