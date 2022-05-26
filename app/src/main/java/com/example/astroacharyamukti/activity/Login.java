@@ -25,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.astroacharyamukti.R;
+import com.example.astroacharyamukti.helper.Backend;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,7 +49,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         password = findViewById(R.id.etPassword);
         signOut = findViewById(R.id.signIn);
         signOut.setOnClickListener(this);
-        check_box_condition=findViewById(R.id.check_box_condition);
+        check_box_condition = findViewById(R.id.check_box_condition);
         check_box_condition.setOnClickListener(this);
 
     }
@@ -84,8 +85,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 if ((etEmail.getText().toString().length() < 1) || password.getText().toString().length() < 1) {
                     Toast.makeText(this, "Enter your Email Id & Password", Toast.LENGTH_SHORT).show();
                 } else {
-                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                    startActivity(intent);                }
+                    postData();
+                }
+//                                }
                 break;
             case R.id.text_forgot_password:
                 showDialog();
@@ -99,7 +101,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             case R.id.check_box_condition:
                 String termConditionUrl = "https://theacharyamukti.com/terms-and-conditions.php";
                 Intent terms = new Intent(Intent.ACTION_VIEW);
-                terms.putExtra("","1");
+                terms.putExtra("", "1");
                 terms.setData(Uri.parse(termConditionUrl));
                 startActivity(terms);
                 break;
@@ -114,7 +116,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void postData() {
-        String url = "https://theacharyamukti.com/astrologer/loginapi.php";
+        String url = "https://theacharyamukti.com/managepanel/apis/login.php";
         String email = etEmail.getText().toString();
         String pass = password.getText().toString();
         ProgressDialog pDialog = new ProgressDialog(this);
@@ -127,12 +129,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 pDialog.dismiss();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    jsonObject.getString("id");
-                    jsonObject.getString("name");
-                    jsonObject.getString("email");
-                    Toast.makeText(Login.this, "Success", Toast.LENGTH_SHORT).show();
+                    String userId = jsonObject.getString("reg_id");
+                    String msg = jsonObject.getString("msg");
+                    Backend.getInstance(getApplicationContext()).saveUserId(userId);
+                    if (jsonObject.getString("status").equals("true")) {
+                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(Login.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Toast.makeText(Login.this, "Error", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -147,7 +156,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("username", email);
+                params.put("email", email);
                 params.put("password", pass);
                 return params;
             }

@@ -25,6 +25,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.astroacharyamukti.R;
 import com.example.astroacharyamukti.activity.HomeActivity;
 import com.example.astroacharyamukti.activity.Login;
+import com.example.astroacharyamukti.helper.Backend;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
@@ -87,7 +88,8 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
     }
 
     private void postData() {
-        String url = "https://theacharyamukti.com/astrologer/acc-update.php";
+        String userId= Backend.getInstance(getActivity()).getUserId();
+        String url = "https://theacharyamukti.com/astrologer/acc-update.php?acharid=%s";
         ProgressDialog pDialog = new ProgressDialog(getActivity());
         pDialog.setMessage("Loading...PLease wait");
         pDialog.show();
@@ -98,9 +100,13 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
                 pDialog.dismiss();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    // showDialog();
-                    String status = jsonObject.getString("status");
-                    Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
+                    String status=jsonObject.getString("status");
+                    if (status.equals("true")) {
+                        Intent intent = new Intent(getActivity(), HomeActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
+                    }
 
                 } catch (JSONException e) {
                     Toast.makeText(getActivity(), "error", Toast.LENGTH_SHORT).show();
@@ -119,7 +125,8 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("bfname", beneficiaryName=beFe_name.getText().toString());
+                params.put("acharid",userId);
+                params.put("bfname", beneficiaryName = beFe_name.getText().toString());
                 params.put("bank_name", bankName);
                 params.put("account_no", accountNumber);
                 params.put("account_type", accountType);
@@ -136,6 +143,6 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(getActivity(), HomeActivity.class);
-        startActivity(intent);    }
+        postData();
+    }
 }

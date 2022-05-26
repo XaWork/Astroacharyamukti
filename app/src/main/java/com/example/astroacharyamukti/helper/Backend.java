@@ -23,22 +23,22 @@ public class Backend {
     }
 
     public String getUserId() {
-        return preferences.getString("userId", "");
+        return preferences.getString("reg_id", "");
     }
 
     public void saveUserId(String userId) {
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("userId", userId);
+        editor.putString("reg_id", userId);
         editor.apply();
     }
-
-    public int getDate() {
-        return preferences.getInt("date", 1);
-    }
-
-    public void saveDate(int date) {
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt("date", date);
-        editor.apply();
-    }
+//
+//    public String getUserId() {
+//        return preferences.getInt("reg_id", );
+//    }
+//
+//    public void saveDate(int date) {
+//        SharedPreferences.Editor editor = preferences.edit();
+//        editor.putInt("date", date);
+//        editor.apply();
+//    }
 }

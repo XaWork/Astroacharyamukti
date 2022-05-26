@@ -13,8 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Astroacharyamukti">
         <activity
-            android:name=".HelpAndSupport"
-            android:exported="false" />
+            android:name=".activity.HelpAndSupport"
+            android:exported="false"
+            android:label="Help and Supports" />
         <activity
             android:name=".activity.UserProfile"
             android:exported="false"
