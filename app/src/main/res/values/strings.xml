@@ -125,5 +125,13 @@
     <string name="text_GST">GST Number :</string>
     <string name="text_GST_number">ujefrwsrf</string>
     <string name="text_acc_name">Name</string>
+    <!-- TODO: Remove or change helpAndSupport activity-->
+    <string name="text_help_email">Email</string>
+    <string name="text_help_emailId">acharyamuktisupport@gmail.com</string>
+    <string name="text_help_phone">Phone</string>
+    <string name="text_help_above_id">You can email us at above mentioned id</string>
+    <string name="text_help_mobile">India <font color='#FF5722'>+91-3857305775</font></string>
+    <string name="text_help_available">We are available Monday to Saturday</string>
+    <string name="text_help_india_standard_time">(India Standard Time) from 8 a.m. to 8 p.m.</string>
 
 </resources>

@@ -25,11 +25,7 @@ Toolbar toolbar;
         english.setOnClickListener(this);
         TextView hindi = findViewById(R.id.language_hindi);
         hindi.setOnClickListener(this);
-        toolbar=findViewById(R.id.toolbarLang);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle("Language");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //...
+
     }
 
     @Override

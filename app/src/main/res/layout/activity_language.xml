@@ -5,28 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".activity.LanguageActivity">
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/yellow"
-        tools:ignore="MissingConstraints">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarLang"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@color/yellow"
-            app:titleTextColor="@color/white"
-            app:subtitleTextColor="@color/white" />
-
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <FrameLayout
-        android:layout_marginTop="?attr/actionBarSize"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -92,5 +70,4 @@
             </LinearLayout>
 
         </RelativeLayout>
-    </FrameLayout>
 </RelativeLayout>
