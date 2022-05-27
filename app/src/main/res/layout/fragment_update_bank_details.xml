@@ -6,188 +6,196 @@
     android:background="@color/white"
     tools:context=".ui.fragment.UpdateBankDetails">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp">
+        android:fillViewport="true"
+        android:scrollbars="vertical">
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_bf"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="3dp">
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp">
 
-            <com.google.android.material.textfield.TextInputEditText
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/et_bf"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/text_beneficiary"
-                android:inputType="textLongMessage"
-                android:minLines="3"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:transitionName="logo_username"
-                android:id="@+id/etBeFe_account"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginVertical="3dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_bank_name"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/et_bf"
-            android:layout_marginVertical="3dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etBeFe_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/text_beneficiary"
+                    android:inputType="textLongMessage"
+                    android:minLines="3"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:transitionName="logo_username" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/et_bank_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/etBank_name"
-                android:hint="@string/text_bank_name"
-                android:inputType="textLongMessage"
-                android:minLines="3"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:transitionName="logo_username" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_below="@+id/et_bf"
+                android:layout_marginVertical="3dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_acc_num"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/et_bank_name"
-            android:layout_marginVertical="3dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etBank_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/text_bank_name"
+                    android:inputType="textLongMessage"
+                    android:minLines="3"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:transitionName="logo_username" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/et_acc_num"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/text_acc_number"
-                android:inputType="textLongMessage"
-                android:minLines="3"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:id="@+id/etAccount_number"
-                android:transitionName="logo_username" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_below="@+id/et_bank_name"
+                android:layout_marginVertical="3dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_acc_type"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/et_acc_num"
-            android:layout_marginVertical="3dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAccount_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/text_acc_number"
+                    android:inputType="textLongMessage"
+                    android:minLines="3"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:transitionName="logo_username" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/et_acc_type"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/text_type"
-                android:id="@+id/etAcc_type"
-                android:inputType="textLongMessage"
-                android:minLines="3"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:transitionName="logo_username" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_below="@+id/et_acc_num"
+                android:layout_marginVertical="3dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_ifsc"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/et_acc_type"
-            android:layout_marginVertical="3dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAcc_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/text_type"
+                    android:inputType="textLongMessage"
+                    android:minLines="3"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:transitionName="logo_username" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/et_ifsc"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/etifsc_number"
-                android:hint="@string/text_ifsc"
-                android:inputType="textLongMessage"
-                android:minLines="3"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:transitionName="logo_username" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_below="@+id/et_acc_type"
+                android:layout_marginVertical="3dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_branch"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/et_ifsc"
-            android:layout_marginVertical="3dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etifsc_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/text_ifsc"
+                    android:inputType="textLongMessage"
+                    android:minLines="3"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:transitionName="logo_username" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/et_branch"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/text_branch"
-                android:inputType="textLongMessage"
-                android:id="@+id/etBranch_name"
-                android:minLines="3"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:transitionName="logo_username" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_below="@+id/et_ifsc"
+                android:layout_marginVertical="3dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_branch_address"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/et_branch"
-            android:layout_marginVertical="3dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etBranch_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/text_branch"
+                    android:inputType="textLongMessage"
+                    android:minLines="3"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:transitionName="logo_username" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/et_branch_address"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/text_bank_address"
-                android:inputType="textLongMessage"
-                android:id="@+id/etBank_address"
-                android:minLines="3"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:transitionName="logo_username" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_below="@+id/et_branch"
+                android:layout_marginVertical="3dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_pan_card"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/et_branch_address"
-            android:layout_marginVertical="3dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etBank_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/text_bank_address"
+                    android:inputType="textLongMessage"
+                    android:minLines="3"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:transitionName="logo_username" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/et_pan_card"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/text_pan_card"
-                android:inputType="textLongMessage"
-                android:minLines="3"
-                android:id="@+id/etPan_card_number"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:transitionName="logo_username" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_below="@+id/et_branch_address"
+                android:layout_marginVertical="3dp">
 
-        <LinearLayout
-            android:gravity="bottom"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPan_card_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/text_pan_card"
+                    android:inputType="textLongMessage"
+                    android:minLines="3"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:transitionName="logo_username" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/et_pan_card"
+        android:gravity="bottom">
+
+        <Button
+            android:id="@+id/btn_update"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/et_pan_card">
-
-            <Button
-                android:id="@+id/btn_update"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_gravity="bottom"
-                android:background="@color/yellow"
-                android:text="update"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </RelativeLayout>
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:background="@color/yellow"
+            android:text="update"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+    </LinearLayout>
 </FrameLayout>

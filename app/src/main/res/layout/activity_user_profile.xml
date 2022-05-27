@@ -43,15 +43,15 @@
         android:textStyle="normal" />
 
     <ImageView
-        android:padding="10dp"
-        android:background="@drawable/circular_bg"
         android:id="@+id/profileImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_below="@id/profile_number"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
+        android:background="@drawable/circular_bg"
         android:gravity="center_horizontal"
+        android:padding="10dp"
         android:src="@drawable/logonew" />
 
     <LinearLayout

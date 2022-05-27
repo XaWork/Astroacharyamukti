@@ -88,8 +88,8 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
     }
 
     private void postData() {
-        String userId= Backend.getInstance(getActivity()).getUserId();
-        String url = "https://theacharyamukti.com/astrologer/acc-update.php?acharid=%s";
+        String userId = Backend.getInstance(getActivity()).getUserId();
+        String url = "https://theacharyamukti.com/astrologer/acc-update.php";
         ProgressDialog pDialog = new ProgressDialog(getActivity());
         pDialog.setMessage("Loading...PLease wait");
         pDialog.show();
@@ -100,7 +100,7 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
                 pDialog.dismiss();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    String status=jsonObject.getString("status");
+                    String status = jsonObject.getString("status");
                     if (status.equals("true")) {
                         Intent intent = new Intent(getActivity(), HomeActivity.class);
                         startActivity(intent);
@@ -125,15 +125,15 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("acharid",userId);
+                params.put("acharid", userId);
                 params.put("bfname", beneficiaryName = beFe_name.getText().toString());
-                params.put("bank_name", bankName);
-                params.put("account_no", accountNumber);
-                params.put("account_type", accountType);
-                params.put("ifsc", ifscCode);
-                params.put("branch_bame", branchName);
-                params.put("bank_bddress", bankAddress);
-                params.put("pan", panCard);
+                params.put("bank_name", bankName = bank_name.getText().toString());
+                params.put("acc_no", accountNumber = acc_num.getText().toString());
+                params.put("acc_type", accountType = acc_type.getText().toString());
+                params.put("ifsc", ifscCode = ifsc_code.getText().toString());
+                params.put("branch_name", branchName = branch_name.getText().toString());
+                params.put("bank_add", bankAddress = bank_address.getText().toString());
+                params.put("pan", panCard = pan_card.getText().toString());
                 return params;
             }
         };
