@@ -148,8 +148,6 @@ public class BankDetails extends AppCompatActivity implements View.OnClickListen
                         address.setText(bank_address);
                         pan1.setText(pan);
                         Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-
-
                     }
 
 

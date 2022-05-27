@@ -131,14 +131,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     JSONObject jsonObject = new JSONObject(response);
                     String userId = jsonObject.getString("reg_id");
                     String msg = jsonObject.getString("msg");
-                    Backend.getInstance(getApplicationContext()).saveUserId(userId);
                     if (jsonObject.getString("status").equals("true")) {
                         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(Login.this, msg, Toast.LENGTH_SHORT).show();
                     }
-
+                    Backend.getInstance(getApplicationContext()).saveUserId(userId);
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(Login.this, "Error", Toast.LENGTH_SHORT).show();

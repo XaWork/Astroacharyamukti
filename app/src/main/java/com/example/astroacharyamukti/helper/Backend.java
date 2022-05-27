@@ -31,14 +31,20 @@ public class Backend {
         editor.putString("reg_id", userId);
         editor.apply();
     }
-//
-//    public String getUserId() {
-//        return preferences.getInt("reg_id", );
-//    }
-//
-//    public void saveDate(int date) {
+
+    public String getMobileNumber() {
+        return preferences.getString("mobile", "");
+    }
+
+    public void saveMobile(String mobile) {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("mobile", mobile);
+        editor.apply();
+    }
+
+//    public void saveMobileNumber(String newNumber) {
 //        SharedPreferences.Editor editor = preferences.edit();
-//        editor.putInt("date", date);
+//        editor.putInt("mobile", newNumber);
 //        editor.apply();
 //    }
 }
