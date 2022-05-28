@@ -95,7 +95,7 @@
     <string name="title_activity_customer_review">CustomerReview</string>
     <!-- TODO: Remove or change this Review Activity text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="text_call_rating">Overall Call rating(1161)</string>
+    <string name="text_call_rating">Overall Call rating :</string>
     <string name="text_call">Call</string>
     <string name="text_chat">Chat</string>
     <!-- TODO: Remove or change this Custom schedule text -->

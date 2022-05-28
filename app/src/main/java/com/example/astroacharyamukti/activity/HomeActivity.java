@@ -3,6 +3,7 @@ package com.example.astroacharyamukti.activity;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,11 +29,23 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.astroacharyamukti.R;
 import com.example.astroacharyamukti.databinding.ActivityHomeActivityBinding;
+import com.example.astroacharyamukti.helper.Backend;
 import com.google.android.material.navigation.NavigationView;
 
+import org.json.JSONObject;
+
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -252,12 +265,57 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.toolbar:
-                dialog();
+                getStatus();
                 break;
             case R.id.imageView:
                 Intent intent = new Intent(getApplicationContext(), UserProfile.class);
                 startActivity(intent);
                 break;
         }
+    }
+    private void getStatus() {
+        String userId = Backend.getInstance(this).getUserId();
+        String url = "https://theacharyamukti.com/managepanel/apis/get-status.php";
+        String dataUrl = String.format(url, userId);
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading.......Please wait");
+        progressDialog.show();
+        RequestQueue request = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, dataUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                progressDialog.dismiss();
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String status = jsonObject.getString("status");
+                    if (status.equals("true")) {
+                        toolbar.setSubtitle(status);
+                    } else {
+                        toolbar.setSubtitle(status);
+                        dialog();
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(HomeActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
+                Toast.makeText(HomeActivity.this, "Error", Toast.LENGTH_SHORT).show();
+
+            }
+        }) {
+            @Override
+            public Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("acharid",userId);
+                return params;
+            }
+
+        };
+        request.add(stringRequest);
     }
 }

@@ -176,7 +176,6 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         request.add(stringRequest);
     }
 
-
     private void getUser() {
         userId = Backend.getInstance(this).getUserId();
         String url = "https://theacharyamukti.com/managepanel/apis/profile.php?acharid=%s";
