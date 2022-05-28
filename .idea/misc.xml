@@ -3,6 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android project/Astroacharyamukti/astroacharyamukti/app/src/main/res/layout/activity_customer_review.xml" value="0.15217391304347827" />
+        <entry key="..\:/Android project/Astroacharyamukti/astroacharyamukti/app/src/main/res/layout/activity_earning.xml" value="0.2" />
+        <entry key="..\:/Android project/Astroacharyamukti/astroacharyamukti/app/src/main/res/layout/activity_edit_bank_details.xml" value="0.2" />
+        <entry key="..\:/Android project/Astroacharyamukti/astroacharyamukti/app/src/main/res/layout/activity_lunch_actvity.xml" value="0.2" />
+        <entry key="..\:/Android project/Astroacharyamukti/astroacharyamukti/app/src/main/res/layout/activity_update_bank_details.xml" value="0.2" />
+        <entry key="..\:/Android project/Astroacharyamukti/astroacharyamukti/app/src/main/res/layout/custom_my_account.xml" value="0.33" />
+        <entry key="..\:/Android project/Astroacharyamukti/astroacharyamukti/app/src/main/res/layout/custom_review_layout.xml" value="0.1" />
+        <entry key="..\:/Android project/Astroacharyamukti/astroacharyamukti/app/src/main/res/layout/fragment_update_bank_details.xml" value="0.33" />
         <entry key="..\:/Astroacharyamukti/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.105" />
         <entry key="..\:/Astroacharyamukti/app/src/main/res/drawable/btn_bg.xml" value="0.1" />
         <entry key="..\:/Astroacharyamukti/app/src/main/res/drawable/circular_bg.xml" value="0.105" />
@@ -60,7 +68,6 @@
         <entry key="..\:/Astroacharyamukti/app/src/main/res/menu/activity_main_drawer.xml" value="0.5" />
         <entry key="..\:/Astroacharyamukti/app/src/main/res/menu/home_actvity.xml" value="0.20416666666666666" />
         <entry key="..\:/Astroacharyamukti/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.105" />
-        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.1175" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/drawable/ic_baseline_calendar_month_24.xml" value="0.1" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/drawable/ic_baseline_cancel_24.xml" value="0.1" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/drawable/radio_flat_regular.xml" value="0.12" />
@@ -68,38 +75,25 @@
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/drawable/radio_flat_selector.xml" value="0.12" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/drawable/radio_flat_text_selector.xml" value="0.12" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/drawable/text_bg.xml" value="0.12" />
-        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/activity_customer_review.xml" value="0.25" />
-        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/activity_earning.xml" value="0.22" />
-        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/activity_faq.xml" value="0.14" />
-        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/activity_help_and_support.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/activity_home_activity.xml" value="0.12" />
-        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/activity_language.xml" value="0.1" />
+        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/activity_earning.xml" value="0.1" />
+        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/activity_home_activity.xml" value="0.1" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/activity_lunch_actvity.xml" value="0.33" />
-        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/activity_luncher.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/activity_otp.xml" value="0.15" />
-        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/activity_privacy_policy.xml" value="0.1" />
+        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/activity_otp.xml" value="0.22" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/activity_register.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/activity_user_profile.xml" value="0.1" />
-        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/app_bar_home_actvity.xml" value="0.16" />
-        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/change_password.xml" value="0.2" />
+        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/app_bar_home_actvity.xml" value="0.18" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/content_home_activity.xml" value="0.1" />
-        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/custom_earning_layout.xml" value="0.25" />
-        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/custom_help_and_support.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/custom_earning_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/custom_my_account.xml" value="0.17844202898550723" />
-        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/custom_review_layout.xml" value="0.22" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/custom_schedule.xml" value="0.14" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/dailog_forgot_password.xml" value="0.18" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/dialog_online_layout.xml" value="0.18" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/fragment_about.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/fragment_book_appointments.xml" value="0.1" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/fragment_chat.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/fragment_help_and_support.xml" value="0.25" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/fragment_home.xml" value="0.1" />
-        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/fragment_update_bank_details.xml" value="0.1556420233463035" />
-        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/nav_header_home_activity.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/tab_bar.xml" value="0.25" />
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/layout/virification_otp_layout.xml" value="0.1" />
-        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/menu/activity_main_drawer.xml" value="0.25" />
+        <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/menu/activity_main_drawer.xml" value="0.1" />
       </map>
     </option>
   </component>

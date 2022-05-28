@@ -55,33 +55,33 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/text_recent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/layoutTotal"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Recent"
-        android:textColor="@color/black"
-        android:textSize="14sp" />
+<!--    <TextView-->
+<!--        android:id="@+id/text_recent"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/layoutTotal"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:text="Call History"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="14sp" />-->
 
     <TextView
         android:id="@+id/text_date"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_below="@id/text_recent"
+        android:layout_below="@id/layoutTotal"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:background="#F3F1F1"
         android:gravity="center_vertical"
         android:paddingStart="10dp"
-        android:text="Monday, may 16,2022"
+        android:text="Call History"
         android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="14sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_earning"

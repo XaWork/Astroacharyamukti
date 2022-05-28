@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,7 +38,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
         holder.name.setText(review.getName());
         holder.date.setText(review.getDate());
         holder.comment.setText(review.getComment());
-        holder.rating.setText(review.getRating());
+       // holder.rating.setRating(review.getRating());
     }
 
     @Override
@@ -46,7 +47,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView call_id, name, comment, rating, date;
+        TextView call_id, name, comment, date;
+        RatingBar rating;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

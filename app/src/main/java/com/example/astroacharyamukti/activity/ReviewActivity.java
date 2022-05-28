@@ -54,7 +54,7 @@ public class ReviewActivity extends AppCompatActivity {
         review = findViewById(R.id.rating);
         overAllReview = findViewById(R.id.overAllRating);
         profile_image = findViewById(R.id.ratingProfileImage);
-        getUser();
+        getUserProfile();
         getCustomerReview();
     }
 
@@ -86,7 +86,7 @@ public class ReviewActivity extends AppCompatActivity {
                                 jo.getString("call_id"),
                                 jo.getString("name"),
                                 jo.getString("comment"),
-                                obj.getString("rating"),
+                                jo.getString("rating"),
                                 jo.getString("reply"),
                                 jo.getString("reply_date"),
                                 jo.getString("date"));
@@ -117,7 +117,7 @@ public class ReviewActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    private void getUser() {
+    private void getUserProfile() {
         String userId = Backend.getInstance(this).getUserId();
         String url = "https://theacharyamukti.com/managepanel/apis/total-rating.php";
         String dataUrl = String.format(url, userId);
