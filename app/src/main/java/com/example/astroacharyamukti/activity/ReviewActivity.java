@@ -67,7 +67,7 @@ public class ReviewActivity extends AppCompatActivity {
     }
 
     private void getCustomerReview() {
-        String url = "https://theacharyamukti.com/managepanel/apis/review.php?acharid=40072";
+        String url = "https://theacharyamukti.com/managepanel/apis/review.php";
         ProgressDialog pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading...PLease wait");
         pDialog.show();
@@ -107,7 +107,7 @@ public class ReviewActivity extends AppCompatActivity {
             }
         }) {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("acharid", "40072");
                 return params;
