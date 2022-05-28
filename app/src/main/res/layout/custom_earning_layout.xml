@@ -10,7 +10,6 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:textStyle="bold"
             android:id="@+id/text_con_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,7 +17,8 @@
             android:layout_marginTop="10dp"
             android:text="Acharya (732487)"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <TableLayout
             android:layout_width="wrap_content"
@@ -31,16 +31,14 @@
                     android:id="@+id/text_consultation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/layoutTotal"
                     android:layout_marginStart="10dp"
                     android:text="Consultation ID:"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/text_recent"
+                    android:id="@+id/text_consId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/layoutTotal"
                     android:layout_marginStart="10dp"
                     android:text="35758858"
                     android:textSize="14sp" />
@@ -75,6 +73,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/amount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -92,6 +91,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/duration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -109,6 +109,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -144,6 +145,7 @@
                 android:textSize="11sp" />
 
             <TextView
+                android:id="@+id/earningAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -160,10 +162,11 @@
             android:text="Earned"
             android:textSize="11sp" />
     </LinearLayout>
+
     <View
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/layout_earning"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="#4C4B4B"/>
+        android:layout_below="@+id/layout_earning"
+        android:layout_marginTop="10dp"
+        android:background="#4C4B4B" />
 </RelativeLayout>

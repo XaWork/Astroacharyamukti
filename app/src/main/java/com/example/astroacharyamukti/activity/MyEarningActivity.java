@@ -1,8 +1,10 @@
 package com.example.astroacharyamukti.activity;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,12 +17,15 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.astroacharyamukti.R;
 import com.example.astroacharyamukti.adapter.EarningAdapter;
+import com.example.astroacharyamukti.helper.Backend;
 import com.example.astroacharyamukti.model.EarnDetails;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -34,9 +39,14 @@ public class MyEarningActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_earning);
+        getData();
+        TextView total = findViewById(R.id.total);
+        String getTotalBalance = Backend.getInstance(this).getTotal();
+        total.setText(getTotalBalance);
         recyclerView = findViewById(R.id.recyclerView_earning);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setHasFixedSize(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -47,49 +57,47 @@ public class MyEarningActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void getEarningList() {
-        String url = "https://theacharyamukti.com/managepanel/apis/earned.php";
+    private void getData() {
+        String url = "https://theacharyamukti.com/managepanel/apis/earned.php?acharid=40072";
         ProgressDialog pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading...PLease wait");
         pDialog.show();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(String response) {
                 pDialog.dismiss();
                 try {
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.getString("total");
-                    JSONArray itemsArray = response.getJSONArray("Bank_Details");
-                    for (int i = 0; i < itemsArray.length(); i++) {
-                        JSONObject jsonObject1 = itemsArray.getJSONObject(i);
+                    JSONObject obj = new JSONObject(response);
+                    JSONArray arr = obj.getJSONArray("body");
+                    for (int i = 0; i < arr.length(); i++) {
+                        JSONObject jo = arr.getJSONObject(i);
                         EarnDetails earnData = new EarnDetails(
-                                jsonObject1.getString("consultation_id"),
-                                jsonObject1.getString("consultation_type"),
-                                jsonObject1.getString("earamount"),
-                                jsonObject1.getString("amount"),
-                                jsonObject.getString("duration"),
-                                jsonObject1.getString("date")
-
-                        );
+                                jo.getString("consultation_id"),
+                                jo.getString("nqme"),
+                                jo.getString("consultation_type"),
+                                jo.getString("earamount"),
+                                jo.getString("amount"),
+                                jo.getString("duration"),
+                                jo.getString("date"));
                         earningData.add(earnData);
                     }
-
-
-                } catch (
-                        Exception e) {
+                    String total = obj.getString("total");
+                    Backend.getInstance(getApplicationContext()).saveTotal(total);
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                EarningAdapter earningAdapter = new EarningAdapter(getApplicationContext(),earningData);
-                recyclerView.setAdapter(earningAdapter);
+                EarningAdapter earningAdapter = new EarningAdapter(getApplicationContext(), earningData);
                 earningAdapter.notifyDataSetChanged();
+                recyclerView.setAdapter(earningAdapter);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                pDialog.dismiss();
+                Toast.makeText(MyEarningActivity.this, "Error", Toast.LENGTH_SHORT).show();
             }
         });
-        requestQueue.add(jsonObjectRequest);
+        requestQueue.add(stringRequest);
     }
 }

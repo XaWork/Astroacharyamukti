@@ -42,9 +42,13 @@ public class Backend {
         editor.apply();
     }
 
-//    public void saveMobileNumber(String newNumber) {
-//        SharedPreferences.Editor editor = preferences.edit();
-//        editor.putInt("mobile", newNumber);
-//        editor.apply();
-//    }
+    public void saveTotal(String total) {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("total", total);
+        editor.apply();
+    }
+
+    public String getTotal() {
+        return preferences.getString("total", "");
+    }
 }
