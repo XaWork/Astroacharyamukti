@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -13,12 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
-//import android.widget.Toolbar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,17 +26,14 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.astroacharyamukti.R;
-import com.example.astroacharyamukti.databinding.ActivityHomeActivityBinding;
 import com.example.astroacharyamukti.helper.Backend;
 import com.google.android.material.navigation.NavigationView;
+import com.example.astroacharyamukti.databinding.ActivityHomeActivityBinding;
 
 import org.json.JSONObject;
 
@@ -51,16 +45,16 @@ import java.util.Map;
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private ActivityHomeActivityBinding binding;
     TextView schedule, date_picker, textScheduleDate, textScheduleTime;
     Toolbar toolbar;
-    ImageView imageView;
+    Button button_online;
+    String status;
     int date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityHomeActivityBinding.inflate(getLayoutInflater());
+        com.example.astroacharyamukti.databinding.ActivityHomeActivityBinding binding = ActivityHomeActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.appBarHomeActivity.toolbar);
         DrawerLayout drawer = binding.drawerLayout;
@@ -73,11 +67,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.setNavigationItemSelectedListener(this);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setOnClickListener(this);
-//        imageView = findViewById(R.id.imageView);
-//        imageView.setOnClickListener(this);
+
 
     }
 
@@ -119,30 +112,41 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Intent profile = new Intent(this, UserProfile.class);
                 startActivity(profile);
                 break;
-            case R.id.nav_performance:
-                performanceDialog();
+            case R.id.nav_logout:
+                Intent i5 = new Intent(getApplicationContext(), Login.class);
+                i5.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i5);
+                this.finish();
+                Toast.makeText(getApplicationContext(), "Logout", Toast.LENGTH_LONG).show();
                 break;
             case R.id.nav_help_support:
                 Intent profileUpDate = new Intent(this, HelpAndSupport.class);
-                profileUpDate.putExtra("","1");
+                profileUpDate.putExtra("", "1");
                 startActivity(profileUpDate);
                 break;
+            case R.id.nav_term_condition:
+                String termConditionUrl = "https://theacharyamukti.com/terms-and-conditions.php";
+                Intent terms = new Intent(Intent.ACTION_VIEW);
+                terms.putExtra("", "1");
+                terms.setData(Uri.parse(termConditionUrl));
+                startActivity(terms);
+                break;
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return false;
     }
 
 
-    private void performanceDialog() {
-        Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
-        dialog.setContentView(R.layout.custom_performance_layout);
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.show();
-
-    }
+//    private void performanceDialog() {
+//        Dialog dialog = new Dialog(this);
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        dialog.setCancelable(false);
+//        dialog.setContentView(R.layout.custom_performance_layout);
+//        dialog.setCanceledOnTouchOutside(true);
+//        dialog.show();
+//
+//    }
 
 
     private void dialog() {
@@ -150,22 +154,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
         dialog.setContentView(R.layout.dialog_online_layout);
-        Button button_online = dialog.findViewById(R.id.button_online);
+        button_online = dialog.findViewById(R.id.button_online);
         TextView schedule = dialog.findViewById(R.id.text_reschedule);
         textScheduleDate = dialog.findViewById(R.id.text_schedule_date);
         textScheduleTime = dialog.findViewById(R.id.time);
         button_online = dialog.findViewById(R.id.button_online);
-        schedule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialogSchedule();
-
-            }
-        });
-        button_online.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        schedule.setOnClickListener(view -> dialogSchedule());
+        button_online.setOnClickListener(view -> {
+            String getStatus = Backend.getInstance(getApplicationContext()).getUserStatus();
+            if (getStatus.equals("Online")) {
                 dialog.cancel();
+            } else {
+                Toast.makeText(getApplicationContext(), "Astrologer is offline schedule call for some time", Toast.LENGTH_SHORT).show();
             }
         });
         dialog.setCanceledOnTouchOutside(true);
@@ -182,36 +182,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         date_picker = dialog.findViewById(R.id.date_picker);
         TextView text_Confirm = dialog.findViewById(R.id.text_Confirm);
         TextView cancel = dialog.findViewById(R.id.cancel);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        cancel.setOnClickListener(view -> dialog.dismiss());
+        text_Confirm.setOnClickListener(view -> {
+            if (schedule.getText().toString().length() < 1 || date_picker.getText().toString().length() < 1) {
+                Toast.makeText(getApplicationContext(), "Please Select the date and Time", Toast.LENGTH_SHORT).show();
+            } else {
+                //  updateStatus();
                 dialog.dismiss();
-            }
-        });
-        text_Confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (schedule.getText().toString().length() < 1 || date_picker.getText().toString().length() < 1) {
-                    Toast.makeText(getApplicationContext(), "Please Select the date and Time", Toast.LENGTH_SHORT).show();
-                } else {
-                    dialog.dismiss();
-
-                }
 
             }
+
         });
-        date_picker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showHourPicker();
-            }
-        });
-        schedule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                datePicker();
-            }
-        });
+        date_picker.setOnClickListener(view -> showHourPicker());
+        schedule.setOnClickListener(view -> datePicker());
 
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
@@ -224,13 +207,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int month1 = mCurrentDate.get(Calendar.MONTH);
         int day1 = mCurrentDate.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog mDatePicker = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            @SuppressLint("SetTextI18n")
-            public void onDateSet(DatePicker datepicker, int selectedYear, int selectedMonth, int selectedDay) {
-                date = Log.e("Date Selected", "Month: " + selectedMonth + " Day: " + selectedDay + " Year: " + selectedYear);
-                schedule.setText((selectedMonth + 1) + "/" + selectedDay + "/" + selectedYear);
-                textScheduleDate.setText((selectedMonth + 1) + "/" + selectedDay + "/" + selectedYear);
-            }
+        @SuppressLint("SetTextI18n") DatePickerDialog mDatePicker = new DatePickerDialog(this, (datepicker, selectedYear, selectedMonth, selectedDay) -> {
+            date = Log.e("Date Selected", "Month: " + selectedMonth + " Day: " + selectedDay + " Year: " + selectedYear);
+            schedule.setText((selectedMonth + 1) + "/" + selectedDay + "/" + selectedYear);
+            textScheduleDate.setText((selectedMonth + 1) + "/" + selectedDay + "/" + selectedYear);
         }, year1, month1, day1);
         mDatePicker.setTitle("Select date");
         mDatePicker.show();
@@ -242,16 +222,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int minute = myCalender.get(Calendar.MINUTE);
 
 
-        TimePickerDialog.OnTimeSetListener myTimeListener = new TimePickerDialog.OnTimeSetListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                if (view.isShown()) {
-                    myCalender.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                    myCalender.set(Calendar.MINUTE, minute);
-                    date_picker.setText(hourOfDay + ":" + minute);
-                    textScheduleTime.setText(hourOfDay + ":" + minute);
-                }
+        @SuppressLint("SetTextI18n") TimePickerDialog.OnTimeSetListener myTimeListener = (view, hourOfDay, minute1) -> {
+            if (view.isShown()) {
+                myCalender.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                myCalender.set(Calendar.MINUTE, minute1);
+                date_picker.setText(hourOfDay + ":" + minute1);
+                textScheduleTime.setText(hourOfDay + ":" + minute1);
             }
         };
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar, myTimeListener, hour, minute, true);
@@ -273,6 +249,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
     }
+
     private void getStatus() {
         String userId = Backend.getInstance(this).getUserId();
         String url = "https://theacharyamukti.com/managepanel/apis/get-status.php";
@@ -281,37 +258,73 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         progressDialog.setMessage("Loading.......Please wait");
         progressDialog.show();
         RequestQueue request = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, dataUrl, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                progressDialog.dismiss();
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    String status = jsonObject.getString("status");
-                    if (status.equals("true")) {
-                        toolbar.setSubtitle(status);
-                    } else {
-                        toolbar.setSubtitle(status);
-                        dialog();
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(HomeActivity.this, "Error", Toast.LENGTH_SHORT).show();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, dataUrl, response -> {
+            progressDialog.dismiss();
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                status = jsonObject.getString("status");
+                if (status.equals("Online")) {
+                    toolbar.setSubtitle(status);
+                } else {
+                    toolbar.setSubtitle(status);
+                    dialog();
                 }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                progressDialog.dismiss();
+                Backend.getInstance(getApplicationContext()).saveUserStatus(status);
+            } catch (Exception e) {
+                e.printStackTrace();
                 Toast.makeText(HomeActivity.this, "Error", Toast.LENGTH_SHORT).show();
-
             }
+        }, error -> {
+            progressDialog.dismiss();
+            Toast.makeText(HomeActivity.this, "Error", Toast.LENGTH_SHORT).show();
+
         }) {
             @Override
-            public Map<String, String> getParams() throws AuthFailureError {
+            public Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("acharid",userId);
+                params.put("acharid", userId);
+                return params;
+            }
+
+        };
+        request.add(stringRequest);
+    }
+
+    private void updateStatus() {
+        String userId = Backend.getInstance(this).getUserId();
+        String url = "https://theacharyamukti.com/managepanel/apis/update-status.php";
+        String dataUrl = String.format(url, userId);
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading.......Please wait");
+        progressDialog.show();
+        RequestQueue request = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, dataUrl, response -> {
+            progressDialog.dismiss();
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                String status = jsonObject.getString("status");
+                if (status.equals("true")) {
+                    finish();
+                } else {
+                    Toast.makeText(HomeActivity.this, status, Toast.LENGTH_SHORT).show();
+
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(HomeActivity.this, "Error", Toast.LENGTH_SHORT).show();
+            }
+        }, error -> {
+            progressDialog.dismiss();
+            Toast.makeText(HomeActivity.this, "Error", Toast.LENGTH_SHORT).show();
+
+        }) {
+            @Override
+            public Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("new_status", status);
+                params.put("schedule_date", schedule.getText().toString());
+                params.put("schedule_time", date_picker.getText().toString());
                 return params;
             }
 

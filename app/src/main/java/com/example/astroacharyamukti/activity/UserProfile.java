@@ -18,11 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
@@ -37,9 +34,9 @@ import java.util.Map;
 public class UserProfile extends AppCompatActivity implements View.OnClickListener {
     TextView review, bankDetails, changePassword,
             update_number, profile_name, profile_email,
-            profile_number;
+            profile_number, oldPassword, newPassword;
     ImageView profile_image;
-    String userId, oldNumber, newMobileNumber;
+    String userId, oldNumber, newMobileNumber, getOlPassword, getNewPassword;
     EditText oldNum, newNumber;
     Button update;
     Dialog dialog;
@@ -66,7 +63,7 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) ;
+        item.getItemId();
         finish();
         return super.onOptionsItemSelected(item);
     }
@@ -98,8 +95,14 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.change_password);
-        TextView custom_cust_review = dialog.findViewById(R.id.custom_cust_review);
-        TextView text_update_no = dialog.findViewById(R.id.text_update_details);
+        oldPassword = dialog.findViewById(R.id.oldPassword);
+        newPassword = dialog.findViewById(R.id.newPassword);
+        String oldPass=Backend.getInstance(this).getPassword();
+        oldPassword.setText(oldPass);
+        Button update = dialog.findViewById(R.id.updatePassword);
+        update.setOnClickListener(view -> {
+            changePassword();
+        });
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
     }
@@ -116,14 +119,11 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         update = dialog.findViewById(R.id.btnUpdate);
         oldNumber = oldNum.getText().toString();
         newMobileNumber = newNumber.getText().toString().trim();
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (oldNumber != null || newMobileNumber != null) {
-                    updateMobile();
-                } else {
-                    Toast.makeText(UserProfile.this, "Number is not valid", Toast.LENGTH_SHORT).show();
-                }
+        update.setOnClickListener(view -> {
+            if (oldNumber != null || newMobileNumber != null) {
+                updateMobile();
+            } else {
+                Toast.makeText(UserProfile.this, "Number is not valid", Toast.LENGTH_SHORT).show();
             }
         });
         dialog.setCanceledOnTouchOutside(true);
@@ -138,34 +138,28 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         progressDialog.setMessage("Loading.......Please wait");
         progressDialog.show();
         RequestQueue request = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, dataUrl, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                progressDialog.dismiss();
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    String status = jsonObject.getString("status");
-                    if (status.equals("true")) {
-                        dialog.dismiss();
-                    } else {
-                        Toast.makeText(UserProfile.this, status, Toast.LENGTH_SHORT).show();
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(UserProfile.this, "Error", Toast.LENGTH_SHORT).show();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, dataUrl, response -> {
+            progressDialog.dismiss();
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                String status = jsonObject.getString("status");
+                if (status.equals("true")) {
+                    dialog.dismiss();
+                } else {
+                    Toast.makeText(UserProfile.this, status, Toast.LENGTH_SHORT).show();
                 }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                progressDialog.dismiss();
-                Toast.makeText(UserProfile.this, "Error", Toast.LENGTH_SHORT).show();
 
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(UserProfile.this, "Error", Toast.LENGTH_SHORT).show();
             }
+        }, error -> {
+            progressDialog.dismiss();
+            Toast.makeText(UserProfile.this, "Error", Toast.LENGTH_SHORT).show();
+
         }) {
             @Override
-            public Map<String, String> getParams() throws AuthFailureError {
+            public Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("acharid", userId);
                 params.put("mobile", newMobileNumber = newNumber.getText().toString());
@@ -184,50 +178,82 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         progressDialog.setMessage("Loading.......Please wait");
         progressDialog.show();
         RequestQueue request = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, dataUrl, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.d("url", url);
-                progressDialog.dismiss();
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    jsonObject.getString("status");
-                    jsonObject.getString("reg_id");
-                    String profileImage = jsonObject.getString("image");
-                    String emailId = jsonObject.getString("email");
-                    String userNumber = jsonObject.getString("mobile");
-                    String userName = jsonObject.getString("name");
-                    String msg = jsonObject.getString("msg");
-                    if (msg.equals("Successfull")) {
-                        profile_email.setText(emailId);
-                        profile_name.setText(userName);
-                        profile_number.setText(userNumber);
-                        String url = "https://theacharyamukti.com/image/astro/" + profileImage;
-                        Glide.with(getApplicationContext()).load(url).into(profile_image);
-                    } else {
-                        Toast.makeText(UserProfile.this, jsonObject.getString("status"), Toast.LENGTH_SHORT).show();
-                    }
-                    Backend.getInstance(getApplicationContext()).saveMobile(userNumber);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(UserProfile.this, "Error", Toast.LENGTH_SHORT).show();
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, dataUrl, response -> {
+            Log.d("url", url);
+            progressDialog.dismiss();
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                jsonObject.getString("status");
+                jsonObject.getString("reg_id");
+                String profileImage = jsonObject.getString("image");
+                String emailId = jsonObject.getString("email");
+                String userNumber = jsonObject.getString("mobile");
+                String userName = jsonObject.getString("name");
+                String msg = jsonObject.getString("msg");
+                if (msg.equals("Successfull")) {
+                    profile_email.setText(emailId);
+                    profile_name.setText(userName);
+                    profile_number.setText(userNumber);
+                    String url1 = "https://theacharyamukti.com/image/astro/" + profileImage;
+                    Glide.with(getApplicationContext()).load(url1).into(profile_image);
+                } else {
+                    Toast.makeText(UserProfile.this, jsonObject.getString("status"), Toast.LENGTH_SHORT).show();
                 }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                progressDialog.dismiss();
+                Backend.getInstance(getApplicationContext()).saveMobile(userNumber);
+            } catch (Exception e) {
+                e.printStackTrace();
                 Toast.makeText(UserProfile.this, "Error", Toast.LENGTH_SHORT).show();
-
             }
+        }, error -> {
+            progressDialog.dismiss();
+            Toast.makeText(UserProfile.this, "Error", Toast.LENGTH_SHORT).show();
+
         }) {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
+                return new HashMap<>();
+            }
+        };
+        request.add(stringRequest);
+    }
+
+    private void changePassword() {
+        userId = Backend.getInstance(this).getUserId();
+        String url = "https://theacharyamukti.com/managepanel/apis/change-password.php";
+        String dataUrl = String.format(url, userId);
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading.......Please wait");
+        progressDialog.show();
+        RequestQueue request = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, dataUrl, response -> {
+            progressDialog.dismiss();
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                String status = jsonObject.getString("status");
+                if (status.equals("true")) {
+                    dialog.dismiss();
+                } else {
+                    Toast.makeText(UserProfile.this, status, Toast.LENGTH_SHORT).show();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(UserProfile.this, "Error", Toast.LENGTH_SHORT).show();
+            }
+        }, error -> {
+            progressDialog.dismiss();
+            Toast.makeText(UserProfile.this, "Error", Toast.LENGTH_SHORT).show();
+
+        }) {
+            @Override
+            public Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                //               params.put("acharid", userId);
+                params.put("acharid", userId);
+                params.put("oldpassword", getOlPassword = oldPassword.getText().toString());
+                params.put("newpassword", getNewPassword = newPassword.getText().toString());
                 return params;
             }
-//            }
+
         };
         request.add(stringRequest);
     }

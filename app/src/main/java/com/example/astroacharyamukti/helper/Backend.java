@@ -51,4 +51,35 @@ public class Backend {
     public String getTotal() {
         return preferences.getString("total", "");
     }
+
+    public String getPassword() {
+
+        return preferences.getString("password", "");
+    }
+
+    public void savePassword(String password) {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("password", password);
+        editor.apply();
+    }
+
+    public String getUserName() {
+        return preferences.getString("email", "");
+    }
+
+    public void saveUserName(String username) {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("email", username);
+        editor.apply();
+    }
+
+    public String getUserStatus() {
+        return preferences.getString("status", "");
+    }
+
+    public void saveUserStatus(String status) {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("status", "");
+        editor.apply();
+    }
 }

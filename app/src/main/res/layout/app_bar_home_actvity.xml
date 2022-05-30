@@ -20,8 +20,8 @@
             android:layout_height="60dp"
             android:background="@color/yellow"
             app:title="User Details"
+            app:subtitle="Offline"
             app:popupTheme="@style/Theme.Astroacharyamukti.PopupOverlay"
-            app:subtitle="Online Call"
             app:titleTextColor="@color/white"
             app:subtitleTextColor="@color/white" />
 

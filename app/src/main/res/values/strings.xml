@@ -35,6 +35,7 @@
     <string name="menu_privacy_Policy">Privacy Policy</string>
     <string name="menu_term_conditions">Terms and Conditions</string>
     <string name="menu_language">Language</string>
+    <string name="menu_logout">Logout</string>
     <!-- home fragment -->
     <string name="text_active">No Active Call</string>
     <string name="text_kundali">Kundali</string>

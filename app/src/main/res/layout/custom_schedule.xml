@@ -39,8 +39,8 @@
         android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
         android:gravity="center_vertical"
         android:padding="10dp"
-        android:textColor="@color/black"
         android:text="@string/text_date_picker"
+        android:textColor="@color/black"
         android:textStyle="normal" />
 
     <TextView

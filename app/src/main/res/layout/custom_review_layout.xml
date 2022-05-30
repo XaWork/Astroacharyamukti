@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:background="@drawable/outline_grey_rectangle_bg">
 
@@ -88,32 +88,51 @@
         android:paddingStart="15dp"
         android:text="Giving very good consultation with Insights" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_below="@+id/giving_comment"
-        android:layout_margin="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/orange_outline_bg"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:orientation="vertical">
 
-        <EditText
-            android:textSize="11sp"
-            android:id="@+id/text_thank"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:hint="Thank you so much"
-            android:textColor="@color/black" />
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/text_thank"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:hint="Thank you so much"
+                android:paddingTop="10dp"
+                android:textColor="@color/black"
+                android:textSize="11sp" />
+
+            <ImageView
+                android:id="@+id/sendImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:padding="10dp"
+                android:src="@drawable/ic_baseline_send_24" />
+        </LinearLayout>
 
         <TextView
-            android:textSize="12sp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_thank"
+            android:layout_height="20dp"
             android:layout_marginStart="15dp"
+            android:layout_marginBottom="5dp"
             android:paddingTop="5dp"
             android:text="5:30 PM, may 11"
             android:textAllCaps="true"
-            android:textColor="@color/black" />
-    </RelativeLayout>
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+    </LinearLayout>
 </RelativeLayout>

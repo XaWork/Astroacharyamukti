@@ -22,14 +22,7 @@
             android:id="@+id/nav_my_earning"
             android:icon="@drawable/ic_baseline_show_chart_24"
             android:title="@string/menu_earning" />
-        <item
-            android:id="@+id/nav_partner_growth"
-            android:icon="@drawable/ic_baseline_workspace_premium_24"
-            android:title="@string/menu_opportunities" />
-        <item
-            android:id="@+id/nav_performance"
-            android:icon="@drawable/ic_baseline_bar_chart_24"
-            android:title="@string/menu_chart" />
+
         <item
             android:id="@+id/nav_help_support"
             android:icon="@drawable/ic_baseline_support_agent_24"
@@ -46,5 +39,9 @@
             android:id="@+id/nav_language"
             android:icon="@drawable/ic_baseline_language_24"
             android:title="@string/menu_language" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_baseline_logout_24"
+            android:title="@string/menu_logout" />
     </group>
 </menu>

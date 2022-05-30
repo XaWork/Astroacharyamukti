@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -17,11 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.astroacharyamukti.R;
@@ -51,7 +47,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         signOut.setOnClickListener(this);
         check_box_condition = findViewById(R.id.check_box_condition);
         check_box_condition.setOnClickListener(this);
-
+        String userName = Backend.getInstance(this).getUserName();
+        String pass = Backend.getInstance(this).getPassword();
+        etEmail.setText(userName);
+        password.setText(pass);
     }
 
     public void showDialog() {
@@ -60,16 +59,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dailog_forgot_password);
         Button send = dialog.findViewById(R.id.btnSend);
-        send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText email = dialog.findViewById(R.id.etEmailLink);
-                if (email.getText().toString().length() < 1) {
-                    Toast.makeText(getApplicationContext(), "Enter the register Email id", Toast.LENGTH_LONG).show();
+        send.setOnClickListener(view -> {
+            EditText email = dialog.findViewById(R.id.etEmailLink);
+            if (email.getText().toString().length() < 1) {
+                Toast.makeText(getApplicationContext(), "Enter the register Email id", Toast.LENGTH_LONG).show();
 
-                } else {
-                    dialog.dismiss();
-                }
+            } else {
+                dialog.dismiss();
             }
         });
         dialog.setCanceledOnTouchOutside(true);
@@ -82,12 +78,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.sendOtp:
-                if ((etEmail.getText().toString().length() < 1) || password.getText().toString().length() < 1) {
+                if ((etEmail.getText().toString().length() < 1) || (password.getText().toString().length() < 1) || check_box_condition.isChecked()) {
                     Toast.makeText(this, "Enter your Email Id & Password", Toast.LENGTH_SHORT).show();
                 } else {
                     postData();
                 }
-//                                }
                 break;
             case R.id.text_forgot_password:
                 showDialog();
@@ -119,41 +114,36 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         String url = "https://theacharyamukti.com/managepanel/apis/login.php";
         String email = etEmail.getText().toString();
         String pass = password.getText().toString();
+        Backend.getInstance(this).savePassword(pass);
+        Backend.getInstance(this).saveUserName(email);
         ProgressDialog pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading...PLease wait");
         pDialog.show();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                pDialog.dismiss();
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    String userId = jsonObject.getString("reg_id");
-                    String msg = jsonObject.getString("msg");
-                    if (jsonObject.getString("status").equals("true")) {
-                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(Login.this, msg, Toast.LENGTH_SHORT).show();
-                    }
-                    Backend.getInstance(getApplicationContext()).saveUserId(userId);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Toast.makeText(Login.this, "Error", Toast.LENGTH_SHORT).show();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
+            pDialog.dismiss();
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                String userId = jsonObject.getString("reg_id");
+                String msg = jsonObject.getString("msg");
+                if (jsonObject.getString("status").equals("true")) {
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(Login.this, msg, Toast.LENGTH_SHORT).show();
                 }
-
+                Backend.getInstance(getApplicationContext()).saveUserId(userId);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Toast.makeText(Login.this, "Error", Toast.LENGTH_SHORT).show();
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
-                pDialog.dismiss();
+        }, error -> {
+            Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+            pDialog.dismiss();
 
-            }
         }) {
             @Override
-            public Map<String, String> getParams() throws AuthFailureError {
+            public Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("email", email);
                 params.put("password", pass);

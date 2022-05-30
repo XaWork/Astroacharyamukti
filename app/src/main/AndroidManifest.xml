@@ -31,8 +31,7 @@
         <activity
             android:name=".activity.LanguageActivity"
             android:exported="true"
-            android:label="Change Language"
-            android:theme="@style/Theme.Astroacharyamukti.NoActionBar" />
+            android:label="Change Language" />
         <activity
             android:name=".activity.PrivacyPolicy"
             android:exported="true"
