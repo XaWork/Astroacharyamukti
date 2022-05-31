@@ -14,8 +14,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +32,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.example.astroacharyamukti.R;
 import com.example.astroacharyamukti.helper.Backend;
 import com.google.android.material.navigation.NavigationView;
@@ -41,15 +44,19 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private AppBarConfiguration mAppBarConfiguration;
-    TextView schedule, date_picker, textScheduleDate, textScheduleTime;
+    TextView schedule, date_picker, textScheduleDate, textScheduleTime,
+            name, email;
     Toolbar toolbar;
     Button button_online;
     String status;
     int date;
+    CircleImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +77,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setOnClickListener(this);
+        imageView = findViewById(R.id.imageViewHeader);
+        name = findViewById(R.id.headerName);
+        email = findViewById(R.id.header_email);
+        getUser();
 
 
     }
@@ -168,6 +179,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(getApplicationContext(), "Astrologer is offline schedule call for some time", Toast.LENGTH_SHORT).show();
             }
         });
+        ImageView cancel = dialog.findViewById(R.id.cancel_image);
+        cancel.setOnClickListener(view -> dialog.cancel());
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
     }
@@ -181,7 +194,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         schedule = dialog.findViewById(R.id.text_calender);
         date_picker = dialog.findViewById(R.id.date_picker);
         TextView text_Confirm = dialog.findViewById(R.id.text_Confirm);
-        TextView cancel = dialog.findViewById(R.id.cancel);
+        TextView cancel = dialog.findViewById(R.id.cancel_schedule);
         cancel.setOnClickListener(view -> dialog.dismiss());
         text_Confirm.setOnClickListener(view -> {
             if (schedule.getText().toString().length() < 1 || date_picker.getText().toString().length() < 1) {
@@ -193,6 +206,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
 
         });
+        cancel.setOnClickListener(view -> dialog.cancel());
         date_picker.setOnClickListener(view -> showHourPicker());
         schedule.setOnClickListener(view -> datePicker());
 
@@ -243,7 +257,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.toolbar:
                 getStatus();
                 break;
-            case R.id.imageView:
+            case R.id.imageViewHeader:
                 Intent intent = new Intent(getApplicationContext(), UserProfile.class);
                 startActivity(intent);
                 break;
@@ -328,6 +342,52 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 return params;
             }
 
+        };
+        request.add(stringRequest);
+    }
+
+    private void getUser() {
+        String userId = Backend.getInstance(this).getUserId();
+        String url = "https://theacharyamukti.com/managepanel/apis/profile.php?acharid=%s";
+        String dataUrl = String.format(url, userId);
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading.......Please wait");
+        progressDialog.show();
+        RequestQueue request = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, dataUrl, response -> {
+            Log.d("url", url);
+            progressDialog.dismiss();
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                jsonObject.getString("status");
+                jsonObject.getString("reg_id");
+                String profileImage = jsonObject.getString("image");
+                String emailId = jsonObject.getString("email");
+                String userNumber = jsonObject.getString("mobile");
+                String userName = jsonObject.getString("name");
+                String msg = jsonObject.getString("msg");
+                if (msg.equals("Successfull")) {
+                    email.setText(emailId);
+                    name.setText(userName);
+                    String url1 = "https://theacharyamukti.com/image/astro/" + profileImage;
+                    Glide.with(getApplicationContext()).load(url1).into(imageView);
+                } else {
+                    Toast.makeText(getApplicationContext(), jsonObject.getString("status"), Toast.LENGTH_SHORT).show();
+                }
+                Backend.getInstance(getApplicationContext()).saveMobile(userNumber);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+            }
+        }, error -> {
+            progressDialog.dismiss();
+            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                return new HashMap<>();
+            }
         };
         request.add(stringRequest);
     }

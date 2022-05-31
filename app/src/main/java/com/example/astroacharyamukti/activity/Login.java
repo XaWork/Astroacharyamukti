@@ -34,6 +34,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     EditText etEmail, password;
     TextView signOut;
     CheckBox check_box_condition;
+    TextView termAndCondition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         signOut = findViewById(R.id.signIn);
         signOut.setOnClickListener(this);
         check_box_condition = findViewById(R.id.check_box_condition);
-        check_box_condition.setOnClickListener(this);
+        termAndCondition=findViewById(R.id.termAndCondition);
+        termAndCondition.setOnClickListener(this);
         String userName = Backend.getInstance(this).getUserName();
         String pass = Backend.getInstance(this).getPassword();
         etEmail.setText(userName);
@@ -93,7 +95,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 i.setData(Uri.parse(theUrl));
                 startActivity(i);
                 break;
-            case R.id.check_box_condition:
+            case R.id.termAndCondition:
                 String termConditionUrl = "https://theacharyamukti.com/terms-and-conditions.php";
                 Intent terms = new Intent(Intent.ACTION_VIEW);
                 terms.putExtra("", "1");

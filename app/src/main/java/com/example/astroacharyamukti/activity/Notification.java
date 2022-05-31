@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.astroacharyamukti.R;
 
-public class MatchMaking extends AppCompatActivity {
+public class Notification extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

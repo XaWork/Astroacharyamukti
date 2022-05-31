@@ -90,7 +90,7 @@ public class HomeFragment extends Fragment {
         schedule = dialog.findViewById(R.id.text_calender);
         date_picker = dialog.findViewById(R.id.date_picker);
         TextView text_Confirm = dialog.findViewById(R.id.text_Confirm);
-        TextView cancel = dialog.findViewById(R.id.cancel);
+        TextView cancel = dialog.findViewById(R.id.cancel_schedule);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

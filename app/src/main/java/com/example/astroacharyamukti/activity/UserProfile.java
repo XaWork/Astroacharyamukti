@@ -63,7 +63,7 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        item.getItemId();
+        if (item.getItemId() == android.R.id.home) ;
         finish();
         return super.onOptionsItemSelected(item);
     }
@@ -97,7 +97,7 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         dialog.setContentView(R.layout.change_password);
         oldPassword = dialog.findViewById(R.id.oldPassword);
         newPassword = dialog.findViewById(R.id.newPassword);
-        String oldPass=Backend.getInstance(this).getPassword();
+        String oldPass = Backend.getInstance(this).getPassword();
         oldPassword.setText(oldPass);
         Button update = dialog.findViewById(R.id.updatePassword);
         update.setOnClickListener(view -> {
@@ -105,6 +105,7 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         });
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
+
     }
 
     private void fqeDialog() {
