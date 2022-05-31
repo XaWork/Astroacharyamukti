@@ -32,7 +32,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.example.astroacharyamukti.R;
 import com.example.astroacharyamukti.helper.Backend;
 import com.google.android.material.navigation.NavigationView;
@@ -80,7 +79,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         imageView = findViewById(R.id.imageViewHeader);
         name = findViewById(R.id.headerName);
         email = findViewById(R.id.header_email);
-        getUser();
 
 
     }
@@ -346,49 +344,47 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         request.add(stringRequest);
     }
 
-    private void getUser() {
-        String userId = Backend.getInstance(this).getUserId();
-        String url = "https://theacharyamukti.com/managepanel/apis/profile.php?acharid=%s";
-        String dataUrl = String.format(url, userId);
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading.......Please wait");
-        progressDialog.show();
-        RequestQueue request = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, dataUrl, response -> {
-            Log.d("url", url);
-            progressDialog.dismiss();
-            try {
-                JSONObject jsonObject = new JSONObject(response);
-                jsonObject.getString("status");
-                jsonObject.getString("reg_id");
-                String profileImage = jsonObject.getString("image");
-                String emailId = jsonObject.getString("email");
-                String userNumber = jsonObject.getString("mobile");
-                String userName = jsonObject.getString("name");
-                String msg = jsonObject.getString("msg");
-                if (msg.equals("Successfull")) {
-                    email.setText(emailId);
-                    name.setText(userName);
-                    String url1 = "https://theacharyamukti.com/image/astro/" + profileImage;
-                    Glide.with(getApplicationContext()).load(url1).into(imageView);
-                } else {
-                    Toast.makeText(getApplicationContext(), jsonObject.getString("status"), Toast.LENGTH_SHORT).show();
-                }
-                Backend.getInstance(getApplicationContext()).saveMobile(userNumber);
-            } catch (Exception e) {
-                e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
-            }
-        }, error -> {
-            progressDialog.dismiss();
-            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
-
-        }) {
-            @Override
-            public Map<String, String> getHeaders() {
-                return new HashMap<>();
-            }
-        };
-        request.add(stringRequest);
-    }
+//    private void getUser() {
+//        String userId = Backend.getInstance(this).getUserId();
+//        String url = "https://theacharyamukti.com/managepanel/apis/profile.php?acharid=%s";
+//        String dataUrl = String.format(url, userId);
+//        ProgressDialog progressDialog = new ProgressDialog(this);
+//        progressDialog.setMessage("Loading.......Please wait");
+//        progressDialog.show();
+//        RequestQueue request = Volley.newRequestQueue(this);
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, dataUrl, response -> {
+//            Log.d("url", url);
+//            progressDialog.dismiss();
+//            try {
+//                JSONObject jsonObject = new JSONObject(response);
+//                jsonObject.getString("status");
+//                jsonObject.getString("reg_id");
+//                String image = jsonObject.getString("image");
+//                String emailId = jsonObject.getString("email");
+//                String name1 = jsonObject.getString("name");
+//                String status = jsonObject.getString("msg");
+//                if (status.equals("Successfull")) {
+//                    email.setText(emailId);
+//                    name.setText(name1);
+//                    String url1 = "https://theacharyamukti.com/image/astro/" + image;
+//                    Glide.with(getApplicationContext()).load(url1).into(imageView);
+//                } else {
+//                    Toast.makeText(getApplicationContext(), jsonObject.getString("status"), Toast.LENGTH_SHORT).show();
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+//            }
+//        }, error -> {
+//            progressDialog.dismiss();
+//            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+//
+//        }) {
+//            @Override
+//            public Map<String, String> getHeaders() {
+//                return new HashMap<>();
+//            }
+//        };
+//        request.add(stringRequest);
+//    }
 }
