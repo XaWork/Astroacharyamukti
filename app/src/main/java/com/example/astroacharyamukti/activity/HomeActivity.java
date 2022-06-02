@@ -151,7 +151,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(homeEarning);
                 break;
             case R.id.settings:
-                Intent customerReview = new Intent(getApplicationContext(), MyEarningActivity.class);
+                Intent customerReview = new Intent(getApplicationContext(), ReviewActivity.class);
                 customerReview.putExtra("", "4");
                 startActivity(customerReview);
                 break;
@@ -353,7 +353,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 params.put("schedule_time", date_picker.getText().toString());
                 return params;
             }
-
         };
         request.add(stringRequest);
     }

@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,7 +44,7 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private FragmentHomeBinding binding;
     TextView name, position, charge;
@@ -62,6 +63,7 @@ public class HomeFragment extends Fragment {
         position = root.findViewById(R.id.text_position);
         charge = root.findViewById(R.id.text_charge);
         imageView = root.findViewById(R.id.image_circular);
+        imageView.setOnClickListener(this);
         getUser();
         return root;
     }
@@ -120,6 +122,12 @@ public class HomeFragment extends Fragment {
             }
         };
         request.add(stringRequest);
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(getActivity(), UserProfile.class);
+        startActivity(intent);
     }
 }
 

@@ -9,9 +9,12 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
@@ -21,6 +24,7 @@ import com.example.astroacharyamukti.R;
 import com.example.astroacharyamukti.adapter.ReviewAdapter;
 import com.example.astroacharyamukti.helper.Backend;
 import com.example.astroacharyamukti.model.ReviewModel;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,6 +41,7 @@ public class ReviewActivity extends AppCompatActivity {
     List<ReviewModel> reviewModels = new ArrayList<>();
     TextView review, overAllReview;
     CircleImageView profile_image;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +51,11 @@ public class ReviewActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
+        recyclerView.setNestedScrollingEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         review = findViewById(R.id.rating);
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
         overAllReview = findViewById(R.id.overAllRating);
         profile_image = findViewById(R.id.ratingProfileImage);
         getUserProfile();
@@ -64,12 +72,10 @@ public class ReviewActivity extends AppCompatActivity {
 
     private void getCustomerReview() {
         String url = "https://theacharyamukti.com/managepanel/apis/review.php";
-        ProgressDialog pDialog = new ProgressDialog(this);
-        pDialog.setMessage("Loading...PLease wait");
-        pDialog.show();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        progressBar.setVisibility(View.VISIBLE);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
-            pDialog.dismiss();
+            progressBar.setVisibility(View.INVISIBLE);
             try {
                 JSONObject obj = new JSONObject(response);
                 JSONArray arr = obj.getJSONArray("body");
@@ -93,7 +99,7 @@ public class ReviewActivity extends AppCompatActivity {
             reviewAdapter.notifyDataSetChanged();
             recyclerView.setAdapter(reviewAdapter);
         }, error -> {
-            pDialog.dismiss();
+            progressBar.setVisibility(View.INVISIBLE);
             Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
         }) {
             @Override
@@ -111,13 +117,14 @@ public class ReviewActivity extends AppCompatActivity {
         String userId = Backend.getInstance(this).getUserId();
         String url = "https://theacharyamukti.com/managepanel/apis/total-rating.php";
         String dataUrl = String.format(url, userId);
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading.......Please wait");
-        progressDialog.show();
+        progressBar.setVisibility(View.VISIBLE);
+//        ProgressDialog progressDialog = new ProgressDialog(this);
+//        progressDialog.setMessage("Loading.......Please wait");
+//        progressDialog.show();
         RequestQueue request = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, dataUrl, response -> {
             Log.d("url", url);
-            progressDialog.dismiss();
+            progressBar.setVisibility(View.INVISIBLE);
             try {
                 JSONObject jsonObject = new JSONObject(response);
                 String profileImage = jsonObject.getString("image");
@@ -133,7 +140,7 @@ public class ReviewActivity extends AppCompatActivity {
                 Toast.makeText(ReviewActivity.this, "Error", Toast.LENGTH_SHORT).show();
             }
         }, error -> {
-            progressDialog.dismiss();
+            progressBar.setVisibility(View.VISIBLE);
             Toast.makeText(ReviewActivity.this, "Error", Toast.LENGTH_SHORT).show();
 
         }) {

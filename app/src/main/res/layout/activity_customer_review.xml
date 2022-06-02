@@ -23,6 +23,12 @@
                 android:layout_height="wrap_content"
                 android:background="#F4F0F0">
 
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/ratingProfileImage"
                     android:layout_width="70dp"
