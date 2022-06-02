@@ -3,6 +3,7 @@ package com.example.astroacharyamukti.ui.home;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,23 +19,36 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.astroacharyamukti.R;
+import com.example.astroacharyamukti.activity.UserProfile;
 import com.example.astroacharyamukti.databinding.FragmentHomeBinding;
 import com.example.astroacharyamukti.helper.Backend;
 
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-    TextView schedule, date_picker, textScheduleDate, textScheduleTime;
-    int date;
+    TextView name, position, charge;
+    CircleImageView imageView;
+    String userName, profileImage, userPosition, callCharge, emailId, userNumber;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -44,9 +58,11 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
         final TextView textView = binding.textHome;
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-
-        ImageView kundali = root.findViewById(R.id.imageViewK);
-        Glide.with(getActivity()).load(R.drawable.kundali2).into(kundali);
+        name = root.findViewById(R.id.name_home_profile);
+        position = root.findViewById(R.id.text_position);
+        charge = root.findViewById(R.id.text_charge);
+        imageView = root.findViewById(R.id.image_circular);
+        getUser();
         return root;
     }
 
@@ -56,117 +72,54 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
-    private void dialog() {
-        Dialog dialog = new Dialog(getContext());
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(true);
-        dialog.setContentView(R.layout.dialog_online_layout);
-        Button button_online = dialog.findViewById(R.id.button_online);
-        TextView schedule = dialog.findViewById(R.id.text_reschedule);
-        textScheduleDate = dialog.findViewById(R.id.text_schedule_date);
-        schedule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialogSchedule();
-
-            }
-        });
-        button_online.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.cancel();
-            }
-        });
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.show();
-    }
-
-    private void dialogSchedule() {
-        Dialog dialog = new Dialog(getContext());
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(true);
-        dialog.setContentView(R.layout.custom_schedule);
-        dialog.setCanceledOnTouchOutside(true);
-        schedule = dialog.findViewById(R.id.text_calender);
-        date_picker = dialog.findViewById(R.id.date_picker);
-        TextView text_Confirm = dialog.findViewById(R.id.text_Confirm);
-        TextView cancel = dialog.findViewById(R.id.cancel_schedule);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-        text_Confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (schedule.getText().toString().length() < 1 || date_picker.getText().toString().length() < 1) {
-                    Toast.makeText(getContext(), "Please Select the date and Time", Toast.LENGTH_SHORT).show();
+    private void getUser() {
+        String userId = Backend.getInstance(getActivity()).getUserId();
+        String url = "https://theacharyamukti.com/managepanel/apis/profile.php?acharid=%s";
+        String dataUrl = String.format(url, userId);
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Loading.......Please wait");
+        progressDialog.show();
+        RequestQueue request = Volley.newRequestQueue(getActivity());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, dataUrl, response -> {
+            progressDialog.dismiss();
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                jsonObject.getString("status");
+                jsonObject.getString("reg_id");
+                callCharge = jsonObject.getString("charge");
+                userPosition = jsonObject.getString("position");
+                profileImage = jsonObject.getString("image");
+                emailId = jsonObject.getString("email");
+                userNumber = jsonObject.getString("mobile");
+                userName = jsonObject.getString("name");
+                String msg = jsonObject.getString("msg");
+                if (jsonObject.getString("status").equals("true")) {
+                    name.setText(userName);
+                    position.setText(userPosition);
+                    charge.setText(callCharge);
+                    String url1 = "https://theacharyamukti.com/image/astro/" + profileImage;
+                    Glide.with(getActivity()).load(url1).into(imageView);
                 } else {
-                    dialog.dismiss();
-
+                    Toast.makeText(getActivity(), jsonObject.getString("status"), Toast.LENGTH_SHORT).show();
                 }
-
+                Backend.getInstance(getActivity()).saveMobile(userNumber);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
             }
-        });
-        date_picker.setOnClickListener(new View.OnClickListener() {
+        }, error -> {
+            progressDialog.dismiss();
+            Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+
+        }) {
             @Override
-            public void onClick(View view) {
-                showHourPicker();
-            }
-        });
-        schedule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                datePicker();
-            }
-        });
-
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.show();
-    }
-
-    private void datePicker() {
-
-        Calendar mCurrentDate = Calendar.getInstance();
-        int year1 = mCurrentDate.get(Calendar.YEAR);
-        int month1 = mCurrentDate.get(Calendar.MONTH);
-        int day1 = mCurrentDate.get(Calendar.DAY_OF_MONTH);
-
-        DatePickerDialog mDatePicker = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
-            @SuppressLint("SetTextI18n")
-            public void onDateSet(DatePicker datepicker, int selectedYear, int selectedMonth, int selectedDay) {
-                date = Log.e("Date Selected", "Month: " + selectedMonth + " Day: " + selectedDay + " Year: " + selectedYear);
-                schedule.setText((selectedMonth + 1) + "/" + selectedDay + "/" + selectedYear);
-                textScheduleDate.setText((selectedMonth + 1) + "/" + selectedDay + "/" + selectedYear);
-            }
-        }, year1, month1, day1);
-        mDatePicker.setTitle("Select date");
-        mDatePicker.show();
-    }
-
-    public void showHourPicker() {
-        final Calendar myCalender = Calendar.getInstance();
-        int hour = myCalender.get(Calendar.HOUR_OF_DAY);
-        int minute = myCalender.get(Calendar.MINUTE);
-
-
-        TimePickerDialog.OnTimeSetListener myTimeListener = new TimePickerDialog.OnTimeSetListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                if (view.isShown()) {
-                    myCalender.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                    myCalender.set(Calendar.MINUTE, minute);
-                    date_picker.setText(hourOfDay + ":" + minute);
-                    textScheduleTime.setText(hourOfDay + ":" + minute);
-                }
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("acharid", userId);
+                return params;
             }
         };
-        TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), android.R.style.Theme_Holo_Light_Dialog_NoActionBar, myTimeListener, hour, minute, true);
-        timePickerDialog.setTitle("Choose hour:");
-        timePickerDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        timePickerDialog.show();
+        request.add(stringRequest);
     }
 }
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/person"
+        android:icon="@drawable/perfile"
+        android:title="Book Appointment"/>
+    <item
+        android:id="@+id/homeEarning"
+        android:icon="@drawable/earning"
+        android:title="Earning" />
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/perfomance"
+        android:title="Customer Review" />
+</menu>

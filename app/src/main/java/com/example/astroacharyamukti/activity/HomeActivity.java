@@ -34,6 +34,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.astroacharyamukti.R;
 import com.example.astroacharyamukti.helper.Backend;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.example.astroacharyamukti.databinding.ActivityHomeActivityBinding;
 
@@ -46,7 +47,7 @@ import java.util.Map;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     TextView schedule, date_picker, textScheduleDate, textScheduleTime,
@@ -55,7 +56,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     Button button_online;
     String status;
     int date;
-    CircleImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,12 +76,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setOnClickListener(this);
-        imageView = findViewById(R.id.imageViewHeader);
         name = findViewById(R.id.headerName);
         email = findViewById(R.id.header_email);
-
-
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -139,6 +139,21 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 terms.putExtra("", "1");
                 terms.setData(Uri.parse(termConditionUrl));
                 startActivity(terms);
+                break;
+            case R.id.person:
+                Intent intent3 = new Intent(getApplicationContext(), BookAppointment.class);
+                intent3.putExtra("", "1");
+                startActivity(intent3);
+                break;
+            case R.id.homeEarning:
+                Intent homeEarning = new Intent(getApplicationContext(), MyEarningActivity.class);
+                homeEarning.putExtra("", "3");
+                startActivity(homeEarning);
+                break;
+            case R.id.settings:
+                Intent customerReview = new Intent(getApplicationContext(), MyEarningActivity.class);
+                customerReview.putExtra("", "4");
+                startActivity(customerReview);
                 break;
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -213,7 +228,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void datePicker() {
-
         Calendar mCurrentDate = Calendar.getInstance();
         int year1 = mCurrentDate.get(Calendar.YEAR);
         int month1 = mCurrentDate.get(Calendar.MONTH);
@@ -343,48 +357,4 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         };
         request.add(stringRequest);
     }
-
-//    private void getUser() {
-//        String userId = Backend.getInstance(this).getUserId();
-//        String url = "https://theacharyamukti.com/managepanel/apis/profile.php?acharid=%s";
-//        String dataUrl = String.format(url, userId);
-//        ProgressDialog progressDialog = new ProgressDialog(this);
-//        progressDialog.setMessage("Loading.......Please wait");
-//        progressDialog.show();
-//        RequestQueue request = Volley.newRequestQueue(this);
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, dataUrl, response -> {
-//            Log.d("url", url);
-//            progressDialog.dismiss();
-//            try {
-//                JSONObject jsonObject = new JSONObject(response);
-//                jsonObject.getString("status");
-//                jsonObject.getString("reg_id");
-//                String image = jsonObject.getString("image");
-//                String emailId = jsonObject.getString("email");
-//                String name1 = jsonObject.getString("name");
-//                String status = jsonObject.getString("msg");
-//                if (status.equals("Successfull")) {
-//                    email.setText(emailId);
-//                    name.setText(name1);
-//                    String url1 = "https://theacharyamukti.com/image/astro/" + image;
-//                    Glide.with(getApplicationContext()).load(url1).into(imageView);
-//                } else {
-//                    Toast.makeText(getApplicationContext(), jsonObject.getString("status"), Toast.LENGTH_SHORT).show();
-//                }
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
-//            }
-//        }, error -> {
-//            progressDialog.dismiss();
-//            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
-//
-//        }) {
-//            @Override
-//            public Map<String, String> getHeaders() {
-//                return new HashMap<>();
-//            }
-//        };
-//        request.add(stringRequest);
-//    }
 }

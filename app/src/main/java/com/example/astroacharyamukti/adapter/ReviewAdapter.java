@@ -1,33 +1,23 @@
 package com.example.astroacharyamukti.adapter;
-
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.astroacharyamukti.R;
 import com.example.astroacharyamukti.model.ReviewModel;
-
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +25,8 @@ import java.util.Map;
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder> {
     Context context;
     List<ReviewModel> reviewModels;
-    String replyPost;
+    EditText reply;
+    ProgressBar dialog;
 
     public ReviewAdapter(Context context, List<ReviewModel> reviewModels) {
         this.context = context;
@@ -56,7 +47,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
         holder.name.setText(review.getName());
         holder.date.setText(review.getDate());
         holder.comment.setText(review.getComment());
-        holder.reply.setText(review.getReply());
+        reply.setText(review.getReply());
     }
 
     @Override
@@ -66,7 +57,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView call_id, name, comment, date;
-        EditText reply;
         RatingBar rating;
         ImageView sendIcon;
 
@@ -79,51 +69,45 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
             date = itemView.findViewById(R.id.date_time_review);
             reply = itemView.findViewById(R.id.text_thank);
             sendIcon = itemView.findViewById(R.id.sendImage);
-            replyPost = reply.getText().toString();
-            sendIcon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-//                    ReviewModel reviewModel = reviewModels.get(getAdapterPosition());
-//                    postReview(reviewModel);
-                }
+           // replyPost = reply.getText().toString();
+            dialog=itemView.findViewById(R.id.progressBar);
+            dialog.setVisibility(View.INVISIBLE);
+            sendIcon.setOnClickListener(view -> {
+                ReviewModel reviewModel = reviewModels.get(getAdapterPosition());
+                postReview(reviewModel);
             });
         }
     }
 
     private void postReview(ReviewModel reviewModel) {
         String reviewId = reviewModel.getReview_id();
+        String replyNew=reply.getText().toString();
         String url = "https://theacharyamukti.com/managepanel/apis/review-post.php";
-        ProgressDialog pDialog = new ProgressDialog(context);
-        pDialog.setMessage("Loading......please wait");
-        pDialog.show();
         RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    String msg = jsonObject.getString("msg");
-                    if (jsonObject.getString("status").equals("true")) {
-                        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(context, jsonObject.getString("status"), Toast.LENGTH_SHORT).show();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(context, "error", Toast.LENGTH_SHORT).show();
+        dialog.setVisibility(View.VISIBLE);
+        StringRequest request = new StringRequest(Request.Method.POST, url, response -> {
+            dialog.setVisibility(View.INVISIBLE);
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                String msg = jsonObject.getString("msg");
+                if (jsonObject.getString("status").equals("true")) {
+                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, jsonObject.getString("status"), Toast.LENGTH_SHORT).show();
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(context, "error", Toast.LENGTH_SHORT).show();
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
+        }, error -> {
+            dialog.setVisibility(View.INVISIBLE);
+            Toast.makeText(context,error.toString(), Toast.LENGTH_SHORT).show();
         }) {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("review_id",reviewId);
-                params.put("reply",replyPost);
+                params.put("review_id", reviewId);
+                params.put("reply", replyNew);
                 return params;
             }
         };

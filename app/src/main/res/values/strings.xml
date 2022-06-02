@@ -134,5 +134,12 @@
     <string name="text_help_mobile">India <font color='#FF5722'>+91-3857305775</font></string>
     <string name="text_help_available">We are available Monday to Saturday</string>
     <string name="text_help_india_standard_time">(India Standard Time) from 8 a.m. to 8 p.m.</string>
-
+    <!-- TODO: Remove or change helpAndSupport activity-->
+    <string name="text_name">Name :</string>
+    <string name="text_name_acharya">Acharya mukti</string>
+    <string name="text_position">Position :</string>
+    <string name="text_position_tarot">Palm reading\ntarot card reader</string>
+    <string name="text_charge">Charge :</string>
+    <string name="text_charge_ru">25/-</string>
+    <string name="text_review">Review\n(4.7)</string>
 </resources>

@@ -31,11 +31,13 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class UserProfile extends AppCompatActivity implements View.OnClickListener {
     TextView review, bankDetails, changePassword,
             update_number, profile_name, profile_email,
             profile_number, oldPassword, newPassword;
-    ImageView profile_image;
+    CircleImageView profile_image;
     String userId, oldNumber, newMobileNumber, getOlPassword, getNewPassword;
     EditText oldNum, newNumber;
     Button update;
