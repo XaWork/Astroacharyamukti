@@ -14,7 +14,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -190,24 +193,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
         dialog.setContentView(R.layout.dialog_online_layout);
-    //    button_online = dialog.findViewById(R.id.button_online);
         TextView schedule = dialog.findViewById(R.id.text_reschedule);
         textScheduleDate = dialog.findViewById(R.id.text_schedule_date);
         textScheduleTime = dialog.findViewById(R.id.time);
-//        button_online = dialog.findViewById(R.id.button_online);
-//        schedule.setOnClickListener(view -> dialogSchedule());
-//        Button Offline = dialog.findViewById(R.id.button_offline);
-//        Offline.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                toolbar.setSubtitle("Offline");
-//                dialog.cancel();
-//            }
-//        });
-//        button_online.setOnClickListener(view -> {
-//            toolbar.setSubtitle("Online");
-//            dialog.cancel();
-//        });
+        Switch switchUse = dialog.findViewById(R.id.switchCase);
+        switchUse.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    updateStatus(isChecked);
+
+            }
+        });
         ImageView cancel = dialog.findViewById(R.id.cancel_image);
         cancel.setOnClickListener(view -> dialog.cancel());
         dialog.setCanceledOnTouchOutside(true);
@@ -229,7 +225,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             if (schedule.getText().toString().length() < 1 || date_picker.getText().toString().length() < 1) {
                 Toast.makeText(getApplicationContext(), "Please Select the date and Time", Toast.LENGTH_SHORT).show();
             } else {
-                updateStatus();
                 dialog.dismiss();
 
             }
@@ -326,13 +321,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 params.put("acharid", userId);
                 return params;
             }
-
         };
         request.add(stringRequest);
     }
 
-    private void updateStatus() {
-        String status = "Online";
+    private void updateStatus(boolean checked) {
+        String status = checked?"Online":"Offline";
         String userId = Backend.getInstance(this).getUserId();
         String url = "https://theacharyamukti.com/managepanel/apis/update-status.php";
         String dataUrl = String.format(url, userId);

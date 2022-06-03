@@ -24,16 +24,13 @@ import com.example.astroacharyamukti.R;
 import com.example.astroacharyamukti.adapter.ReviewAdapter;
 import com.example.astroacharyamukti.helper.Backend;
 import com.example.astroacharyamukti.model.ReviewModel;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ReviewActivity extends AppCompatActivity {

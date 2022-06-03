@@ -47,7 +47,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         signOut = findViewById(R.id.signIn);
         signOut.setOnClickListener(this);
         check_box_condition = findViewById(R.id.check_box_condition);
-        termAndCondition=findViewById(R.id.termAndCondition);
+        termAndCondition = findViewById(R.id.termAndCondition);
         termAndCondition.setOnClickListener(this);
         String userName = Backend.getInstance(this).getUserName();
         String pass = Backend.getInstance(this).getPassword();
@@ -83,7 +83,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 if ((etEmail.getText().toString().length() < 1) || (password.getText().toString().length() < 1)) {
                     Toast.makeText(this, "Enter your Email Id & Password", Toast.LENGTH_SHORT).show();
                 } else {
-                    postData();
+                    if (check_box_condition.isChecked()) {
+                        postData();
+                    } else {
+                        Toast.makeText(getApplicationContext(),"Please accepts terms and condition", Toast.LENGTH_LONG).show();
+                    }
                 }
                 break;
             case R.id.text_forgot_password:
