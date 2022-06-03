@@ -80,6 +80,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         email = findViewById(R.id.header_email);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        dialog();
     }
 
 
@@ -155,6 +156,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 customerReview.putExtra("", "4");
                 startActivity(customerReview);
                 break;
+            case R.id.nav_call_price:
+                callPrice();
+                break;
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -162,15 +166,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-//    private void performanceDialog() {
-//        Dialog dialog = new Dialog(this);
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        dialog.setCancelable(false);
-//        dialog.setContentView(R.layout.custom_performance_layout);
-//        dialog.setCanceledOnTouchOutside(true);
-//        dialog.show();
-//
-//    }
+    private void callPrice() {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.custom_performance_layout);
+        Button updatePrice = dialog.findViewById(R.id.updatePrice);
+        updatePrice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "New Price Update", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.show();
+
+    }
 
 
     private void dialog() {
@@ -178,20 +190,24 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
         dialog.setContentView(R.layout.dialog_online_layout);
-        button_online = dialog.findViewById(R.id.button_online);
+    //    button_online = dialog.findViewById(R.id.button_online);
         TextView schedule = dialog.findViewById(R.id.text_reschedule);
         textScheduleDate = dialog.findViewById(R.id.text_schedule_date);
         textScheduleTime = dialog.findViewById(R.id.time);
-        button_online = dialog.findViewById(R.id.button_online);
-        schedule.setOnClickListener(view -> dialogSchedule());
-        button_online.setOnClickListener(view -> {
-            String getStatus = Backend.getInstance(getApplicationContext()).getUserStatus();
-            if (getStatus.equals("Online")) {
-                dialog.cancel();
-            } else {
-                Toast.makeText(getApplicationContext(), "Astrologer is offline schedule call for some time", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        button_online = dialog.findViewById(R.id.button_online);
+//        schedule.setOnClickListener(view -> dialogSchedule());
+//        Button Offline = dialog.findViewById(R.id.button_offline);
+//        Offline.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                toolbar.setSubtitle("Offline");
+//                dialog.cancel();
+//            }
+//        });
+//        button_online.setOnClickListener(view -> {
+//            toolbar.setSubtitle("Online");
+//            dialog.cancel();
+//        });
         ImageView cancel = dialog.findViewById(R.id.cancel_image);
         cancel.setOnClickListener(view -> dialog.cancel());
         dialog.setCanceledOnTouchOutside(true);
@@ -213,7 +229,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             if (schedule.getText().toString().length() < 1 || date_picker.getText().toString().length() < 1) {
                 Toast.makeText(getApplicationContext(), "Please Select the date and Time", Toast.LENGTH_SHORT).show();
             } else {
-                //  updateStatus();
+                updateStatus();
                 dialog.dismiss();
 
             }
@@ -316,6 +332,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void updateStatus() {
+        String status = "Online";
         String userId = Backend.getInstance(this).getUserId();
         String url = "https://theacharyamukti.com/managepanel/apis/update-status.php";
         String dataUrl = String.format(url, userId);
@@ -327,8 +344,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             progressDialog.dismiss();
             try {
                 JSONObject jsonObject = new JSONObject(response);
-                String status = jsonObject.getString("status");
-                if (status.equals("true")) {
+                String status1 = jsonObject.getString("status");
+                if (status1.equals("true")) {
                     finish();
                 } else {
                     Toast.makeText(HomeActivity.this, status, Toast.LENGTH_SHORT).show();

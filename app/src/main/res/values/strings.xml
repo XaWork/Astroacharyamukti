@@ -27,6 +27,7 @@
     <string name="menu_about">About The Acharyamukti</string>
     <string name="menu_gallery">Book Appointment</string>
     <string name="menu_slideshow">My account</string>
+    <string name="menu_price">Call Rate</string>
     <string name="menu_earning">My Earning</string>
     <string name="menu_opportunities">Partner Growth Opportunities</string>
     <string name="menu_chart">My Performance chart</string>
@@ -49,6 +50,7 @@
     <string name="text_at">at</string>
     <string name="text_time1">05:25 PM</string>
     <string name="text_go_online">Are you sure you want to go online?</string>
+    <string name="button_offline">Go Offline</string>
     <string name="button_online">Go Online</string>
     <string name="text_reschedule">Reschedule</string>
     <string name="title_activity_book_appointments">BookAppointments</string>
@@ -128,10 +130,10 @@
     <string name="text_acc_name">Name</string>
     <!-- TODO: Remove or change helpAndSupport activity-->
     <string name="text_help_email">Email</string>
-    <string name="text_help_emailId">acharyamuktisupport@gmail.com</string>
+    <string name="text_help_emailId">infotheacharyamukti@gmail.com</string>
     <string name="text_help_phone">Phone</string>
     <string name="text_help_above_id">You can email us at above mentioned id</string>
-    <string name="text_help_mobile">India <font color='#FF5722'>+91-3857305775</font></string>
+    <string name="text_help_mobile">India <font color='#FF5722'>+91-7330004646</font></string>
     <string name="text_help_available">We are available Monday to Saturday</string>
     <string name="text_help_india_standard_time">(India Standard Time) from 8 a.m. to 8 p.m.</string>
     <!-- TODO: Remove or change helpAndSupport activity-->

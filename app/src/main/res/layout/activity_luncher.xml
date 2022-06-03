@@ -15,6 +15,7 @@
         android:src="@drawable/logonew" />
 
     <TextView
+        android:textStyle="bold"
         android:layout_below="@+id/imageApp"
         android:textColor="@color/black"
         android:layout_width="wrap_content"

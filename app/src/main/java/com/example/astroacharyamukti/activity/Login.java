@@ -80,7 +80,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.sendOtp:
-                if ((etEmail.getText().toString().length() < 1) || (password.getText().toString().length() < 1) || check_box_condition.isChecked()) {
+                if ((etEmail.getText().toString().length() < 1) || (password.getText().toString().length() < 1)) {
                     Toast.makeText(this, "Enter your Email Id & Password", Toast.LENGTH_SHORT).show();
                 } else {
                     postData();
