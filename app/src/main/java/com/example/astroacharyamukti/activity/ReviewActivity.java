@@ -42,6 +42,7 @@ public class ReviewActivity extends AppCompatActivity {
     TextView review, overAllReview;
     CircleImageView profile_image;
     ProgressBar progressBar;
+    String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,7 @@ public class ReviewActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         overAllReview = findViewById(R.id.overAllRating);
         profile_image = findViewById(R.id.ratingProfileImage);
+        String userId = Backend.getInstance(this).getUserId();
         getUserProfile();
         getCustomerReview();
     }
@@ -105,7 +107,7 @@ public class ReviewActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("acharid", "40072");
+                params.put("acharid",userId);
                 return params;
 
             }
@@ -114,13 +116,9 @@ public class ReviewActivity extends AppCompatActivity {
     }
 
     private void getUserProfile() {
-        String userId = Backend.getInstance(this).getUserId();
         String url = "https://theacharyamukti.com/managepanel/apis/total-rating.php";
         String dataUrl = String.format(url, userId);
         progressBar.setVisibility(View.VISIBLE);
-//        ProgressDialog progressDialog = new ProgressDialog(this);
-//        progressDialog.setMessage("Loading.......Please wait");
-//        progressDialog.show();
         RequestQueue request = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, dataUrl, response -> {
             Log.d("url", url);
@@ -134,20 +132,19 @@ public class ReviewActivity extends AppCompatActivity {
                 overAllReview.setText(total_rating);
                 String url1 = "https://theacharyamukti.com/image/astro/" + profileImage;
                 Glide.with(getApplicationContext()).load(url1).into(profile_image);
-
             } catch (Exception e) {
                 e.printStackTrace();
-                Toast.makeText(ReviewActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ReviewActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
             }
         }, error -> {
             progressBar.setVisibility(View.VISIBLE);
-            Toast.makeText(ReviewActivity.this, "Error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ReviewActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
 
         }) {
             @Override
             public Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("acharid", "40072");
+                params.put("acharid", userId);
                 return params;
             }
         };

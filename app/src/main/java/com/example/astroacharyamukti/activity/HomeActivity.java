@@ -222,7 +222,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         cancel.setOnClickListener(view -> dialog.cancel());
         date_picker.setOnClickListener(view -> showHourPicker());
         schedule.setOnClickListener(view -> datePicker());
-
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
     }

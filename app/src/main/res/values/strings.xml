@@ -10,7 +10,7 @@
 
     <string name="edit_mobile">Mobile no.</string>
     <string name="button_send">Send</string>
-    <string name="text_sign">Create new Account for Login? <font color='#FF5722'>SignIn</font></string>
+    <string name="text_sign">Create new Account for Login? <font color='#FF5722'>Sign up</font></string>
     <string name="text_sign_in">Sign in</string>
     <string name="text_link">Please provide your registered email id send the password reset link</string>
     <string name="text_verification">Verification OTP</string>

@@ -58,12 +58,14 @@ public class MyEarningActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        String url = "https://theacharyamukti.com/managepanel/apis/earned.php?acharid=40072";
+        String userId=Backend.getInstance(this).getUserId();
+        String url = "https://theacharyamukti.com/managepanel/apis/earned.php?acharid=%s";
+        String data=String.format(url,userId);
         ProgressDialog pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading...PLease wait");
         pDialog.show();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, data, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 pDialog.dismiss();
