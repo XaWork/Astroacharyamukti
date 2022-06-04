@@ -56,7 +56,7 @@ public class ReviewActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         overAllReview = findViewById(R.id.overAllRating);
         profile_image = findViewById(R.id.ratingProfileImage);
-        String userId = Backend.getInstance(this).getUserId();
+        userId = Backend.getInstance(this).getUserId();
         getUserProfile();
         getCustomerReview();
     }
@@ -70,10 +70,11 @@ public class ReviewActivity extends AppCompatActivity {
     }
 
     private void getCustomerReview() {
-        String url = "https://theacharyamukti.com/managepanel/apis/review.php";
+        String url = "https://theacharyamukti.com/managepanel/apis/review.php?acharid=%s";
+        String dataUrl = String.format(url, userId);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         progressBar.setVisibility(View.VISIBLE);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, dataUrl, response -> {
             progressBar.setVisibility(View.INVISIBLE);
             try {
                 JSONObject obj = new JSONObject(response);
@@ -98,7 +99,7 @@ public class ReviewActivity extends AppCompatActivity {
             reviewAdapter.notifyDataSetChanged();
             recyclerView.setAdapter(reviewAdapter);
         }, error -> {
-            progressBar.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
             Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
         }) {
             @Override
@@ -113,11 +114,11 @@ public class ReviewActivity extends AppCompatActivity {
     }
 
     private void getUserProfile() {
-        String url = "https://theacharyamukti.com/managepanel/apis/total-rating.php";
+        String url = "https://theacharyamukti.com/managepanel/apis/total-rating.php?acharid=%s";
         String dataUrl = String.format(url, userId);
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue request = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, dataUrl, response -> {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, dataUrl, response -> {
             Log.d("url", url);
             progressBar.setVisibility(View.INVISIBLE);
             try {

@@ -32,6 +32,7 @@
     <string name="menu_opportunities">Partner Growth Opportunities</string>
     <string name="menu_chart">My Performance chart</string>
     <string name="menu_help_support">Help and Support</string>
+    <string name="menu_faq">FAQ</string>
     <string name="menu_term_condition">Term and Condition</string>
     <string name="menu_privacy_Policy">Privacy Policy</string>
     <string name="menu_term_conditions">Terms and Conditions</string>
@@ -144,4 +145,51 @@
     <string name="text_charge">Charge :</string>
     <string name="text_charge_ru">25/-</string>
     <string name="text_review">Review\n(4.7)</string>
+    <!-- TODO: Remove or change FAQ activity-->
+    <string-array name="text_info">
+        <item>Follow the steps given below and Find Answers to your Questions</item>
+        <item>Account-Related</item>
+        <item>Payment related</item>
+        <item>Book an appointment</item>
+        <item>Chat Related</item>
+        <item>Call related</item>
+        <item>Quality</item>
+    </string-array>
+
+    <string-array name="text_desc">
+        <item>Step 1- Go to the Home page and click on Menu on the Pro App and Click on ‘My Earnings’
+                Step 2- Once you click on My Earnings, the page will open and you will be able to find your earnings according to the consultations for a specific date and time you will have to click on the filter applied for the search process.
+        </item>
+        <item>When you click on the ‘Account’ in the Menu, the Account page will open for your guidance.
+            Account details are filled in on the website once an Astrologer has done the process of registering I the website/App.
+            Only a registered Astrologer is allowed to view the details of the account created by the website / Application.
+            Astrologers are not allowed to use the same identity information for registering on the other application/ Website.
+            Strict action will be taken if found using the identity information for other sign inns as per the terms and conditions of the Website/an Application.</item>
+        <item>Once you open the page called ‘Payment’ you will automatically get access to see the details related to the payments.
+            An Astrologer who is registered to the certain website/Application can access the payment related details provided by the service provider
+            All payment-related details and your earnings will be shown and explained in the payment box.
+            Taking an extra payment, Asking for unnecessary money and other restrictions are not allowed by an Astrologer according to the terms and conditions of the website/Application.
+
+        </item>
+        <item>Click on the option called ‘Book an Appointment’ the page will open for the details related to Booking an appointment.
+            An Astrologer who is registered is allowed to access the page ‘Book an Appointment’ booked by the client.
+            Astrologers should check the appointment schedules and plan for a session accordingly on regular basis.
+            In case the appointment is missed and it led to bad reviews for the website/Application, strict action will be taken according to the terms and conditions of the website/Application.
+        </item>
+        <item>Once you click on the option that says ‘Chat with Astrologers’ it will take you to the page directly
+            Chat with Astrologers platform is created to have a chat with the needy client through the website.
+            An astrologer should have chat with the client for the duration has been given. Astrologers should not chat with the person on chat with the unmatched details of a client.
+            Strict action will be taken in case found having an unnecessary conversation on chat, false language on chat, forming a personal relationship through chat, spreading unwanted information, etc.
+            Access is provided to the registered Astrologers with correct information. Actions will be taken if found ruining the above restrictions.
+        </item>
+        <item>Click on the ‘Call Astrologers’ page will take you to the Call related information provided by the website or an Application.
+            A registered Astrologer is allowed to access the calls from the clients.
+            An Astrologer can finish the session within provided time duration by the service provider/website/Application
+            An Astrologer is not allowed to have long conversations and out-of-the-box conversations with the client. Relevant information should be provided to the client by Astrologers.
+            I found strict action will be taken according to the terms and conditions of the website/Application provided by the service provider.
+        </item>
+        <item>Our Application/Website is the best quality in service providing. The quality of the website should be maintained by the Astrologers who have access to these Applications created by the service provider of the website.
+            Any bad effects related to the quality of services will be considered inhalation of the terms and conditions of the website/Application.
+        </item>
+    </string-array>
 </resources>

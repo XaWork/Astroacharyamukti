@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Switch;
@@ -54,10 +55,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private AppBarConfiguration mAppBarConfiguration;
     TextView schedule, date_picker, textScheduleDate, textScheduleTime,
-            name, email;
+            name, email, fixedPrice, currentPrice;
     Toolbar toolbar;
     Button button_online;
-    String status;
+    String status ,newPrices;
+    EditText newPrice;
     int date;
 
     @Override
@@ -84,6 +86,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         dialog();
+        getStatus();
     }
 
 
@@ -136,6 +139,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Intent profileUpDate = new Intent(this, HelpAndSupport.class);
                 profileUpDate.putExtra("", "1");
                 startActivity(profileUpDate);
+            case R.id.nav_FAQ:
+                Intent faq = new Intent(this, FAQ.class);
+                faq.putExtra("", "1");
+                startActivity(faq);
                 break;
             case R.id.nav_term_condition:
                 String termConditionUrl = "https://theacharyamukti.com/terms-and-conditions.php";
@@ -175,16 +182,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.custom_performance_layout);
         Button updatePrice = dialog.findViewById(R.id.updatePrice);
+        fixedPrice = dialog.findViewById(R.id.fixedPrice);
+        currentPrice = dialog.findViewById(R.id.currentPrice);
+        newPrice = dialog.findViewById(R.id.postNewPrice);
+        newPrices = newPrice.getText().toString();
+        callPriceUpDate();
+        Backend.getInstance(this).saveNewPrice(newPrices);
         updatePrice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "New Price Update", Toast.LENGTH_SHORT).show();
+                callPriceUpDate();
                 dialog.dismiss();
             }
         });
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
-
     }
 
 
@@ -200,8 +213,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         switchUse.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    updateStatus(isChecked);
+                updateStatus(isChecked);
 
+            }
+        });
+        schedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogSchedule();
             }
         });
         ImageView cancel = dialog.findViewById(R.id.cancel_image);
@@ -277,6 +296,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.toolbar:
+                dialog();
                 getStatus();
                 break;
             case R.id.imageViewHeader:
@@ -326,21 +346,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void updateStatus(boolean checked) {
-        String status = checked?"Online":"Offline";
+        String status = checked ? "Online" : "Offline";
+        toolbar.setSubtitle(status);
         String userId = Backend.getInstance(this).getUserId();
         String url = "https://theacharyamukti.com/managepanel/apis/update-status.php";
-        String dataUrl = String.format(url, userId);
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading.......Please wait");
         progressDialog.show();
         RequestQueue request = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, dataUrl, response -> {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
             progressDialog.dismiss();
             try {
                 JSONObject jsonObject = new JSONObject(response);
                 String status1 = jsonObject.getString("status");
+                String msg = jsonObject.getString("msg");
                 if (status1.equals("true")) {
-                    finish();
+                    Toast.makeText(HomeActivity.this, msg, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(HomeActivity.this, status, Toast.LENGTH_SHORT).show();
 
@@ -358,9 +379,51 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
+                params.put("acharid", userId);
                 params.put("new_status", status);
-                params.put("schedule_date", schedule.getText().toString());
-                params.put("schedule_time", date_picker.getText().toString());
+                return params;
+            }
+        };
+        request.add(stringRequest);
+    }
+
+    private void callPriceUpDate() {
+        String userId = Backend.getInstance(this).getUserId();
+        String url = "https://theacharyamukti.com/managepanel/apis/rate-up.php";
+        String dataUrl = String.format(url, userId);
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading.......Please wait");
+        progressDialog.show();
+        RequestQueue request = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, dataUrl, response -> {
+            progressDialog.dismiss();
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                String status = jsonObject.getString("status");
+                String fixedPri = jsonObject.getString("fix_price");
+                String currentPri = jsonObject.getString("current_price");
+                if (status.equals("true")) {
+                    fixedPrice.setText(fixedPri);
+                    currentPrice.setText(currentPri);
+                } else {
+                    Toast.makeText(HomeActivity.this, status, Toast.LENGTH_SHORT).show();
+
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(HomeActivity.this, "Error", Toast.LENGTH_SHORT).show();
+            }
+        }, error -> {
+            progressDialog.dismiss();
+            Toast.makeText(HomeActivity.this, "Error", Toast.LENGTH_SHORT).show();
+
+        }) {
+            @Override
+            public Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("acharid", userId);
+                params.put("current", newPrices=newPrice.getText().toString());
                 return params;
             }
         };

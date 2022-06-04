@@ -20,7 +20,7 @@
         </item>
         <item
             android:id="@+id/nav_call_price"
-            android:icon="@drawable/ic_baseline_person_24"
+            android:icon="@drawable/ic_baseline_call_24"
             android:title="@string/menu_price">
 
         </item>
@@ -33,6 +33,10 @@
             android:id="@+id/nav_help_support"
             android:icon="@drawable/ic_baseline_support_agent_24"
             android:title="@string/menu_help_support" />
+        <item
+            android:id="@+id/nav_FAQ"
+            android:icon="@drawable/ic_baseline_contact_support_24"
+            android:title="@string/menu_faq" />
         <item
             android:id="@+id/nav_term_condition"
             android:icon="@drawable/ic_baseline_support_agent_24"

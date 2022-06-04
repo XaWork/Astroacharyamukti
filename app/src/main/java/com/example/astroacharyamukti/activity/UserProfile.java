@@ -134,9 +134,10 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
     }
 
     private void updateMobile() {
+        newMobileNumber = newNumber.getText().toString().trim();
         userId = Backend.getInstance(this).getUserId();
-        String url = "https://theacharyamukti.com/managepanel/apis/update-mobile.php";
-        String dataUrl = String.format(url, userId);
+        String url = "https://theacharyamukti.com/managepanel/apis/update-mobile.php?acharid=%s&mobile=%s";
+        String dataUrl = String.format(url, userId, newMobileNumber);
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading.......Please wait");
         progressDialog.show();
@@ -160,17 +161,17 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
             progressDialog.dismiss();
             Toast.makeText(UserProfile.this, "Error", Toast.LENGTH_SHORT).show();
 
-        }) {
+        }){
             @Override
-            public Map<String, String> getParams() {
+            public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<>();
                 params.put("acharid", userId);
-                params.put("mobile", newMobileNumber = newNumber.getText().toString());
+                params.put("mobile", newMobileNumber);
                 return params;
             }
-
         };
         request.add(stringRequest);
+
     }
 
     private void getUser() {
@@ -222,26 +223,24 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
 
     private void changePassword() {
         userId = Backend.getInstance(this).getUserId();
+        getOlPassword = oldPassword.getText().toString();
+        getNewPassword = newPassword.getText().toString();
         String url = "https://theacharyamukti.com/managepanel/apis/change-password.php";
-        String dataUrl = String.format(url, userId);
+        String dataUrl = String.format(url, userId, getOlPassword, getNewPassword);
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading.......Please wait");
         progressDialog.show();
         RequestQueue request = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, dataUrl, response -> {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
             progressDialog.dismiss();
             try {
                 JSONObject jsonObject = new JSONObject(response);
                 String status = jsonObject.getString("status");
-                if (status.equals("true")) {
-                    dialog.dismiss();
-                } else {
-                    Toast.makeText(UserProfile.this, status, Toast.LENGTH_SHORT).show();
-                }
-
+                Toast.makeText(UserProfile.this, "True", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
             } catch (Exception e) {
                 e.printStackTrace();
-                Toast.makeText(UserProfile.this, "Error", Toast.LENGTH_SHORT).show();
+                //    Toast.makeText(UserProfile.this, "Error", Toast.LENGTH_SHORT).show();
             }
         }, error -> {
             progressDialog.dismiss();
@@ -252,12 +251,14 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
             public Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("acharid", userId);
-                params.put("oldpassword", getOlPassword = oldPassword.getText().toString());
-                params.put("newpassword", getNewPassword = newPassword.getText().toString());
+                params.put("oldpassword", getOlPassword);
+                params.put("newpassword", getNewPassword);
                 return params;
             }
 
+
         };
         request.add(stringRequest);
+
     }
 }

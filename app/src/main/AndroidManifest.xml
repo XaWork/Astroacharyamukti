@@ -21,6 +21,10 @@
             android:exported="false"
             android:label="User Profile" />
         <activity
+            android:name=".activity.FAQ"
+            android:exported="false"
+            android:label="Frequently Asked Questions" />
+        <activity
             android:name=".activity.ReviewActivity"
             android:exported="false"
             android:label="Customer Review" />

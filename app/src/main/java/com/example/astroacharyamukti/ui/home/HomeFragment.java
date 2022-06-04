@@ -64,6 +64,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         charge = root.findViewById(R.id.text_charge);
         imageView = root.findViewById(R.id.image_circular);
         imageView.setOnClickListener(this);
+        String newPrice = Backend.getInstance(getActivity()).newPrice();
+        charge.setText(newPrice);
         getUser();
         return root;
     }

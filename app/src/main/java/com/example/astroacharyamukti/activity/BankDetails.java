@@ -1,5 +1,7 @@
 package com.example.astroacharyamukti.activity;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -10,6 +12,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -27,6 +30,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.astroacharyamukti.R;
+import com.example.astroacharyamukti.helper.Backend;
 import com.example.astroacharyamukti.ui.fragment.AboutFragment;
 import com.example.astroacharyamukti.ui.fragment.UpdateBankDetails;
 
@@ -60,6 +64,13 @@ public class BankDetails extends AppCompatActivity implements View.OnClickListen
 
         getBankDetails();
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) ;
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -116,6 +127,7 @@ public class BankDetails extends AppCompatActivity implements View.OnClickListen
     }
 
     private void getBankDetails() {
+        String userId = Backend.getInstance(this).getUserId();
         String url = "https://theacharyamukti.com/appapi/items/read.php";
         ProgressDialog pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading...PLease wait");
@@ -161,7 +173,15 @@ public class BankDetails extends AppCompatActivity implements View.OnClickListen
             public void onErrorResponse(VolleyError error) {
 
             }
-        });
+        }) {
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("acharid", userId);
+                return params;
+            }
+        };
         requestQueue.add(jsonObjectRequest);
     }
 

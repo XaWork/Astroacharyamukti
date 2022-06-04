@@ -94,7 +94,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 showDialog();
                 break;
             case R.id.signIn:
-                String theUrl = "https://theacharyamukti.com/registration.php"; // missing 'http://' will cause crashed
+                String theUrl = "https://theacharyamukti.com/astrologer.php?reg"; // missing 'http://' will cause crashed
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(theUrl));
                 startActivity(i);

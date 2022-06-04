@@ -82,4 +82,15 @@ public class Backend {
         editor.putString("status", "");
         editor.apply();
     }
+
+    public String newPrice() {
+        return preferences.getString("current", "");
+
+    }
+
+    public void saveNewPrice(String newPrices) {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("current", newPrices);
+        editor.apply();
+    }
 }
