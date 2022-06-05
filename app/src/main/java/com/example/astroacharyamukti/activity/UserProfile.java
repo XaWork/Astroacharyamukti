@@ -148,6 +148,8 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
                 JSONObject jsonObject = new JSONObject(response);
                 String status = jsonObject.getString("status");
                 if (status.equals("true")) {
+                    Toast.makeText(UserProfile.this, status, Toast.LENGTH_SHORT).show();
+
                     dialog.dismiss();
                 } else {
                     Toast.makeText(UserProfile.this, status, Toast.LENGTH_SHORT).show();
@@ -161,15 +163,8 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
             progressDialog.dismiss();
             Toast.makeText(UserProfile.this, "Error", Toast.LENGTH_SHORT).show();
 
-        }){
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> params = new HashMap<>();
-                params.put("acharid", userId);
-                params.put("mobile", newMobileNumber);
-                return params;
-            }
-        };
+        });
+
         request.add(stringRequest);
 
     }
