@@ -26,13 +26,12 @@ public class Launcher extends AppCompatActivity {
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 String storedUsername = prefs.getString("username", userName);
                 String storedPassword = prefs.getString("password", password);
-                if (storedUsername.equalsIgnoreCase(userName) || storedPassword.equalsIgnoreCase(password)) {
-                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                if (storedUsername.equalsIgnoreCase(userName)&&storedPassword.equalsIgnoreCase(password)) {
+                    Intent intent = new Intent(getApplicationContext(), Login.class);
                     startActivity(intent);
                     finish();
-
                 } else {
-                    Intent intent = new Intent(getApplicationContext(), Login.class);
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                     startActivity(intent);
                 }
             }
