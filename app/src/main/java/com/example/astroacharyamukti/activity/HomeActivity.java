@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -57,9 +58,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     TextView schedule, date_picker, textScheduleDate, textScheduleTime,
             name, email, fixedPrice, currentPrice;
     Toolbar toolbar;
-    Button button_online;
-    String status ,newPrices;
+    String status, newPrices;
     EditText newPrice;
+    ProgressBar progressBar;
+    Switch switchUse;
     int date;
 
     @Override
@@ -85,6 +87,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         email = findViewById(R.id.header_email);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
         dialog();
         getStatus();
     }
@@ -209,12 +213,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         TextView schedule = dialog.findViewById(R.id.text_reschedule);
         textScheduleDate = dialog.findViewById(R.id.text_schedule_date);
         textScheduleTime = dialog.findViewById(R.id.time);
-        Switch switchUse = dialog.findViewById(R.id.switchCase);
+        switchUse = dialog.findViewById(R.id.switchCase);
+        String status = Backend.getInstance(this).getUserStatus();
         switchUse.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 updateStatus(isChecked);
-
             }
         });
         schedule.setOnClickListener(new View.OnClickListener() {
@@ -310,19 +314,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         String userId = Backend.getInstance(this).getUserId();
         String url = "https://theacharyamukti.com/managepanel/apis/get-status.php";
         String dataUrl = String.format(url, userId);
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading.......Please wait");
-        progressDialog.show();
         RequestQueue request = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, dataUrl, response -> {
-            progressDialog.dismiss();
+            progressBar.setVisibility(View.INVISIBLE);
             try {
                 JSONObject jsonObject = new JSONObject(response);
                 status = jsonObject.getString("status");
                 if (status.equals("Online")) {
                     toolbar.setSubtitle(status);
+                    switchUse.setChecked(true);
                 } else {
                     toolbar.setSubtitle(status);
+                    switchUse.setChecked(false);
                     dialog();
                 }
                 Backend.getInstance(getApplicationContext()).saveUserStatus(status);
@@ -331,8 +334,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(HomeActivity.this, "Error", Toast.LENGTH_SHORT).show();
             }
         }, error -> {
-            progressDialog.dismiss();
-            Toast.makeText(HomeActivity.this, "Error", Toast.LENGTH_SHORT).show();
+            progressBar.setVisibility(View.INVISIBLE);
+            Toast.makeText(HomeActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
 
         }) {
             @Override
@@ -350,18 +353,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setSubtitle(status);
         String userId = Backend.getInstance(this).getUserId();
         String url = "https://theacharyamukti.com/managepanel/apis/update-status.php";
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading.......Please wait");
-        progressDialog.show();
         RequestQueue request = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
-            progressDialog.dismiss();
+            progressBar.setVisibility(View.INVISIBLE);
             try {
                 JSONObject jsonObject = new JSONObject(response);
                 String status1 = jsonObject.getString("status");
                 String msg = jsonObject.getString("msg");
                 if (status1.equals("true")) {
-                    Toast.makeText(HomeActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(HomeActivity.this, msg, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(HomeActivity.this, status, Toast.LENGTH_SHORT).show();
 
@@ -372,7 +372,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(HomeActivity.this, "Error", Toast.LENGTH_SHORT).show();
             }
         }, error -> {
-            progressDialog.dismiss();
+            progressBar.setVisibility(View.INVISIBLE);
             Toast.makeText(HomeActivity.this, "Error", Toast.LENGTH_SHORT).show();
 
         }) {
@@ -391,12 +391,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         String userId = Backend.getInstance(this).getUserId();
         String url = "https://theacharyamukti.com/managepanel/apis/rate-up.php";
         String dataUrl = String.format(url, userId);
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading.......Please wait");
-        progressDialog.show();
         RequestQueue request = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, dataUrl, response -> {
-            progressDialog.dismiss();
+            progressBar.setVisibility(View.INVISIBLE);
             try {
                 JSONObject jsonObject = new JSONObject(response);
                 String status = jsonObject.getString("status");
@@ -405,25 +402,25 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 if (status.equals("true")) {
                     fixedPrice.setText(fixedPri);
                     currentPrice.setText(currentPri);
+                    progressBar.setVisibility(View.INVISIBLE);
                 } else {
-                    Toast.makeText(HomeActivity.this, status, Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.VISIBLE);
 
                 }
 
             } catch (Exception e) {
                 e.printStackTrace();
-                Toast.makeText(HomeActivity.this, "Error", Toast.LENGTH_SHORT).show();
             }
         }, error -> {
-            progressDialog.dismiss();
-            Toast.makeText(HomeActivity.this, "Error", Toast.LENGTH_SHORT).show();
+            progressBar.setVisibility(View.INVISIBLE);
+            Toast.makeText(HomeActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
 
         }) {
             @Override
             public Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("acharid", userId);
-                params.put("current", newPrices=newPrice.getText().toString());
+                params.put("current", newPrices = newPrice.getText().toString());
                 return params;
             }
         };

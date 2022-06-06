@@ -7,12 +7,14 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -38,6 +40,7 @@ import java.util.Map;
 public class UpdateBankDetails extends Fragment implements View.OnClickListener {
     EditText beFe_name, bank_name, acc_num, acc_type, ifsc_code, branch_name, bank_address, pan_card;
     String beneficiaryName, bankName, accountNumber, accountType, ifscCode, branchName, bankAddress, panCard;
+    ProgressBar progressBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,7 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
         branch_name = view.findViewById(R.id.etBranch_name);
         bank_address = view.findViewById(R.id.etBank_address);
         pan_card = view.findViewById(R.id.etPan_card_number);
+        progressBar = view.findViewById(R.id.progressBar);
         if (getArguments() != null) {
             beneficiaryName = getArguments().getString("bfname");
             bankName = getArguments().getString("bank_name");
@@ -77,6 +81,7 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
         branch_name.setText(branchName);
         bank_address.setText(bankAddress);
         pan_card.setText(panCard);
+        progressBar.setVisibility(View.INVISIBLE);
         return view;
     }
 
@@ -90,26 +95,23 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
     private void postData() {
         String userId = Backend.getInstance(getActivity()).getUserId();
         String url = "https://theacharyamukti.com/astrologer/acc-update.php";
-        ProgressDialog pDialog = new ProgressDialog(getActivity());
-        pDialog.setMessage("Loading...PLease wait");
-        pDialog.show();
+        progressBar.setVisibility(View.VISIBLE);
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                pDialog.dismiss();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String status = jsonObject.getString("status");
                     if (status.equals("true")) {
                         Intent intent = new Intent(getActivity(), HomeActivity.class);
                         startActivity(intent);
+                        progressBar.setVisibility(View.INVISIBLE);
                     } else {
-                        Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.VISIBLE);
                     }
 
                 } catch (JSONException e) {
-                    Toast.makeText(getActivity(), "error", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
 
@@ -118,7 +120,7 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
-                pDialog.dismiss();
+                progressBar.setVisibility(View.VISIBLE);
 
             }
         }) {

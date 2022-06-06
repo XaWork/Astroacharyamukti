@@ -15,6 +15,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
     EditText oldNum, newNumber;
     Button update;
     Dialog dialog;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,8 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         profile_email = findViewById(R.id.profile_email);
         profile_number = findViewById(R.id.profile_number);
         profile_image = findViewById(R.id.profileImage);
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getUser();
     }
@@ -170,16 +174,14 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
     }
 
     private void getUser() {
+        progressBar.setVisibility(View.VISIBLE);
         userId = Backend.getInstance(this).getUserId();
         String url = "https://theacharyamukti.com/managepanel/apis/profile.php?acharid=%s";
         String dataUrl = String.format(url, userId);
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading.......Please wait");
-        progressDialog.show();
         RequestQueue request = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, dataUrl, response -> {
             Log.d("url", url);
-            progressDialog.dismiss();
+            progressBar.setVisibility(View.INVISIBLE);
             try {
                 JSONObject jsonObject = new JSONObject(response);
                 jsonObject.getString("status");
@@ -195,17 +197,18 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
                     profile_number.setText(userNumber);
                     String url1 = "https://theacharyamukti.com/image/astro/" + profileImage;
                     Glide.with(getApplicationContext()).load(url1).into(profile_image);
+                    progressBar.setVisibility(View.INVISIBLE);
+
                 } else {
-                    Toast.makeText(UserProfile.this, jsonObject.getString("status"), Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.VISIBLE);
                 }
                 Backend.getInstance(getApplicationContext()).saveMobile(userNumber);
             } catch (Exception e) {
                 e.printStackTrace();
-                Toast.makeText(UserProfile.this, "Error", Toast.LENGTH_SHORT).show();
             }
         }, error -> {
-            progressDialog.dismiss();
-            Toast.makeText(UserProfile.this, "Error", Toast.LENGTH_SHORT).show();
+            progressBar.setVisibility(View.VISIBLE);
+            Toast.makeText(UserProfile.this, error.toString(), Toast.LENGTH_SHORT).show();
 
         }) {
             @Override

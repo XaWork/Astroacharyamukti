@@ -120,7 +120,6 @@ public class ReviewActivity extends AppCompatActivity {
         RequestQueue request = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, dataUrl, response -> {
             Log.d("url", url);
-            progressBar.setVisibility(View.INVISIBLE);
             try {
                 JSONObject jsonObject = new JSONObject(response);
                 String profileImage = jsonObject.getString("image");
@@ -130,6 +129,7 @@ public class ReviewActivity extends AppCompatActivity {
                 overAllReview.setText(total_rating);
                 String url1 = "https://theacharyamukti.com/image/astro/" + profileImage;
                 Glide.with(getApplicationContext()).load(url1).into(profile_image);
+                progressBar.setVisibility(View.INVISIBLE);
             } catch (Exception e) {
                 e.printStackTrace();
                 Toast.makeText(ReviewActivity.this, e.toString(), Toast.LENGTH_SHORT).show();

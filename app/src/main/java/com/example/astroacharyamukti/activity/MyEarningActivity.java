@@ -1,9 +1,10 @@
 package com.example.astroacharyamukti.activity;
 
-import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
+
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ import java.util.List;
 public class MyEarningActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     List<EarnDetails> earningData = new ArrayList<>();
+    ProgressBar progressBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,8 @@ public class MyEarningActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        progressBar = findViewById(R.id.progressBarNew);
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -58,17 +62,14 @@ public class MyEarningActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        String userId=Backend.getInstance(this).getUserId();
+        String userId = Backend.getInstance(this).getUserId();
         String url = "https://theacharyamukti.com/managepanel/apis/earned.php?acharid=%s";
-        String data=String.format(url,userId);
-        ProgressDialog pDialog = new ProgressDialog(this);
-        pDialog.setMessage("Loading...PLease wait");
-        pDialog.show();
+        String data = String.format(url, userId);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.POST, data, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                pDialog.dismiss();
+                progressBar.setVisibility(View.INVISIBLE);
                 try {
                     JSONObject obj = new JSONObject(response);
                     JSONArray arr = obj.getJSONArray("body");
@@ -96,7 +97,7 @@ public class MyEarningActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                pDialog.dismiss();
+                progressBar.setVisibility(View.VISIBLE);
                 Toast.makeText(MyEarningActivity.this, "Error", Toast.LENGTH_SHORT).show();
             }
         });

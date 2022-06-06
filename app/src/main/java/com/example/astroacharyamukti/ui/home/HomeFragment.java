@@ -1,30 +1,15 @@
 package com.example.astroacharyamukti.ui.home;
-
-import android.annotation.SuppressLint;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
@@ -36,9 +21,7 @@ import com.example.astroacharyamukti.databinding.FragmentHomeBinding;
 import com.example.astroacharyamukti.helper.Backend;
 
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,6 +33,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     TextView name, position, charge;
     CircleImageView imageView;
     String userName, profileImage, userPosition, callCharge, emailId, userNumber;
+    ProgressBar progressBar;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -66,6 +50,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         imageView.setOnClickListener(this);
         String newPrice = Backend.getInstance(getActivity()).newPrice();
         charge.setText(newPrice);
+        progressBar = root.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
+
         getUser();
         return root;
     }
@@ -77,15 +64,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void getUser() {
+        progressBar.setVisibility(View.INVISIBLE);
         String userId = Backend.getInstance(getActivity()).getUserId();
         String url = "https://theacharyamukti.com/managepanel/apis/profile.php?acharid=%s";
         String dataUrl = String.format(url, userId);
-        ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Loading.......Please wait");
-        progressDialog.show();
         RequestQueue request = Volley.newRequestQueue(getActivity());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, dataUrl, response -> {
-            progressDialog.dismiss();
+            progressBar.setVisibility(View.INVISIBLE);
             try {
                 JSONObject jsonObject = new JSONObject(response);
                 jsonObject.getString("status");
@@ -103,6 +88,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     charge.setText(callCharge);
                     String url1 = "https://theacharyamukti.com/image/astro/" + profileImage;
                     Glide.with(getActivity()).load(url1).into(imageView);
+                    progressBar.setVisibility(View.INVISIBLE);
                 } else {
                     Toast.makeText(getActivity(), jsonObject.getString("status"), Toast.LENGTH_SHORT).show();
                 }
@@ -112,7 +98,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
             }
         }, error -> {
-            progressDialog.dismiss();
+            progressBar.setVisibility(View.INVISIBLE);
             Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
 
         }) {

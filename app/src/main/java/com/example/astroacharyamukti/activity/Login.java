@@ -13,6 +13,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     TextView signOut;
     CheckBox check_box_condition;
     TextView termAndCondition;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         String pass = Backend.getInstance(this).getPassword();
         etEmail.setText(userName);
         password.setText(pass);
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
     public void showDialog() {
@@ -86,7 +90,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     if (check_box_condition.isChecked()) {
                         postData();
                     } else {
-                        Toast.makeText(getApplicationContext(),"Please accepts terms and condition", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Please accepts terms and condition", Toast.LENGTH_LONG).show();
                     }
                 }
                 break;
@@ -122,12 +126,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         String pass = password.getText().toString();
         Backend.getInstance(this).savePassword(pass);
         Backend.getInstance(this).saveUserName(email);
-        ProgressDialog pDialog = new ProgressDialog(this);
-        pDialog.setMessage("Loading...PLease wait");
-        pDialog.show();
+        progressBar.setVisibility(View.VISIBLE);
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
-            pDialog.dismiss();
             try {
                 JSONObject jsonObject = new JSONObject(response);
                 String userId = jsonObject.getString("reg_id");
@@ -135,6 +136,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 if (jsonObject.getString("status").equals("true")) {
                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                     startActivity(intent);
+                    progressBar.setVisibility(View.INVISIBLE);
                 } else {
                     Toast.makeText(Login.this, msg, Toast.LENGTH_SHORT).show();
                 }
@@ -145,7 +147,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             }
         }, error -> {
             Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
-            pDialog.dismiss();
+            progressBar.setVisibility(View.VISIBLE);
 
         }) {
             @Override

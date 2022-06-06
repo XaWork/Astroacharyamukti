@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ import java.util.Map;
 public class BankDetails extends AppCompatActivity implements View.OnClickListener {
     String id, bfName, bank_name, account_no, account_Type, ifsc, branch_name, bank_address, pan;
     TextView bfname, bank, account, type, ifsc1, branch, address, pan1;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,8 @@ public class BankDetails extends AppCompatActivity implements View.OnClickListen
         address = findViewById(R.id.txt_bank_address);
         pan1 = findViewById(R.id.txt_pan_card_number);
         TextView gst = findViewById(R.id.txt_gst_number);
-
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
         getBankDetails();
 
     }
@@ -127,16 +130,13 @@ public class BankDetails extends AppCompatActivity implements View.OnClickListen
     }
 
     private void getBankDetails() {
+        progressBar.setVisibility(View.VISIBLE);
         String userId = Backend.getInstance(this).getUserId();
         String url = "https://theacharyamukti.com/appapi/items/read.php";
-        ProgressDialog pDialog = new ProgressDialog(this);
-        pDialog.setMessage("Loading...PLease wait");
-        pDialog.show();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                pDialog.dismiss();
                 try {
                     JSONArray itemsArray = response.getJSONArray("Bank_Details");
                     for (int i = 0; i < itemsArray.length(); i++) {
@@ -159,6 +159,7 @@ public class BankDetails extends AppCompatActivity implements View.OnClickListen
                         branch.setText(branch_name);
                         address.setText(bank_address);
                         pan1.setText(pan);
+                        progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
                     }
 
@@ -171,7 +172,7 @@ public class BankDetails extends AppCompatActivity implements View.OnClickListen
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                progressBar.setVisibility(View.VISIBLE);
             }
         }) {
             @Nullable

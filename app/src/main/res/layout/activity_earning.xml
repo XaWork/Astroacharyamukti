@@ -6,13 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".activity.MyEarningActivity">
 
+    <ProgressBar
+        android:id="@+id/progressBarNew"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
     <RelativeLayout
         android:id="@+id/layoutTotal"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:paddingStart="10dp"
         android:background="#F3F1F1"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:paddingStart="10dp">
 
         <TextView
             android:id="@+id/text_earning"
@@ -55,16 +61,16 @@
         </LinearLayout>
     </RelativeLayout>
 
-<!--    <TextView-->
-<!--        android:id="@+id/text_recent"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@id/layoutTotal"-->
-<!--        android:layout_marginStart="10dp"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:text="Call History"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="14sp" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/text_recent"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_below="@id/layoutTotal"-->
+    <!--        android:layout_marginStart="10dp"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:text="Call History"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="14sp" />-->
 
     <TextView
         android:id="@+id/text_date"
@@ -81,7 +87,7 @@
         android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="14sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_earning"
