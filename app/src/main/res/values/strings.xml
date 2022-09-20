@@ -115,19 +115,19 @@
     <string name="text_bank_name">Bank Name :</string>
     <string name="text_any_bank">Any Bank</string>
     <string name="text_acc_number">Account number :</string>
-    <string name="text_acc_number_digit">37854354t5483</string>
+    <string name="text_acc_number_digit">00000000</string>
     <string name="text_type">Account Type :</string>
-    <string name="text_type_saving">Saving</string>
+    <string name="text_type_saving"></string>
     <string name="text_ifsc">IFSC Code :</string>
-    <string name="text_ifsc_number">PNB10004567</string>
+    <string name="text_ifsc_number">000000</string>
     <string name="text_branch">Branch Name :</string>
-    <string name="text_branch_name">Vasant kunj</string>
+    <string name="text_branch_name"></string>
     <string name="text_bank_address">Bank Address :</string>
-    <string name="text_bank_address_name">Vasant kunj,New Delhi....</string>
+    <string name="text_bank_address_name"></string>
     <string name="text_pan_card">Pan Card Number :</string>
-    <string name="text_pan_card_number">PNB10004567</string>
+    <string name="text_pan_card_number"></string>
     <string name="text_GST">GST Number :</string>
-    <string name="text_GST_number">ujefrwsrf</string>
+    <string name="text_GST_number"></string>
     <string name="text_acc_name">Name</string>
     <!-- TODO: Remove or change helpAndSupport activity-->
     <string name="text_help_email">Email</string>

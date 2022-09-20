@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,13 +25,16 @@ import com.example.astroacharyamukti.R;
 import com.example.astroacharyamukti.adapter.ReviewAdapter;
 import com.example.astroacharyamukti.helper.Backend;
 import com.example.astroacharyamukti.model.ReviewModel;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ReviewActivity extends AppCompatActivity {
@@ -61,6 +65,26 @@ public class ReviewActivity extends AppCompatActivity {
         getCustomerReview();
     }
 
+    @Override
+    protected void onStart() {
+        getUserProfile();
+        getCustomerReview();
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        getUserProfile();
+        getCustomerReview();
+        super.onResume();
+    }
+
+    @Override
+    protected void onRestart() {
+        getUserProfile();
+        getCustomerReview();
+        super.onRestart();
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -74,7 +98,7 @@ public class ReviewActivity extends AppCompatActivity {
         String dataUrl = String.format(url, userId);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         progressBar.setVisibility(View.VISIBLE);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, dataUrl, response -> {
+        @SuppressLint("NotifyDataSetChanged") StringRequest stringRequest = new StringRequest(Request.Method.GET, dataUrl, response -> {
             progressBar.setVisibility(View.INVISIBLE);
             try {
                 JSONObject obj = new JSONObject(response);
@@ -105,9 +129,8 @@ public class ReviewActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("acharid",userId);
+                params.put("acharid", userId);
                 return params;
-
             }
         };
         requestQueue.add(stringRequest);
@@ -119,7 +142,6 @@ public class ReviewActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue request = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, dataUrl, response -> {
-            Log.d("url", url);
             try {
                 JSONObject jsonObject = new JSONObject(response);
                 String profileImage = jsonObject.getString("image");

@@ -55,8 +55,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         String pass = Backend.getInstance(this).getPassword();
         etEmail.setText(userName);
         password.setText(pass);
-        progressBar = findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.INVISIBLE);
+//        progressBar = findViewById(R.id.progressBar);
+//        progressBar.setVisibility(View.INVISIBLE);
     }
 
     public void showDialog() {
@@ -76,9 +76,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         });
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
-
     }
-
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
@@ -126,7 +124,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         String pass = password.getText().toString();
         Backend.getInstance(this).savePassword(pass);
         Backend.getInstance(this).saveUserName(email);
-        progressBar.setVisibility(View.VISIBLE);
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
             try {

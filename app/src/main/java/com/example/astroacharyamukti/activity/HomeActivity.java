@@ -133,6 +133,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(profile);
                 break;
             case R.id.nav_logout:
+                Backend.getInstance(this).saveUserId("");
+                Backend.getInstance(this).saveUserName("");
+                Backend.getInstance(this).saveMobile("");
                 Intent i5 = new Intent(getApplicationContext(), Login.class);
                 i5.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i5);

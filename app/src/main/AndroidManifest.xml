@@ -48,7 +48,8 @@
         <activity
             android:name=".activity.Login"
             android:exported="false"
-            android:theme="@style/Theme.Astroacharyamukti.NoActionBar" />
+            android:theme="@style/Theme.Astroacharyamukti.NoActionBar"
+            android:focusableInTouchMode="true" />
         <activity
             android:name=".activity.Launcher"
             android:exported="true"

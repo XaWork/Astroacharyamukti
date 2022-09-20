@@ -25,9 +25,9 @@
 
                 <ProgressBar
                     android:id="@+id/progressBar"
-                    android:layout_centerInParent="true"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/ratingProfileImage"
@@ -69,7 +69,7 @@
                     android:layout_below="@+id/rating"
                     android:layout_marginStart="200dp"
                     android:layout_marginTop="3dp"
-                    android:text="8958935"
+                    android:text="0"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 
@@ -82,38 +82,45 @@
                     android:layout_marginEnd="15dp"
                     android:orientation="horizontal">
 
-                    <RadioGroup
-                        android:id="@+id/daily_weekly_button_view"
+                    <TextView
+                        android:gravity="center_vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center_horizontal"
-                        android:orientation="horizontal">
+                        android:text="Call History"
+                        android:textSize="18sp"
+                        android:textColor="@color/black"/>
+                    <!--                    <RadioGroup-->
+                    <!--                        android:id="@+id/daily_weekly_button_view"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="match_parent"-->
+                    <!--                        android:gravity="center_horizontal"-->
+                    <!--                        android:orientation="horizontal">-->
 
 
-                        <RadioButton
-                            android:id="@+id/radio0"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/radio_flat_selector"
-                            android:button="@android:color/transparent"
-                            android:checked="true"
-                            android:gravity="center"
-                            android:text="@string/text_call"
-                            android:textColor="@drawable/radio_flat_text_selector"
-                            android:textStyle="bold" />
+                    <!--                        <RadioButton-->
+                    <!--                            android:id="@+id/radio0"-->
+                    <!--                            android:layout_width="0dp"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_weight="1"-->
+                    <!--                            android:background="@drawable/radio_flat_selector"-->
+                    <!--                            android:button="@android:color/transparent"-->
+                    <!--                            android:checked="true"-->
+                    <!--                            android:gravity="center"-->
+                    <!--                            android:text="@string/text_call"-->
+                    <!--                            android:textColor="@drawable/radio_flat_text_selector"-->
+                    <!--                            android:textStyle="bold" />-->
 
-                        <RadioButton
-                            android:id="@+id/radio1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/radio_flat_selector"
-                            android:button="@android:color/transparent"
-                            android:gravity="center"
-                            android:text="@string/text_chat"
-                            android:textColor="@drawable/radio_flat_text_selector" />
-                    </RadioGroup>
+                    <!--                        <RadioButton-->
+                    <!--                            android:id="@+id/radio1"-->
+                    <!--                            android:layout_width="0dp"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_weight="1"-->
+                    <!--                            android:background="@drawable/radio_flat_selector"-->
+                    <!--                            android:button="@android:color/transparent"-->
+                    <!--                            android:gravity="center"-->
+                    <!--                            android:text="@string/text_chat"-->
+                    <!--                            android:textColor="@drawable/radio_flat_text_selector" />-->
+                    <!--                    </RadioGroup>-->
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView

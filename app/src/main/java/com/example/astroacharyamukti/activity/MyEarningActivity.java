@@ -36,15 +36,16 @@ public class MyEarningActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     List<EarnDetails> earningData = new ArrayList<>();
     ProgressBar progressBar;
+    TextView total;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_earning);
         getData();
-        TextView total = findViewById(R.id.total);
-        String getTotalBalance = Backend.getInstance(this).getTotal();
-        total.setText(getTotalBalance);
+        total = findViewById(R.id.total);
+//        String getTotalBalance = Backend.getInstance(this).getTotal();
+//        total.setText(getTotalBalance);
         recyclerView = findViewById(R.id.recyclerView_earning);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -52,6 +53,24 @@ public class MyEarningActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         progressBar = findViewById(R.id.progressBarNew);
         progressBar.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    protected void onStart() {
+        getData();
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        getData();
+        super.onResume();
+    }
+
+    @Override
+    protected void onRestart() {
+        getData();
+        super.onRestart();
     }
 
     @Override
@@ -85,8 +104,9 @@ public class MyEarningActivity extends AppCompatActivity {
                                 jo.getString("date"));
                         earningData.add(earnData);
                     }
-                    String total = obj.getString("total");
-                    Backend.getInstance(getApplicationContext()).saveTotal(total);
+                    String totalBal = obj.getString("total");
+                    total.setText(totalBal);
+                    Backend.getInstance(getApplicationContext()).saveTotal(totalBal);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

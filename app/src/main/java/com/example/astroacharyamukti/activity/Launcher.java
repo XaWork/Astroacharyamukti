@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.astroacharyamukti.R;
 import com.example.astroacharyamukti.helper.Backend;
 
@@ -21,6 +23,8 @@ public class Launcher extends AppCompatActivity {
         setContentView(R.layout.activity_luncher);
         String userName = Backend.getInstance(this).getUserName();
         String password = Backend.getInstance(this).getPassword();
+        ImageView image=findViewById(R.id.imageApp);
+        Glide.with(this).load(R.drawable.bg2).into(image);
         new Timer().schedule(new TimerTask() {
             public void run() {
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
