@@ -4,20 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="@color/white"
+    android:background="@drawable/new_bg"
     tools:context=".activity.Launcher">
 
     <ImageView
-        android:scaleType="fitXY"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
         android:id="@+id/imageApp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:src="@drawable/logo5"
+        android:layout_width="300dp"
+        android:layout_height="300dp"/>
 
-<!--    <TextView-->
-<!--        android:textStyle="bold"-->
-<!--        android:layout_below="@+id/imageApp"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/app_name"/>-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageApp"
+        android:gravity="center_horizontal"
+        android:paddingTop="80dp"
+        android:text="Astrologers Registration"
+        android:textColor="@color/yellow"
+        android:textSize="24sp"
+        android:textStyle="normal" />
 </RelativeLayout>

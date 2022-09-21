@@ -24,7 +24,7 @@ public class Launcher extends AppCompatActivity {
         String userName = Backend.getInstance(this).getUserName();
         String password = Backend.getInstance(this).getPassword();
         ImageView image=findViewById(R.id.imageApp);
-        Glide.with(this).load(R.drawable.bg2).into(image);
+        Glide.with(this).load(R.drawable.logo5).into(image);
         new Timer().schedule(new TimerTask() {
             public void run() {
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());

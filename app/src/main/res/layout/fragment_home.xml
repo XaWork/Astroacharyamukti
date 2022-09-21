@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:background="@drawable/bg"
+        android:background="@color/white"
         android:gravity="center">
         <ProgressBar
             android:id="@+id/progressBar"
@@ -21,7 +21,7 @@
         <TextView
             android:id="@+id/text_home"
             android:layout_width="1dp"
-            android:layout_height="1dp" />
+            android:layout_height="1dp"/>
 
         <ImageView
             android:id="@+id/imageViewK"

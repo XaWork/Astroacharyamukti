@@ -54,6 +54,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
         holder.comment.setText(review.getComment());
         holder.replyDate.setText(review.getReply_date());
         reply.setText(review.getReply());
+
     }
 
     @Override
@@ -92,6 +93,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
         String url = "https://theacharyamukti.com/managepanel/apis/review-post.php";
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         dialog.setVisibility(View.VISIBLE);
+
         StringRequest request = new StringRequest(Request.Method.POST, url, response -> {
             dialog.setVisibility(View.INVISIBLE);
             try {

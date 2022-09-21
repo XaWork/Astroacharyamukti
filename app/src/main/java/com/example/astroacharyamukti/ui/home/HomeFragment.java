@@ -52,7 +52,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         charge.setText(newPrice);
         progressBar = root.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
-
         getUser();
         return root;
     }

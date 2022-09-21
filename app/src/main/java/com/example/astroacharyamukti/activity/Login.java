@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,17 +15,14 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.astroacharyamukti.R;
 import com.example.astroacharyamukti.helper.Backend;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -133,7 +129,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 if (jsonObject.getString("status").equals("true")) {
                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                     startActivity(intent);
-                    progressBar.setVisibility(View.INVISIBLE);
                 } else {
                     Toast.makeText(Login.this, msg, Toast.LENGTH_SHORT).show();
                 }
@@ -144,8 +139,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             }
         }, error -> {
             Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
-            progressBar.setVisibility(View.VISIBLE);
-
         }) {
             @Override
             public Map<String, String> getParams() {
@@ -156,7 +149,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             }
         };
         requestQueue.add(stringRequest);
-
     }
 
 }

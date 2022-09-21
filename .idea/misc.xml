@@ -118,9 +118,10 @@
         <entry key="..\:/Users/user/Desktop/Astroacharyamukti/app/src/main/res/menu/home_actvity.xml" value="0.20416666666666666" />
         <entry key="..\:/astroacharyamukti/app/src/main/res/layout/activity_customer_review.xml" value="0.33" />
         <entry key="..\:/astroacharyamukti/app/src/main/res/layout/activity_earning.xml" value="0.20416666666666666" />
-        <entry key="..\:/astroacharyamukti/app/src/main/res/layout/activity_luncher.xml" value="0.2" />
-        <entry key="..\:/astroacharyamukti/app/src/main/res/layout/activity_otp.xml" value="0.25" />
+        <entry key="..\:/astroacharyamukti/app/src/main/res/layout/activity_luncher.xml" value="0.25" />
+        <entry key="..\:/astroacharyamukti/app/src/main/res/layout/activity_otp.xml" value="0.19130434782608696" />
         <entry key="..\:/astroacharyamukti/app/src/main/res/layout/activity_user_profile.xml" value="0.15" />
+        <entry key="..\:/astroacharyamukti/app/src/main/res/layout/fragment_home.xml" value="0.11413043478260869" />
         <entry key="..\:/astroacharyamukti/app/src/main/res/layout/fragment_update_bank_details.xml" value="0.11096014492753623" />
       </map>
     </option>
