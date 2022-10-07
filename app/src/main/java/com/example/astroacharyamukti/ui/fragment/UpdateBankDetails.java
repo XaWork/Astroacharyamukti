@@ -140,7 +140,6 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
             }
         };
         requestQueue.add(stringRequest);
-
     }
 
     @Override

@@ -62,6 +62,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     EditText newPrice;
     ProgressBar progressBar;
     Switch switchUse;
+    Dialog dialog;
     int date;
 
     @Override
@@ -209,7 +210,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
     private void dialog() {
-        Dialog dialog = new Dialog(this);
+        dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
         dialog.setContentView(R.layout.dialog_online_layout);
@@ -237,7 +238,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void dialogSchedule() {
-        Dialog dialog = new Dialog(this);
+        dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
         dialog.setContentView(R.layout.custom_schedule);
@@ -428,5 +429,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         };
         request.add(stringRequest);
+    }
+
+    @Override
+    protected void onDestroy() {
+        dialog.dismiss();
+        super.onDestroy();
     }
 }
