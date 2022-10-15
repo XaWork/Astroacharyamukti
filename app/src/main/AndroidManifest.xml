@@ -13,6 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Astroacharyamukti">
         <activity
+            android:name=".activity.FilterActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".activity.HelpAndSupport"
             android:exported="false"
             android:label="Help and Supports" />
@@ -48,8 +55,8 @@
         <activity
             android:name=".activity.Login"
             android:exported="false"
-            android:theme="@style/Theme.Astroacharyamukti.NoActionBar"
-            android:focusableInTouchMode="true" />
+            android:focusableInTouchMode="true"
+            android:theme="@style/Theme.Astroacharyamukti.NoActionBar" />
         <activity
             android:name=".activity.Launcher"
             android:exported="true"
@@ -70,7 +77,6 @@
             android:label="Add Bank Details" />
         <activity
             android:name=".activity.MainActivity"
-            android:exported="true" />
+            android:exported="true"/>
     </application>
-
 </manifest>

@@ -2,24 +2,24 @@ package com.example.astroacharyamukti.model;
 
 public class EarnDetails {
     String consultation_id;
-    String nqme;
+    String name;
     String consultation_type;
     String earamount;
     String amount;
     String duration;
     String date;
 
-    public String getNqme() {
-        return nqme;
+    public String getName() {
+        return name;
     }
 
-    public void setNqme(String nqme) {
-        this.nqme = nqme;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public EarnDetails(String consultation_id, String nqme, String consultation_type, String earamount, String amount, String duration, String date) {
+    public EarnDetails(String consultation_id, String name, String consultation_type, String earamount, String amount, String duration, String date) {
         this.consultation_id = consultation_id;
-        this.nqme=nqme;
+        this.name=name;
         this.consultation_type = consultation_type;
         this.earamount = earamount;
         this.amount = amount;

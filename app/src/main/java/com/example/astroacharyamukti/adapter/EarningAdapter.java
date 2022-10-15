@@ -36,7 +36,7 @@ public class EarningAdapter extends RecyclerView.Adapter<EarningAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         EarnDetails earn = earnDetails.get(position);
         holder.consultation_id.setText(earn.getConsultation_id());
-        holder.name.setText(earn.getNqme());
+        holder.name.setText(earn.getName());
         holder.consultation_type.setText(earn.getConsultation_type());
         holder.earnMount.setText(earn.getEaramount());
         holder.amount.setText(earn.getAmount());

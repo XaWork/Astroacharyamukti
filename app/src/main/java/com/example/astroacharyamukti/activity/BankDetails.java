@@ -134,9 +134,10 @@ public class BankDetails extends AppCompatActivity implements View.OnClickListen
         String userId = Backend.getInstance(this).getUserId();
         String url = "https://theacharyamukti.com/appapi/items/read.php";
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                progressBar.setVisibility(View.GONE);
                 try {
                     JSONArray itemsArray = response.getJSONArray("Bank_Details");
                     for (int i = 0; i < itemsArray.length(); i++) {
@@ -172,7 +173,7 @@ public class BankDetails extends AppCompatActivity implements View.OnClickListen
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                progressBar.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
             }
         }) {
             @Nullable

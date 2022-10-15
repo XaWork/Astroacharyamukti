@@ -96,7 +96,7 @@ public class MyEarningActivity extends AppCompatActivity {
                         JSONObject jo = arr.getJSONObject(i);
                         EarnDetails earnData = new EarnDetails(
                                 jo.getString("consultation_id"),
-                                jo.getString("nqme"),
+                                jo.getString("name"),
                                 jo.getString("consultation_type"),
                                 jo.getString("earamount"),
                                 jo.getString("amount"),
