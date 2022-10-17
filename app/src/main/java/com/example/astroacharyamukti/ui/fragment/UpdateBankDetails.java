@@ -116,16 +116,12 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
                 }
 
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
-                progressBar.setVisibility(View.VISIBLE);
-
-            }
+        }, error -> {
+            Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+            progressBar.setVisibility(View.VISIBLE);
         }) {
             @Override
-            public Map<String, String> getParams() throws AuthFailureError {
+            public Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("acharid", userId);
                 params.put("bfname", beneficiaryName = beFe_name.getText().toString());
@@ -141,7 +137,6 @@ public class UpdateBankDetails extends Fragment implements View.OnClickListener 
         };
         requestQueue.add(stringRequest);
     }
-
     @Override
     public void onClick(View v) {
         postData();
