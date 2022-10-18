@@ -16,8 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.astroacharyamukti.R;
@@ -31,6 +29,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MyEarningActivity extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -50,7 +49,7 @@ public class MyEarningActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         progressBar = findViewById(R.id.progressBarNew);
         progressBar.setVisibility(View.INVISIBLE);
     }
@@ -75,7 +74,7 @@ public class MyEarningActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) ;
+        item.getItemId();
         finish();
         return super.onOptionsItemSelected(item);
     }
@@ -114,12 +113,9 @@ public class MyEarningActivity extends AppCompatActivity {
                 earningAdapter.notifyDataSetChanged();
                 recyclerView.setAdapter(earningAdapter);
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                progressBar.setVisibility(View.VISIBLE);
-                Toast.makeText(MyEarningActivity.this, "Error", Toast.LENGTH_SHORT).show();
-            }
+        }, error -> {
+            progressBar.setVisibility(View.VISIBLE);
+            Toast.makeText(MyEarningActivity.this, "Error", Toast.LENGTH_SHORT).show();
         });
         requestQueue.add(stringRequest);
     }

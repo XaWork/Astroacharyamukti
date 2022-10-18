@@ -1,17 +1,22 @@
 package com.example.astroacharyamukti.model;
 
-public class BankData {
-    private BankDetail bankDetail;
+import com.google.gson.annotations.SerializedName;
 
-    public BankData(BankDetail bankDetail) {
+import java.util.List;
+
+public class BankData {
+    @SerializedName("Bank_Details")
+    private List<BankDetail> bankDetail=null;
+
+    public BankData(List<BankDetail> bankDetail) {
         this.bankDetail = bankDetail;
     }
 
-    public BankDetail getBankDetails() {
+    public List<BankDetail> getBankDetail() {
         return bankDetail;
     }
 
-    public void setBankDetails(BankDetail bankDetail) {
+    public void setBankDetail(List<BankDetail> bankDetail) {
         this.bankDetail = bankDetail;
     }
 }

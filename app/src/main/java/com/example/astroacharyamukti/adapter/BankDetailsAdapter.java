@@ -11,7 +11,7 @@ import com.example.astroacharyamukti.model.BankDetail;
 import java.util.List;
 
 public class BankDetailsAdapter extends RecyclerView.Adapter {
-    public BankDetailsAdapter(Context context, List<List<BankDetail>> data) {
+    public BankDetailsAdapter(Context context, List<BankDetail> data) {
     }
 
     @NonNull

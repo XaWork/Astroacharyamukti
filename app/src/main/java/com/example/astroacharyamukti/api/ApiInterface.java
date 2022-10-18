@@ -5,7 +5,9 @@ import com.example.astroacharyamukti.model.FilterModel;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface ApiInterface {
     @FormUrlEncoded
@@ -17,9 +19,8 @@ public interface ApiInterface {
             @Field("date_to") String endDate,
             @Field("month") String month
     );
-
     @FormUrlEncoded
-    @POST("appapi/items/read.php")
+    @GET("appapi/items/read.php")
     Call<BankData> getBankDetails(
             @Field("acharid") String userid
     );
