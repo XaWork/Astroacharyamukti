@@ -57,17 +57,18 @@ public class BankDetails extends AppCompatActivity implements View.OnClickListen
 //        progressBar.setVisibility(View.INVISIBLE);
         //     getBankDetails();
     }
+
     private void getDetails() {
-        List<BankDetail>data = new ArrayList<>();
+        List<BankData> data = new ArrayList<>();
         String userid = Backend.getInstance(this).getUserId();
         Call<BankData> call = RetrofitClient.getInstance().getApi().getBankDetails(userid);
         call.enqueue(new Callback<BankData>() {
             @Override
             public void onResponse(Call<BankData> call, Response<BankData> response) {
-              if (response.isSuccessful())
-               response.body().getBankDetail();
-               // BankDetailsAdapter bankDetailsAdapter = new BankDetailsAdapter(getApplicationContext(), data);
-             //   recyclerView.setAdapter(bankDetailsAdapter);
+                if (response.isSuccessful()) {
+               //     BankDetailsAdapter bankDetailsAdapter = new BankDetailsAdapter(getApplicationContext(), dataList);
+                //    recyclerView.setAdapter(bankDetailsAdapter);
+                }
             }
             @Override
             public void onFailure(Call<BankData> call, Throwable t) {
@@ -92,6 +93,7 @@ public class BankDetails extends AppCompatActivity implements View.OnClickListen
         Log.d("Login", "restart");
         super.onRestart();
     }
+
     @Override
     protected void onStart() {
         Log.d("Login", "start");

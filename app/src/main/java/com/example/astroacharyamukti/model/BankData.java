@@ -6,7 +6,7 @@ import java.util.List;
 
 public class BankData {
     @SerializedName("Bank_Details")
-    private List<BankDetail> bankDetail=null;
+    private List<BankDetail> bankDetail;
 
     public BankData(List<BankDetail> bankDetail) {
         this.bankDetail = bankDetail;

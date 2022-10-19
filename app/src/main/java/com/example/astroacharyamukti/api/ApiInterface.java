@@ -1,6 +1,7 @@
 package com.example.astroacharyamukti.api;
 
 import com.example.astroacharyamukti.model.BankData;
+import com.example.astroacharyamukti.model.BankDetail;
 import com.example.astroacharyamukti.model.FilterModel;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -8,6 +9,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiInterface {
     @FormUrlEncoded
@@ -19,9 +21,8 @@ public interface ApiInterface {
             @Field("date_to") String endDate,
             @Field("month") String month
     );
-    @FormUrlEncoded
     @GET("appapi/items/read.php")
     Call<BankData> getBankDetails(
-            @Field("acharid") String userid
+            @Query("acharid") String userid
     );
 }

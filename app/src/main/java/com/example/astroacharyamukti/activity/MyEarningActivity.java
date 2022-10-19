@@ -1,6 +1,8 @@
 package com.example.astroacharyamukti.activity;
 
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,12 +33,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class MyEarningActivity extends AppCompatActivity {
+public class MyEarningActivity extends AppCompatActivity implements View.OnClickListener {
     RecyclerView recyclerView;
     List<EarnDetails> earningData = new ArrayList<>();
     ProgressBar progressBar;
     TextView total;
+    TextView filter;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +56,8 @@ public class MyEarningActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         progressBar = findViewById(R.id.progressBarNew);
         progressBar.setVisibility(View.INVISIBLE);
+        filter=findViewById(R.id.filter);
+        filter.setOnClickListener(this);
     }
 
     @Override
@@ -118,5 +124,11 @@ public class MyEarningActivity extends AppCompatActivity {
             Toast.makeText(MyEarningActivity.this, "Error", Toast.LENGTH_SHORT).show();
         });
         requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent=new Intent(getApplicationContext(),FilterActivity.class);
+        startActivity(intent);
     }
 }
