@@ -1,74 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:orientation="vertical"
-    tools:context=".activity.FilterActivity">
+    tools:context="com.acharyamukti.astrologer.activity.FilterActivity">
 
-    <TextView
+    <RelativeLayout
+        android:id="@+id/layoutTotal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#F3F1F1"
+        android:visibility="gone"
+        android:gravity="center_vertical"
+        android:paddingStart="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/text_earning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Earned"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_earning"
+            android:layout_marginTop="5dp"
+            android:drawableLeft="@drawable/ic_baseline_currency_rupee_24"
+            android:drawablePadding="5dp"
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="consultation_id"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutTotal">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:hint="Id" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Consultation Id*"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
-    <TextView
+        <EditText
+            android:id="@+id/consultationId"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Id" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Name" />
+
+        <TextView
+            android:id="@+id/form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="From"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/startDate"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:focusable="false"
+            android:hint="Start date" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="End date"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/endDate"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:focusable="false"
+            android:hint="End date" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Month"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/month"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="month" />
+
+
+        <Button
+            android:id="@+id/apply"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/newPassword"
+            android:layout_marginTop="20dp"
+            android:text="Apply"
+            android:textColor="@color/white"
+            android:textStyle="normal" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBarNew"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Name"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+        android:layout_centerInParent="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_earning"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:hint="Name" />
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutTotal" />
 
-    <TextView
-        android:id="@+id/form"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Form"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
-
-    <EditText
-        android:id="@+id/startDate"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:hint="Start date" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="End date"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:hint="End date" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Month"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:hint="month" />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

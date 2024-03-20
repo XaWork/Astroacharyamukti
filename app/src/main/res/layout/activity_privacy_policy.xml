@@ -6,7 +6,7 @@
     android:layout_margin="10dp"
     android:fillViewport="true"
     android:scrollbars="vertical"
-    tools:context=".activity.PrivacyPolicy">
+    tools:context="com.acharyamukti.astrologer.activity.PrivacyPolicy">
 
         <RelativeLayout
             android:layout_width="match_parent"

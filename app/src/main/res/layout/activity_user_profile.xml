@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FAF6F6"
-    tools:context=".activity.UserProfile">
+    tools:context="com.acharyamukti.astrologer.activity.UserProfile">
 
     <ProgressBar
         android:id="@+id/progressBar"

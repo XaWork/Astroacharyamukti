@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:background="@drawable/new_bg"
-    tools:context=".activity.Launcher">
+    tools:context="com.acharyamukti.astrologer.activity.Launcher">
 
     <ImageView
         android:layout_marginTop="80dp"

@@ -13,52 +13,52 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Astroacharyamukti">
         <activity
-            android:name=".activity.FilterActivity"
+            android:name="com.acharyamukti.astrologer.activity.FilterActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.HelpAndSupport"
+            android:name="com.acharyamukti.astrologer.activity.HelpAndSupport"
             android:exported="false"
             android:label="Help and Supports" />
         <activity
-            android:name=".activity.UserProfile"
+            android:name="com.acharyamukti.astrologer.activity.UserProfile"
             android:exported="false"
             android:label="User Profile" />
         <activity
-            android:name=".activity.FAQ"
+            android:name="com.acharyamukti.astrologer.activity.FAQ"
             android:exported="false"
             android:label="Frequently Asked Questions" />
         <activity
-            android:name=".activity.ReviewActivity"
+            android:name="com.acharyamukti.astrologer.activity.ReviewActivity"
             android:exported="false"
             android:label="Customer Review" />
         <activity
-            android:name=".activity.MyEarningActivity"
+            android:name="com.acharyamukti.astrologer.activity.MyEarningActivity"
             android:exported="false"
             android:label="My Earning" />
         <activity
-            android:name=".activity.LanguageActivity"
+            android:name="com.acharyamukti.astrologer.activity.LanguageActivity"
             android:exported="true"
             android:label="Change Language" />
         <activity
-            android:name=".activity.PrivacyPolicy"
+            android:name="com.acharyamukti.astrologer.activity.PrivacyPolicy"
             android:exported="true"
             android:label="Privacy Policy" />
         <activity
-            android:name=".activity.HomeActivity"
+            android:name="com.acharyamukti.astrologer.activity.HomeActivity"
             android:exported="false"
             android:label="User Details"
             android:theme="@style/Theme.Astroacharyamukti.NoActionBar" />
         <activity
-            android:name=".activity.Login"
+            android:name="com.acharyamukti.astrologer.activity.Login"
             android:exported="false"
             android:focusableInTouchMode="true"
             android:theme="@style/Theme.Astroacharyamukti.NoActionBar" />
         <activity
-            android:name=".activity.Launcher"
+            android:name="com.acharyamukti.astrologer.activity.Launcher"
             android:exported="true"
             android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
@@ -68,15 +68,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.BookAppointment"
+            android:name="com.acharyamukti.astrologer.activity.BookAppointment"
             android:exported="false"
             android:label="Book Appointment" />
         <activity
-            android:name=".activity.BankDetails"
+            android:name="com.acharyamukti.astrologer.activity.BankDetails"
             android:exported="true"
             android:label="Add Bank Details" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.acharyamukti.astrologer.activity.MainActivity"
             android:exported="true"/>
     </application>
 </manifest>
